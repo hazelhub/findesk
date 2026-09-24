@@ -97,10 +97,9 @@ svg { display: block; }
 /* ─────────────── top bar ─────────────── */
 .topbar {
   position: sticky; top: 0; z-index: 30;
-  background: color-mix(in srgb, var(--bg) 88%, transparent);
-  backdrop-filter: saturate(1.4) blur(10px);
-  -webkit-backdrop-filter: saturate(1.4) blur(10px);
+  background: var(--bg);
   border-bottom: 1px solid var(--line);
+  box-shadow: 0 2px 8px rgba(20, 24, 30, .06);
 }
 .topbar__inner {
   max-width: 1360px; margin: 0 auto; height: var(--topbar-h);
@@ -669,7 +668,8 @@ svg { display: block; }
 /* ── 탭 (메인 시장 분류 · 사이드) ── */
 .mtabs, .atabs { display: flex; gap: 4px; padding: 4px; background: var(--surface); border: 1px solid var(--line); border-radius: 12px; box-shadow: var(--shadow); overflow-x: auto; scrollbar-width: none; }
 .mtabs::-webkit-scrollbar, .atabs::-webkit-scrollbar { display: none; }
-.mtabs { position: sticky; top: calc(var(--topbar-h) + 8px); z-index: 5; }
+.mtabs { position: sticky; top: calc(var(--topbar-h) + 46px + 8px); z-index: 5; }
+.main > .panel[data-tab] { scroll-margin-top: calc(var(--topbar-h) + 46px + 64px); }
 .mtabs button, .atabs button { flex: 1 0 auto; font: inherit; font-size: 13.5px; font-weight: 600; color: var(--ink-2); background: none; border: 0; border-radius: 9px; padding: 8px 12px; cursor: pointer; white-space: nowrap; }
 .mtabs button:hover, .atabs button:hover { color: var(--ink); background: var(--surface-2); }
 .mtabs button[aria-selected="true"], .atabs button[aria-selected="true"] { background: var(--accent); color: var(--accent-ink); }
