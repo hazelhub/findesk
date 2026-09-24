@@ -269,7 +269,8 @@ def summarize(sector_id, name, arts):
     polar = weight["pos"] + weight["neg"]
     link = lambda a: {"s": a["source"], "u": a["url"], "t": a["time"].astimezone(KST).strftime("%m/%d %H:%M"), "w": a["words"]}
     # 표본 키워드는 사건(묶음) 기준 — 섹터 이름과 같은 단어는 제외
-    kws = [w for w in keywords_of(events, 6) if w not in name and name not in w][:3]
+    generic = set(WORD_POS) | set(WORD_NEG) | {"미국", "한국", "중국", "일본", "서울", "마감", "뉴욕증시", "증시", "코스피", "코스닥", "주가", "시장", "투자", "종목", "업계", "정부", "올해", "내년", "기업"}
+    kws = [w for w in keywords_of(events, 10) if w not in generic and w not in name and name not in w][:3]
     return {
         "id": sector_id, "name": name,
         "pos": weight["pos"], "neg": weight["neg"], "neu": weight["neu"], "total": total,
