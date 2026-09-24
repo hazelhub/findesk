@@ -42,7 +42,7 @@
         <div class="brand__text"><h1 class="brand__title" id="siteName">FinDesk</h1><small id="tagline">금융인을 위한 아침 데스크</small></div>
       </a>
       <nav class="nav" aria-label="섹션 이동">
-        <a href="#brief">브리핑</a><a href="#indices">증시</a><a href="#commodities">원자재</a><a href="#rates">환율·금리</a><a href="#bonds">채권</a><a href="#crypto">디지털자산</a><a href="#policy">정책</a><a href="books.html">도서</a><a href="sites.html">사이트</a>
+        <a href="#brief">브리핑</a><a href="#indices">증시</a><a href="#sectors">섹터</a><a href="#commodities">원자재</a><a href="#rates">환율·금리</a><a href="#bonds">채권</a><a href="#crypto">디지털자산</a><a href="#policy">정책</a><a href="books.html">도서</a><a href="sites.html">사이트</a>
       </nav>
       <div class="topbar__right">
         <div class="clock" aria-live="off">
@@ -107,6 +107,28 @@
         <div class="carousel" id="indexCarousel" tabindex="0" aria-label="지수 카드, 좌우로 넘겨 보세요"></div>
         <p class="fineprint">코스피·코스닥은 한국은행 ECOS 일별 종가(전 영업일 기준), 해외 지수는 TradingView CFD 시세입니다.</p>
         <div class="secnews" data-sec="market" data-title="증시 뉴스"></div>
+      </section>
+
+      <!-- 섹터 등락 -->
+      <section class="panel" id="sectors" aria-labelledby="h-sectors">
+        <div class="panel__head">
+          <h2 id="h-sectors">섹터 등락</h2>
+          <span class="meta">오늘 돈이 몰린 곳 · 빠진 곳</span>
+        </div>
+        <h3 class="sub">미국 · S&amp;P 500 섹터 히트맵 <small class="meta">색: 초록=상승 · 빨강=하락 (해외 표기)</small></h3>
+        <div class="sector-us">
+          <div class="tv-box tv-box--heatmap" id="usHeatmap"></div>
+          <div class="tv-box tv-box--movers" id="usMovers"></div>
+        </div>
+        <div class="kr-sectors" id="krSectors" hidden>
+          <h3 class="sub">한국 · 업종 등락 <small class="meta" id="krMeta"></small></h3>
+          <div class="split">
+            <div><h4 class="mini">업종지수 등락 순위</h4><ol class="rank" id="krSectorRank"></ol></div>
+            <div><h4 class="mini">시가총액 상위 300 중 등락률 상·하위</h4><ol class="rank" id="krMovers"></ol></div>
+          </div>
+          <p class="fineprint">출처: 금융위원회 주식·지수시세정보(공공데이터포털, 한국거래소 원천) · 다음 영업일 오후 1시 이후 갱신 · 제공된 등락률을 그대로 정렬해 보여줍니다.</p>
+        </div>
+        <p class="fineprint" id="krSectorFallback">한국 업종 등락은 한국거래소 시세 재배포 제한으로 자동 표시하지 않고 있어요 → <a href="https://data.krx.co.kr/contents/MDC/MAIN/main/index.cmd" target="_blank" rel="noopener">KRX 정보데이터시스템 업종 시세</a>에서 확인하세요.</p>
       </section>
 
       <!-- 원자재 -->

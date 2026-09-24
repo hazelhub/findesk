@@ -493,6 +493,35 @@
     $("#bookCard").hidden = false;
   })();
 
+  /* ── 섹터 등락: 미국(TradingView 위젯) + 한국(공공데이터, 전 영업일) ── */
+  (function buildSectors() {
+    var hm = $("#usHeatmap"), mv = $("#usMovers");
+    if (hm) tvWidget(hm, "stock-heatmap", function (t) {
+      return { dataSource: "SPX500", grouping: "sector", blockSize: "market_cap_basic", blockColor: "change", locale: LOCALE, colorTheme: t,
+        hasTopBar: false, isDataSetEnabled: false, isZoomEnabled: true, hasSymbolTooltip: true, isMonoSize: false, width: "100%", height: "100%" };
+    }, "https://kr.tradingview.com/heatmap/stock/");
+    if (mv) tvWidget(mv, "hotlists", function (t) {
+      return { exchange: "US", dateRange: "1D", showChart: false, locale: LOCALE, colorTheme: t, isTransparent: true, showSymbolLogo: true, showFloatingTooltip: false, width: "100%", height: "100%" };
+    }, "https://kr.tradingview.com/markets/stocks-usa/market-movers-gainers/");
+    var K = D.krx;
+    if (!K || !(K.sectors || []).length) return;
+    function li(name, sub, v) {
+      var cls = v > 0 ? "up" : v < 0 ? "down" : "flat";
+      return h("li", null, h("b", { text: name }), sub ? h("small", { text: sub }) : null, h("span", { class: cls, text: (v > 0 ? "+" : "") + num(v, 2) + "%" }));
+    }
+    var sec = K.sectors.slice().sort(function (a, b) { return b.chg - a.chg; });
+    var ol = $("#krSectorRank");
+    sec.slice(0, 5).forEach(function (x) { ol.appendChild(li(x.name, x.market, x.chg)); });
+    if (sec.length > 10) ol.appendChild(h("li", { class: "rank__sep", text: "···" }));
+    sec.slice(Math.max(5, sec.length - 5)).forEach(function (x) { ol.appendChild(li(x.name, x.market, x.chg)); });
+    var m = $("#krMovers");
+    (K.gainers || []).slice(0, 5).forEach(function (x) { m.appendChild(li(x.name, x.market, x.chg)); });
+    m.appendChild(h("li", { class: "rank__sep", text: "하락 상위" }));
+    (K.losers || []).slice(0, 5).forEach(function (x) { m.appendChild(li(x.name, x.market, x.chg)); });
+    $("#krMeta").textContent = fmtCycle(K.date) + " 종가 기준 (전 영업일)";
+    $("#krSectors").hidden = false; $("#krSectorFallback").hidden = true;
+  })();
+
   /* ── 디지털자산 ─────────────────────────────────── */
   (function buildCrypto() {
     var grid = $("#cryptoGrid"); if (!grid) return;
@@ -558,13 +587,31 @@
       var last = (BRIEF.data.editions || [])[0];
       box.appendChild(h("div", { class: "edition__empty" },
         h("p", null, h("b", { text: pickInfo.label }), " 브리핑이 아직 올라오지 않았어요. 아래 '지금 볼 곳'에서 바로 확인할 수 있어요."),
-        last ? h("button", { class: "linkish", type: "button", onclick: function () { showEdition(last, true); } }, "가장 최근 브리핑 보기 (" + last.date.slice(5).replace("-", "/") + " " + sessionInfo(last.session).label + ")") : null));
+        last ? h("button", { class: "linkish", type: "button", onclick: function () { showEdition(last, true); } }, "가장 최근 브리핑 보기 (" + last.date.slice(5).replace("-", "/") + " " + sessionInfo(last.session).label + ")") : null,
+        autoLine()));
     } else showEdition(ed, false);
     // 지금 볼 곳
     var go = $("#goLinks"); go.innerHTML = "";
     $("#goTitle").textContent = "지금 볼 곳 · " + (cur.holiday ? "휴장일" : info.label);
     go.appendChild(linkList((C.sessionLinks || {})[cur.holiday ? "holiday" : cur.id] || (C.sessionLinks || {}).global));
     renderSectionPicks();
+  }
+  // 운영자 브리핑이 없을 때 보여줄 '숫자로 보는 시장' (수치만, 자동 생성)
+  function autoLine() {
+    var parts = [];
+    function chgOf(series) { if (!series || series.length < 2) return null; var a = series[series.length - 1][1], b = series[series.length - 2][1]; return (a / b - 1) * 100; }
+    function pct(v) { return (v > 0 ? "+" : "") + num(v, 2) + "%"; }
+    var ks = (market.series || {}).KOSPI, kq = (market.series || {}).KOSDAQ;
+    if (ks && ks.length) parts.push("코스피 " + num(ks[ks.length - 1][1], 2) + (chgOf(ks) != null ? "(" + pct(chgOf(ks)) + ")" : ""));
+    if (kq && kq.length) parts.push("코스닥 " + num(kq[kq.length - 1][1], 2) + (chgOf(kq) != null ? "(" + pct(chgOf(kq)) + ")" : ""));
+    var fx = rowsByName["원/달러 환율(종가)"]; if (fx) parts.push("원/달러 " + num(fx.value, 1) + "원");
+    var kt = rowsByName["국고채수익률(3년)"]; if (kt) parts.push("국고 3년 " + num(kt.value, 3) + "%");
+    var U = D.ust || {}, ur = U.rows || [];
+    if (ur.length > 1) { var i10 = (U.tenors || []).indexOf("10Y") + 1; if (i10 > 0) { var c = ur[ur.length - 1][i10], p = ur[ur.length - 2][i10]; parts.push("美 10년 " + num(c, 2) + "%(" + (c - p >= 0 ? "+" : "") + num((c - p) * 100, 0) + "bp)"); } }
+    var K = D.krx; if (K && (K.sectors || []).length) { var s = K.sectors.slice().sort(function (a, b) { return b.chg - a.chg; }); parts.push("강세 업종 " + s[0].name + " · 약세 " + s[s.length - 1].name); }
+    if (!parts.length) return null;
+    var base = ks && ks.length ? fmtCycle(ks[ks.length - 1][0]) + " 종가 기준" : "최근 발표 기준";
+    return h("div", { class: "edition__auto" }, h("b", { text: "숫자로 보는 시장 · " + base + " (자동)" }), parts.join(" · "));
   }
   function showEdition(ed, stale) {
     var box = $("#edition"); box.innerHTML = "";
