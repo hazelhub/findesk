@@ -6,7 +6,6 @@ GitHub Actions에서 주기적으로 실행되어 data/*.json 을 갱신하고
 
 환경변수 (모두 선택, 없으면 해당 단계는 건너뛰고 기존 데이터 유지)
   ECOS_API_KEY         한국은행 ECOS Open API 인증키 (지수·금리·환율·경제용어)
-  DATA_GO_KR_KEY       공공데이터포털 인증키 (금융위원회 주식·지수시세정보 → 한국 업종 등락)
 
 사용법
   python scripts/update_data.py            # 수집 + 번들 생성
@@ -258,63 +257,6 @@ def update_ust() -> None:
         log(f"미국채 수익률 실패, 기존 값 유지: {e}")
 
 
-# ── 한국 업종·종목 등락 (금융위원회 공공데이터, 전 영업일 기준) ──────
-# 이용조건: 공공누리 4유형(출처표시·상업적 이용금지·변경금지). 제공 값(등락률)을 그대로 정렬만 합니다.
-KRX_STOCK = "https://apis.data.go.kr/1160100/service/GetStockSecuritiesInfoService/getStockPriceInfo"
-KRX_INDEX = "https://apis.data.go.kr/1160100/service/GetMarketIndexInfoService/getStockMarketIndex"
-# 업종지수가 아닌 대표·규모·전략 지수는 제외
-KRX_INDEX_SKIP = re.compile(r"(^코스피$|^코스닥$|200|150|100|50|대형|중형|소형|배당|레버리지|인버스|선물|TR|커버드|동일가중|가치|성장|우량|고배당|변동성|KRX|ESG|리츠|글로벌|중소|벤처|종합)")
-
-
-def _gov_items(url: str, key: str, bas_dt: str, rows: int) -> list:
-    q = urllib.parse.urlencode({"serviceKey": key, "resultType": "json", "numOfRows": rows, "pageNo": 1, "basDt": bas_dt})
-    j = json.loads(http_get(url + "?" + q, timeout=40).decode("utf-8"))
-    items = (((j.get("response") or {}).get("body") or {}).get("items") or {}).get("item") or []
-    return items if isinstance(items, list) else [items]
-
-
-def _f(v):
-    try:
-        return float(str(v).replace(",", ""))
-    except (TypeError, ValueError):
-        return None
-
-
-def update_krx(key: str) -> None:
-    try:
-        day = dt.datetime.now(KST).date()
-        stocks, bas = [], None
-        for back in range(1, 8):  # 가장 최근에 제공된 영업일 찾기
-            d = (day - dt.timedelta(days=back)).strftime("%Y%m%d")
-            stocks = _gov_items(KRX_STOCK, key, d, 4000)
-            if stocks:
-                bas = d
-                break
-        if not stocks:
-            raise RuntimeError("최근 7일 데이터 없음")
-        idx = _gov_items(KRX_INDEX, key, bas, 500)
-        sectors = []
-        for it in idx:
-            name = (it.get("idxNm") or "").strip()
-            csf = (it.get("idxCsf") or "").strip()
-            chg = _f(it.get("fltRt"))
-            if not name or chg is None or KRX_INDEX_SKIP.search(name):
-                continue
-            if "코스피" in csf or "KOSPI" in csf.upper() or "코스닥" in csf or "KOSDAQ" in csf.upper():
-                sectors.append({"name": name, "market": "코스닥" if ("코스닥" in csf or "KOSDAQ" in csf.upper()) else "코스피", "chg": chg})
-        big = [s for s in stocks if (s.get("mrktCtg") in ("KOSPI", "KOSDAQ")) and _f(s.get("mrktTotAmt"))]
-        big.sort(key=lambda s: _f(s.get("mrktTotAmt")) or 0, reverse=True)
-        big = [s for s in big[:300] if _f(s.get("fltRt")) is not None]
-        row = lambda s: {"name": s.get("itmsNm", "").strip(), "market": "코스피" if s.get("mrktCtg") == "KOSPI" else "코스닥", "chg": _f(s.get("fltRt"))}
-        gainers = [row(s) for s in sorted(big, key=lambda s: _f(s.get("fltRt")), reverse=True)[:5]]
-        losers = [row(s) for s in sorted(big, key=lambda s: _f(s.get("fltRt")))[:5]]
-        save("krx.json", {"source": "금융위원회 주식시세정보·지수시세정보 (공공데이터포털)", "license": "공공누리 제4유형",
-                          "date": bas, "fetched_at": now_iso(), "sectors": sectors, "gainers": gainers, "losers": losers})
-        log(f"한국 업종 {len(sectors)}개 · 종목 {len(stocks)}개 ({bas})")
-    except Exception as e:
-        log(f"한국 업종 등락 실패, 기존 값 유지: {e}")
-
-
 # ── 번들 ────────────────────────────────────────────────────
 def build_bundle() -> None:
     terms = load("terms.json", {})
@@ -331,7 +273,7 @@ def build_bundle() -> None:
         "policy": load("policy.json", {"items": []}),
         "ust": load("ust.json", {"rows": []}),
         "books": load("books.json", {"weeks": []}),
-        "krx": load("krx.json", {}),
+        "sectors": load("sectors.json", {"days": []}),
     }
     js = "/* 자동 생성 파일: scripts/update_data.py 가 만듭니다. 직접 수정하지 마세요. */\n"
     js += "window.FD_DATA = " + json.dumps(bundle, ensure_ascii=False, separators=(",", ":")) + ";\n"
@@ -352,9 +294,6 @@ def main() -> int:
             log("ECOS_API_KEY 없음 → 지표·용어는 기존 스냅샷 사용")
         update_policy()
         update_ust()
-        gov = os.getenv("DATA_GO_KR_KEY", "").strip()
-        if gov:
-            update_krx(gov)
     build_bundle()
     return 0
 

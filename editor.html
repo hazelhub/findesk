@@ -18,7 +18,7 @@
         <svg class="brand__mark" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="7"/><path d="M7 21l6-6 4 4 8-9"/></svg>
         <div class="brand__text"><span class="brand__title">FinDesk 편집실</span><small>운영자 전용 · 검색엔진 비노출</small></div>
       </a>
-      <nav class="ed-tabs" aria-label="편집실 메뉴"><a href="editor.html" aria-current="page">브리핑</a><a href="editor-books.html">주간 도서</a></nav>
+      <nav class="ed-tabs" aria-label="편집실 메뉴"><a href="editor.html" id="navBrief" aria-current="page">브리핑</a><a href="editor.html#sectors" id="navSectors">오늘의 섹터</a><a href="editor-books.html">주간 도서</a></nav>
       <div class="ed-top">
         <label>세션
           <select id="edSession"></select>
@@ -46,7 +46,7 @@
       </details>
     </section>
 
-    <div class="ed-cols">
+    <div class="ed-cols" id="briefView">
       <section class="panel ed-cands" aria-labelledby="h-cands">
         <div class="panel__head panel__head--wrap">
           <h2 id="h-cands">후보 기사</h2>
@@ -94,10 +94,47 @@
         <ul class="ed-editions" id="editionList"></ul>
       </section>
     </div>
+
+    <div class="ed-cols" id="sectorView" hidden>
+      <section class="panel" aria-labelledby="h-sec">
+        <div class="panel__head panel__head--wrap"><h2 id="h-sec">오늘의 섹터 (국내 장 마감 후)</h2><span class="meta" id="secSaved"></span></div>
+        <details class="ed-rules" open>
+          <summary>쓰는 법 (2~3분)</summary>
+          <ul>
+            <li>장 마감(15:30) 후 <a href="https://data.krx.co.kr/contents/MDC/MAIN/main/index.cmd" target="_blank" rel="noopener">KRX 정보데이터시스템</a>이나 증권사 앱의 <b>업종 등락 표</b>를 드래그해 복사 → 아래 칸에 붙여넣기.</li>
+            <li>업종명과 등락률(%)을 자동으로 읽어 <b>상승 3개 · 하락 3개</b>를 골라요. 틀린 값은 바로 고치면 됩니다.</li>
+            <li>공개되는 건 업종명·등락률 몇 개와 <b>본인 한 줄 해석</b>뿐입니다. 표 전체를 올리지 않습니다.</li>
+          </ul>
+        </details>
+        <div class="ed-grid ed-grid--week">
+          <label class="ed-label">날짜<input id="secDate" type="date"></label>
+          <label class="ed-label">시장<select id="secMarket"><option>코스피</option><option>코스닥</option></select></label>
+        </div>
+        <label class="ed-label">업종 등락 표 붙여넣기
+          <textarea id="secPaste" rows="6" placeholder="예)&#10;전기·전자	12,345.67	+234.56	+1.94%&#10;금융	890.12	-8.90	-0.99%"></textarea>
+        </label>
+        <div class="ed-actions"><button class="btn" id="secParse" type="button">읽어오기</button><span class="meta" id="secParseMsg"></span></div>
+        <div class="split ed-secsplit">
+          <div><h3 class="sub up">강세 업종</h3><ol class="ed-seclist" id="secUp"></ol><button class="btn btn--sm" type="button" data-add="up">+ 추가</button></div>
+          <div><h3 class="sub down">약세 업종</h3><ol class="ed-seclist" id="secDown"></ol><button class="btn btn--sm" type="button" data-add="down">+ 추가</button></div>
+        </div>
+        <label class="ed-label">한 줄 해석 (선택, 120자)
+          <textarea id="secComment" rows="2" maxlength="120" placeholder="예) 반도체 대형주로 외국인 매수 집중, 금리 부담에 금융·건설은 약세"></textarea>
+        </label>
+        <div class="ed-actions"><span class="spacer"></span><button class="btn btn--primary" id="secPublish" type="button">게시하기</button></div>
+        <p class="meta" id="secMsg"></p>
+      </section>
+      <section class="panel" aria-labelledby="h-secdays">
+        <div class="panel__head"><h2 id="h-secdays">게시한 섹터 정리</h2></div>
+        <ul class="ed-editions" id="secDays"></ul>
+        <p class="fineprint">같은 날짜·시장을 다시 게시하면 교체됩니다. 메인에는 가장 최근 정리가 보여요.</p>
+      </section>
+    </div>
   </main>
 
   <script src="data/bundle.js"></script>
   <script src="assets/js/news.js"></script>
   <script src="assets/js/editor.js"></script>
+  <script src="assets/js/editor-sectors.js"></script>
 </body>
 </html>

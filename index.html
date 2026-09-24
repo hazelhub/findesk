@@ -94,8 +94,18 @@
         </details>
       </section>
 
+      <!-- 시장 탭 -->
+      <nav class="mtabs" id="mtabs" role="tablist" aria-label="시장 분류">
+        <button type="button" role="tab" data-tab="stock">증시·섹터</button>
+        <button type="button" role="tab" data-tab="comm">원자재</button>
+        <button type="button" role="tab" data-tab="rates">환율·금리</button>
+        <button type="button" role="tab" data-tab="bond">채권</button>
+        <button type="button" role="tab" data-tab="crypto">디지털자산</button>
+        <button type="button" role="tab" data-tab="policy">정책</button>
+      </nav>
+
       <!-- 지수 -->
-      <section class="panel" id="indices" aria-labelledby="h-indices">
+      <section class="panel" data-tab="stock" id="indices" aria-labelledby="h-indices">
         <div class="panel__head">
           <h2 id="h-indices">주요 지수</h2>
           <div class="tabs" role="tablist" id="indexTabs"></div>
@@ -110,29 +120,29 @@
       </section>
 
       <!-- 섹터 등락 -->
-      <section class="panel" id="sectors" aria-labelledby="h-sectors">
+      <section class="panel" data-tab="stock" id="sectors" aria-labelledby="h-sectors">
         <div class="panel__head">
           <h2 id="h-sectors">섹터 등락</h2>
           <span class="meta">오늘 돈이 몰린 곳 · 빠진 곳</span>
         </div>
-        <h3 class="sub">미국 · S&amp;P 500 섹터 히트맵 <small class="meta">색: 초록=상승 · 빨강=하락 (해외 표기)</small></h3>
+        <div class="kr-sectors" id="krSectors">
+          <h3 class="sub">한국 · 오늘의 섹터 <small class="meta" id="krMeta">운영자 정리 · 장 마감 후</small></h3>
+          <div class="split" id="krSplit" hidden>
+            <div><h4 class="mini up">강세 업종</h4><ol class="rank" id="krUp"></ol></div>
+            <div><h4 class="mini down">약세 업종</h4><ol class="rank" id="krDown"></ol></div>
+          </div>
+          <p class="kr-comment" id="krComment" hidden></p>
+          <p class="fineprint" id="krNote">장 마감(15:30) 후 운영자가 한국거래소 업종지수 등락을 확인해 정리합니다. 아직 오늘 정리가 없으면 <a href="https://data.krx.co.kr/contents/MDC/MAIN/main/index.cmd" target="_blank" rel="noopener">KRX 정보데이터시스템</a>에서 확인하세요.</p>
+        </div>
+        <h3 class="sub us-sub">미국 · S&amp;P 500 섹터 히트맵 <small class="meta">색: 초록=상승 · 빨강=하락 (해외 표기)</small></h3>
         <div class="sector-us">
           <div class="tv-box tv-box--heatmap" id="usHeatmap"></div>
           <div class="tv-box tv-box--movers" id="usMovers"></div>
         </div>
-        <div class="kr-sectors" id="krSectors" hidden>
-          <h3 class="sub">한국 · 업종 등락 <small class="meta" id="krMeta"></small></h3>
-          <div class="split">
-            <div><h4 class="mini">업종지수 등락 순위</h4><ol class="rank" id="krSectorRank"></ol></div>
-            <div><h4 class="mini">시가총액 상위 300 중 등락률 상·하위</h4><ol class="rank" id="krMovers"></ol></div>
-          </div>
-          <p class="fineprint">출처: 금융위원회 주식·지수시세정보(공공데이터포털, 한국거래소 원천) · 다음 영업일 오후 1시 이후 갱신 · 제공된 등락률을 그대로 정렬해 보여줍니다.</p>
-        </div>
-        <p class="fineprint" id="krSectorFallback">한국 업종 등락은 한국거래소 시세 재배포 제한으로 자동 표시하지 않고 있어요 → <a href="https://data.krx.co.kr/contents/MDC/MAIN/main/index.cmd" target="_blank" rel="noopener">KRX 정보데이터시스템 업종 시세</a>에서 확인하세요.</p>
       </section>
 
       <!-- 원자재 -->
-      <section class="panel" id="commodities" aria-labelledby="h-comm">
+      <section class="panel" data-tab="comm" id="commodities" aria-labelledby="h-comm">
         <div class="panel__head">
           <h2 id="h-comm">원자재</h2>
           <span class="meta">CFD 시세 · TradingView</span>
@@ -142,7 +152,7 @@
       </section>
 
       <!-- 환율·금리 -->
-      <section class="panel" id="rates" aria-labelledby="h-rates">
+      <section class="panel" data-tab="rates" id="rates" aria-labelledby="h-rates">
         <div class="panel__head">
           <h2 id="h-rates">환율 · 금리 · 거시지표</h2>
           <span class="meta" id="ratesMeta"></span>
@@ -168,7 +178,7 @@
       </section>
 
       <!-- 채권·크레딧 -->
-      <section class="panel" id="bonds" aria-labelledby="h-bonds">
+      <section class="panel" data-tab="bond" id="bonds" aria-labelledby="h-bonds">
         <div class="panel__head">
           <h2 id="h-bonds">채권 · 크레딧</h2>
           <span class="meta">국고채 입찰 · 회사채 수요예측 · 신용등급 · PF</span>
@@ -190,7 +200,7 @@
       </section>
 
       <!-- 디지털자산 -->
-      <section class="panel" id="crypto" aria-labelledby="h-crypto">
+      <section class="panel" data-tab="crypto" id="crypto" aria-labelledby="h-crypto">
         <div class="panel__head">
           <h2 id="h-crypto">디지털자산</h2>
           <span class="meta">비트코인 · 스테이블코인 · 가상자산 제도</span>
@@ -200,7 +210,7 @@
       </section>
 
       <!-- 금융정책 -->
-      <section class="panel" id="policy" aria-labelledby="h-policy">
+      <section class="panel" data-tab="policy" id="policy" aria-labelledby="h-policy">
         <div class="panel__head">
           <h2 id="h-policy">금융정책 · 규제</h2>
           <span class="meta">금융위원회 · 금융감독원 · 한국은행</span>
@@ -210,7 +220,12 @@
     </main>
 
     <aside class="aside" aria-label="오늘의 카드와 일정">
-      <section class="card term" id="termCard" aria-labelledby="h-term">
+      <nav class="atabs" id="atabs" role="tablist" aria-label="사이드 분류">
+        <button type="button" role="tab" data-atab="today">오늘</button>
+        <button type="button" role="tab" data-atab="sched">일정</button>
+        <button type="button" role="tab" data-atab="sites">사이트</button>
+      </nav>
+      <section class="card term" id="termCard" data-atab="today" aria-labelledby="h-term">
         <div class="card__head">
           <h2 id="h-term"><span class="eyebrow">오늘의 경제용어</span></h2>
           <div class="pager">
@@ -225,7 +240,7 @@
         <p class="card__src">출처: <a href="https://ecos.bok.or.kr" target="_blank" rel="noopener">한국은행 ECOS 통계용어사전</a></p>
       </section>
 
-      <section class="card quote" id="quoteCard" aria-labelledby="h-quote">
+      <section class="card quote" id="quoteCard" data-atab="today" aria-labelledby="h-quote">
         <div class="card__head">
           <h2 id="h-quote"><span class="eyebrow">오늘의 명언</span></h2>
           <div class="pager">
@@ -241,7 +256,7 @@
         <button class="btn-link" id="quoteToggle" type="button">원문 보기</button>
       </section>
 
-      <section class="card book" id="bookCard" aria-labelledby="h-book" hidden>
+      <section class="card book" id="bookCard" data-atab="today" aria-labelledby="h-book" hidden>
         <div class="card__head">
           <h2 id="h-book"><span class="eyebrow">이번 주 금융 도서</span></h2>
           <span class="week-range" id="bookRange"></span>
@@ -253,7 +268,7 @@
         <p class="card__src">운영자가 직접 읽고 쓴 코멘트입니다. 책 소개문·표지는 싣지 않으며 링크는 서점·도서관 검색으로 연결됩니다.</p>
       </section>
 
-      <section class="card" id="weekCard" aria-labelledby="h-week">
+      <section class="card" id="weekCard" data-atab="sched" aria-labelledby="h-week">
         <div class="card__head">
           <h2 id="h-week"><span class="eyebrow">금융·정책 일정</span></h2>
           <span class="week-range" id="weekRange"></span>
@@ -264,7 +279,7 @@
         <p class="card__src">한국시간 기준 · 월~일 · 국내 휴장일 포함</p>
       </section>
 
-      <section class="card" id="examCard" aria-labelledby="h-exam">
+      <section class="card" id="examCard" data-atab="sched" aria-labelledby="h-exam">
         <div class="card__head">
           <h2 id="h-exam"><span class="eyebrow">자격시험 일정</span></h2>
           <span class="week-range" id="examRange"></span>
@@ -274,7 +289,7 @@
         <p class="card__src" id="examNote">주관 기관 공지 기준 · 응시 전 반드시 재확인하세요.</p>
       </section>
 
-      <section class="card" id="siteMini" aria-labelledby="h-sites">
+      <section class="card" id="siteMini" data-atab="sites" aria-labelledby="h-sites">
         <div class="card__head">
           <h2 id="h-sites"><span class="eyebrow">자주 쓰는 사이트</span></h2>
           <a class="btn-link" href="sites.html">전체 보기 →</a>
@@ -282,7 +297,7 @@
         <div id="siteMiniList"></div>
       </section>
 
-      <section class="card card--muted" aria-labelledby="h-data">
+      <section class="card card--muted" data-atab="sites" aria-labelledby="h-data">
         <h2 id="h-data" class="eyebrow">데이터 안내</h2>
         <ul class="datainfo" id="dataInfo"></ul>
       </section>

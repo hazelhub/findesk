@@ -152,7 +152,7 @@ svg { display: block; }
 /* ─────────────── layout ─────────────── */
 .layout {
   max-width: 1360px; margin: 0 auto; padding: 24px;
-  display: grid; grid-template-columns: minmax(0, 1fr) 340px; gap: 24px; align-items: start;
+  display: grid; grid-template-columns: minmax(0, 1fr) 320px; gap: 20px; align-items: start;
 }
 .main { display: flex; flex-direction: column; gap: 24px; min-width: 0; }
 .aside {
@@ -230,7 +230,7 @@ svg { display: block; }
 @keyframes shimmer { to { background-position: -200% 0; } }
 @media (prefers-reduced-motion: reduce) { .skeleton { animation: none; } html { scroll-behavior: auto; } .carousel { scroll-behavior: auto; } }
 
-.tv-box--news { height: 520px; }
+.tv-box--news { height: 360px; }
 .tv-box--cal { height: 520px; border: 1px solid var(--line); border-radius: var(--radius-sm); overflow: hidden; }
 
 /* ─────────────── news ─────────────── */
@@ -355,16 +355,13 @@ svg { display: block; }
   .topbar__inner { justify-content: space-between; }
 }
 @media (max-width: 1024px) {
-  .layout { grid-template-columns: minmax(0, 1fr); }
-  .layout { display: flex; flex-direction: column; align-items: stretch; }
-  .layout > *, .main > * { min-width: 0; }
-  .main { display: contents; }
-  #indices { order: 1; }
-  .aside { order: 2; position: static; max-height: none; overflow: visible; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .main > .panel:not(#indices) { order: 3; }
-  .main > #brief.panel.brief { order: 0; }
-  .aside .card--muted { display: none; }
+  .layout { grid-template-columns: minmax(0, 1fr) 280px; gap: 16px; padding: 16px; }
   .grid-cards--4 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 860px) {
+  .layout { grid-template-columns: minmax(0, 1fr); }
+  .layout > *, .main > * { min-width: 0; }
+  .aside { position: static; max-height: none; overflow: visible; }
 }
 @media (max-width: 720px) {
   :root { --topbar-h: 56px; }
@@ -372,7 +369,6 @@ svg { display: block; }
   .brand__text small, .clock #clockDate, .status { display: none; }
   .layout { padding: 16px; gap: 16px; }
   .main { gap: 16px; }
-  .aside { grid-template-columns: minmax(0, 1fr); }
   .events li:nth-child(n+6) { display: none; }
   .panel { padding: 16px; }
   .panel__head { flex-wrap: wrap; gap: 10px; }
@@ -669,3 +665,16 @@ svg { display: block; }
 @media (max-width: 900px) { .sector-us { grid-template-columns: minmax(0, 1fr); } .tv-box--heatmap { height: 420px; } }
 .edition__auto { margin-top: 10px; font-size: 13.5px; line-height: 1.7; background: var(--surface-2); border-radius: 8px; padding: 8px 12px; }
 .edition__auto b { font-size: 11.5px; color: var(--ink-3); display: block; }
+
+/* ── 탭 (메인 시장 분류 · 사이드) ── */
+.mtabs, .atabs { display: flex; gap: 4px; padding: 4px; background: var(--surface); border: 1px solid var(--line); border-radius: 12px; box-shadow: var(--shadow); overflow-x: auto; scrollbar-width: none; }
+.mtabs::-webkit-scrollbar, .atabs::-webkit-scrollbar { display: none; }
+.mtabs { position: sticky; top: calc(var(--topbar-h) + 8px); z-index: 5; }
+.mtabs button, .atabs button { flex: 1 0 auto; font: inherit; font-size: 13.5px; font-weight: 600; color: var(--ink-2); background: none; border: 0; border-radius: 9px; padding: 8px 12px; cursor: pointer; white-space: nowrap; }
+.mtabs button:hover, .atabs button:hover { color: var(--ink); background: var(--surface-2); }
+.mtabs button[aria-selected="true"], .atabs button[aria-selected="true"] { background: var(--accent); color: var(--accent-ink); }
+.is-off { display: none !important; }
+.main > .panel[data-tab] + .panel[data-tab] { margin-top: 0; }
+.kr-comment { font-size: 13.5px; line-height: 1.6; margin: 10px 0 0; padding: 8px 12px; background: var(--surface-2); border-radius: 8px; }
+.us-sub { margin-top: 20px; }
+.mini.up { color: var(--up); } .mini.down { color: var(--down); }
