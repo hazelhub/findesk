@@ -8,9 +8,12 @@ on:
     # 한국은행 지표·금융위 보도자료 갱신: 2시간마다 (예약 실행은 늦어질 수 있음)
     # 브리핑은 편집기에서 게시하면(push) 바로 배포됩니다.
     - cron: "17 */2 * * *"
+    # 섹터별 뉴스 온도: 오전판(07시대)·오후판(16시대) 한국시간
+    - cron: "5 22 * * *"
+    - cron: "5 7 * * *"
 
 permissions:
-  contents: read
+  contents: write
   pages: write
   id-token: write
 
@@ -31,6 +34,19 @@ jobs:
 
       - id: pages
         uses: actions/configure-pages@v5
+
+      - name: 섹터별 뉴스 온도 (오전·오후 하루 한 번씩)
+        run: python scripts/build_news.py
+
+      - name: 뉴스 온도 저장 (다음 실행에서도 유지)
+        run: |
+          if [ -n "$(git status --porcelain data/news.json)" ]; then
+            git config user.name "findesk-bot"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git add data/news.json
+            git commit -q -m "뉴스 온도 갱신"
+            git pull -q --rebase origin main && git push -q origin HEAD:main || echo "저장 실패 - 다음 실행에서 다시 만듭니다"
+          fi
 
       - name: 데이터 수집
         env:
