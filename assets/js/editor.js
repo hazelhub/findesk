@@ -36,6 +36,27 @@
     loadCandidates(); loadEditions();
   });
 
+  /* ── 설정 코드 (기기 간 옮기기) ── */
+  $("#syncCopy").addEventListener("click", function () {
+    if (needSettings()) { $("#syncMsg").textContent = "이 기기 설정이 비어 있어요."; return; }
+    var code = "FD1:" + btoa(unescape(encodeURIComponent(JSON.stringify(cfg))));
+    $("#syncCode").value = code;
+    (navigator.clipboard ? navigator.clipboard.writeText(code) : Promise.reject()).then(function () { $("#syncMsg").textContent = "복사했어요."; }, function () { $("#syncCode").select(); $("#syncMsg").textContent = "위 코드를 길게 눌러 복사하세요."; });
+  });
+  $("#syncImport").addEventListener("click", function () {
+    try {
+      var raw = $("#syncCode").value.trim().replace(/\s+/g, "");
+      if (raw.indexOf("FD1:") !== 0) throw new Error("형식");
+      var c = JSON.parse(decodeURIComponent(escape(atob(raw.slice(4)))));
+      if (!c.api || !c.edToken || !c.repo || !c.ghToken) throw new Error("항목 누락");
+      cfg = c;
+      store("fd-ed-api", c.api); store("fd-ed-token", c.edToken); store("fd-ed-repo", c.repo); store("fd-ed-gh", c.ghToken);
+      $("#setApi").value = c.api; $("#setEdToken").value = c.edToken; $("#setRepo").value = c.repo; $("#setGhToken").value = c.ghToken;
+      $("#syncCode").value = ""; $("#syncMsg").textContent = "가져왔어요. 이제 이 기기에서 바로 편집할 수 있어요.";
+      loadCandidates(); loadEditions();
+    } catch (e) { $("#syncMsg").textContent = "코드가 올바르지 않아요 (" + e.message + ")"; }
+  });
+
   /* ── 세션 ── */
   var now = FDNews.currentSession(Date.now(), HOLI);
   var sel = $("#edSession");

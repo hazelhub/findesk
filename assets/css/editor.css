@@ -76,3 +76,4 @@
   .ed-top { margin-left: 0; flex-wrap: wrap; }
   .ed-top select { max-width: 60vw; }
 }
+.ed-sync p { margin: 6px 0; line-height: 1.5; } .ed-sync textarea { margin-top: 4px; font-family: var(--mono); font-size: 12px; }

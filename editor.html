@@ -38,6 +38,12 @@
         <label>GitHub 토큰<input id="setGhToken" type="password" placeholder="github_pat_…"></label>
       </div>
       <div class="ed-actions"><button class="btn btn--primary" id="setSave" type="button">저장</button><span class="meta" id="setMsg"></span></div>
+      <details class="ed-rules ed-sync">
+        <summary>다른 기기(휴대폰)로 설정 옮기기</summary>
+        <p>설정이 끝난 기기에서 <b>설정 코드 복사</b> → 휴대폰 편집실의 이 칸에 붙여넣고 <b>가져오기</b>. 코드에는 토큰이 들어 있으니 메신저 단체방·메모 앱에 남기지 마세요.</p>
+        <textarea id="syncCode" rows="3" placeholder="FD1:로 시작하는 설정 코드"></textarea>
+        <div class="ed-actions"><button class="btn" id="syncCopy" type="button">이 기기 설정 코드 복사</button><button class="btn btn--primary" id="syncImport" type="button">가져오기</button><span class="meta" id="syncMsg"></span></div>
+      </details>
     </section>
 
     <div class="ed-cols">
