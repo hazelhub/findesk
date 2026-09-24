@@ -1,6 +1,7 @@
 /* FinDesk — 화면 렌더링 스크립트 (의존성 없음) */
 (function () {
   "use strict";
+  if (window.FD_GATED) return; // 공개 전 준비 중 화면
 
   var C = window.FD_CONFIG || {};
   var D = window.FD_DATA || {};
@@ -470,7 +471,10 @@
     var weeks = ((D.books && D.books.weeks) || []).slice().sort(function (a, b) { return a.week < b.week ? 1 : -1; });
     var today = kstDateStr();
     var w = weeks.filter(function (x) { return x.week <= today; })[0];
-    if (!w || !(w.books || []).length) return;
+    if (!w || !(w.books || []).length) {
+      $("#bookMain").appendChild(h("p", { class: "book__empty", text: "이번 주 추천 도서를 준비하고 있어요. 운영자가 직접 읽고 코멘트와 함께 올립니다." }));
+      return;
+    }
     var start = new Date(w.week + "T00:00:00Z"), end = new Date(start.getTime() + 6 * DAY);
     $("#bookRange").textContent = (start.getUTCMonth() + 1) + "/" + start.getUTCDate() + " – " + (end.getUTCMonth() + 1) + "/" + end.getUTCDate();
     if (w.theme) { $("#bookTheme").textContent = w.theme; $("#bookTheme").hidden = false; }
@@ -490,7 +494,6 @@
     subs.forEach(function (b) {
       ul.appendChild(h("li", null, h("b", { text: b.title }), h("small", { text: bookMeta(b) }), b.reason ? h("p", { text: b.reason }) : null, b.disclosure ? h("p", { class: "book__disc", text: b.disclosure }) : null, bookLinks(b)));
     });
-    $("#bookCard").hidden = false;
   })();
 
   function renderKrSectors(S) {
@@ -797,7 +800,7 @@
       return show;
     }
     var showMain = setup("#mtabs", "data-tab", "fd-tab", "stock");
-    setup("#atabs", "data-atab", "fd-atab", "today");
+    setup("#atabs", "data-atab", "fd-atab2", "sched");
     // 상단 메뉴·해시(#rates 등)로 들어오면 해당 탭 열기
     function fromHash() {
       var el = location.hash && document.getElementById(location.hash.slice(1));

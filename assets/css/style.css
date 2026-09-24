@@ -713,3 +713,4 @@ svg { display: block; }
 .nlist li small { display: block; font-size: 11px; color: var(--ink-3); }
 @media (max-width: 720px) { .nlist ol { columns: 1; } .ngrid { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); } }
 @media (max-width: 420px) { .ngrid { grid-template-columns: minmax(0, 1fr); } }
+.book__empty { font-size: 13px; color: var(--ink-2); margin: 4px 0 8px; line-height: 1.6; }

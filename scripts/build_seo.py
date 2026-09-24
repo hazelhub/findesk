@@ -28,12 +28,14 @@ def main() -> None:
     esc = lambda s: html.escape(str(s or ""), quote=True)
     title, desc = cfg.get("title", ""), cfg.get("description", "")
     image = (url + OG_IMAGE) if url else OG_IMAGE
+    open_at = cfg.get("openAt")
+    before_open = bool(open_at) and dt.datetime.now(dt.timezone.utc) < dt.datetime.fromisoformat(open_at)
 
     lines = [
         f"<title>{esc(title)}</title>",
         f'<meta name="description" content="{esc(desc)}">',
         f'<meta name="keywords" content="{esc(cfg.get("keywords"))}">',
-        '<meta name="robots" content="index, follow">',
+        '<meta name="robots" content="noindex, nofollow">' if before_open else '<meta name="robots" content="index, follow">',
     ]
     if url:
         lines.append(f'<link rel="canonical" href="{esc(url)}">')
@@ -68,7 +70,8 @@ def main() -> None:
         raise SystemExit("index.html 에서 SEO 표시 구간을 찾지 못했습니다.")
     index.write_text(new, "utf-8")
 
-    robots = "User-agent: *\nAllow: /\nDisallow: /editor.html\nDisallow: /editor-books.html\n"
+    robots = ("User-agent: *\nDisallow: /\n" if before_open else
+              "User-agent: *\nAllow: /\nDisallow: /editor.html\nDisallow: /editor-books.html\n")
     if url:
         robots += f"\nSitemap: {url}sitemap.xml\n"
     (ROOT / "robots.txt").write_text(robots, "utf-8")

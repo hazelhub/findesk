@@ -1,6 +1,7 @@
 /* FinDesk 주간 금융 도서 모음 페이지 */
 (function () {
   "use strict";
+  if (window.FD_GATED) return; // 공개 전 준비 중 화면
   var D = window.FD_DATA || {};
   function $(s) { return document.querySelector(s); }
   function h(tag, attrs) {

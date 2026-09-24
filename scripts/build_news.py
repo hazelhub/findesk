@@ -101,22 +101,37 @@ WORD_NEG = ["하락", "급락", "약세", "폭락", "추락", "곤두박질", "�
 
 
 # 금리·환율·물가처럼 '오르면 시장에 부담'인 대상: 방향 단어의 의미를 뒤집음
-INVERSE = re.compile(r"금리|국채|국고채|채권 ?금리|수익률|환율|원/달러|원·달러|달러 ?강세|물가|인플레|유가|전셋값|전월셋값|월세|연체율|실업률|변동성|VIX|공포지수")
+INVERSE = re.compile(r"국채 ?금리|국고채 ?금리|채권 ?금리|시장금리|금리|국채|국고채|수익률|환율|원/달러|원·달러|달러 ?강세|물가|인플레|유가|전셋값|전월셋값|월세|연체율|실업률|변동성|VIX|공포지수")
 DIR_UP = {"상승", "급등", "반등", "랠리", "껑충", "뛰었", "뛴다", "올랐", "오른", "치솟", "훨훨", "최고치", "사상 최고", "최고", "돌파", "강세"}
 DIR_DOWN = {"하락", "급락", "약세", "폭락", "추락", "곤두박질", "털썩", "뚝", "내렸", "내린", "밀렸", "최저치", "최저"}
 
 
+EQUITY = re.compile(r"코스피|코스닥|증시|주가|지수|나스닥|다우|S&P|종목|주식|기술주|반도체주|[가-힣]+주\b")
+# 구 나누기: 문장부호 + '~에/~에도/~으로/~속/~자' 같은 원인·연결 표현 (예: "금리 급등에 기술주 약세")
+CLAUSE = re.compile(r"[…·,;/\[\]]|\.\.\.|\s-\s|(?<=[가-힣])(?:에도|에|으로|속에|속|자|며|고)\s")
+
+
 def judge(title: str):
-    label, words = _judge(title)
-    if INVERSE.search(title) and not re.search(r"코스피|코스닥|증시|주가|지수", title):
-        # 방향 단어만 뒤집어 다시 계산
-        l2, w2, p2, n2 = _judge_detail(title)
-        p3 = [w for w in p2 if w not in DIR_UP] + [w for w in n2 if w in DIR_DOWN]
-        n3 = [w for w in n2 if w not in DIR_DOWN] + [w for w in p2 if w in DIR_UP]
-        sc = len(p3) - len(n3)
-        lab = "pos" if sc > 0 else "neg" if sc < 0 else "neu"
-        return lab, (p3 if lab == "pos" else n3 if lab == "neg" else p3 + n3)[:3]
-    return label, words
+    """제목을 구로 나눠, 금리·환율·물가가 주어인 구에서는 오름/내림의 의미를 뒤집어 판정.
+    주어가 없는 구는 앞 구의 성격을 이어받습니다 (예: "오른 국채…왜 빠르게 상승하나")."""
+    t = title.replace("↑", " 상승 ").replace("↓", " 하락 ")
+    pos, neg = [], []
+    mode, subj = "normal", ""
+    for part in CLAUSE.split(t):
+        if not part or not part.strip():
+            continue
+        if INVERSE.search(part) and not EQUITY.search(part):
+            mode, subj = "inverse", INVERSE.search(part).group(0)
+        elif EQUITY.search(part) or re.search(r"[A-Za-z가-힣]{2,}(이|가|은|는)\s", part):
+            mode = "normal"
+        _, _, p, n = _judge_detail(part)
+        if mode == "inverse":
+            p, n = ([w for w in p if w not in DIR_UP] + [subj + " " + w for w in n if w in DIR_DOWN],
+                    [w for w in n if w not in DIR_DOWN] + [subj + " " + w for w in p if w in DIR_UP])
+        pos += p; neg += n
+    sc = len(pos) - len(neg)
+    lab = "pos" if sc > 0 else "neg" if sc < 0 else "neu"
+    return lab, (pos if lab == "pos" else neg if lab == "neg" else pos + neg)[:3]
 
 
 def _judge(title: str):

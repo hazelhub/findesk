@@ -1,4 +1,2 @@
 User-agent: *
-Allow: /
-Disallow: /editor.html
-Disallow: /editor-books.html
+Disallow: /

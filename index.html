@@ -2,12 +2,13 @@
 <html lang="ko">
 <head>
   <meta charset="utf-8">
+  <script src="assets/js/gate.js"></script>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- SEO:START (scripts/build_seo.py 가 자동 생성) -->
   <title>FinDesk · 금융인을 위한 아침 데스크</title>
   <meta name="description" content="시간대별 마켓 브리핑(모닝·개장 전·장중·국내 마감·글로벌)으로 코스피·뉴욕증시 뉴스를 선별하고, 원자재·환율·금리·채권·디지털자산·금융정책 뉴스와 금융·정책 일정, 금융 자격시험 일정, 금융권 필수 사이트 170여 곳을 한 화면에 제공하는 무료 금융 정보 사이트.">
   <meta name="keywords" content="모닝 브리핑, 마켓 브리핑, 증시 뉴스, 코스피, 뉴욕증시, 프리마켓, 넥스트레이드, 환율, 기준금리, 국고채, 회사채, 신용스프레드, 스테이블코인, 금융위원회, FOMC 일정, 금통위 일정, 금융 자격증 일정, 투자자산운용사, 신용분석사, KIND, DART">
-  <meta name="robots" content="index, follow">
+  <meta name="robots" content="noindex, nofollow">
   <meta property="og:type" content="website">
   <meta property="og:locale" content="ko_KR">
   <meta property="og:site_name" content="FinDesk">
@@ -215,12 +216,7 @@
     </main>
 
     <aside class="aside" aria-label="오늘의 카드와 일정">
-      <nav class="atabs" id="atabs" role="tablist" aria-label="사이드 분류">
-        <button type="button" role="tab" data-atab="today">오늘</button>
-        <button type="button" role="tab" data-atab="sched">일정</button>
-        <button type="button" role="tab" data-atab="sites">사이트</button>
-      </nav>
-      <section class="card term" id="termCard" data-atab="today" aria-labelledby="h-term">
+      <section class="card term" id="termCard" aria-labelledby="h-term">
         <div class="card__head">
           <h2 id="h-term"><span class="eyebrow">오늘의 경제용어</span></h2>
           <div class="pager">
@@ -235,7 +231,7 @@
         <p class="card__src">출처: <a href="https://ecos.bok.or.kr" target="_blank" rel="noopener">한국은행 ECOS 통계용어사전</a></p>
       </section>
 
-      <section class="card quote" id="quoteCard" data-atab="today" aria-labelledby="h-quote">
+      <section class="card quote" id="quoteCard" aria-labelledby="h-quote">
         <div class="card__head">
           <h2 id="h-quote"><span class="eyebrow">오늘의 명언</span></h2>
           <div class="pager">
@@ -251,7 +247,13 @@
         <button class="btn-link" id="quoteToggle" type="button">원문 보기</button>
       </section>
 
-      <section class="card book" id="bookCard" data-atab="today" aria-labelledby="h-book" hidden>
+      <nav class="atabs" id="atabs" role="tablist" aria-label="사이드 분류">
+        <button type="button" role="tab" data-atab="sched">일정</button>
+        <button type="button" role="tab" data-atab="book">도서</button>
+        <button type="button" role="tab" data-atab="sites">사이트</button>
+      </nav>
+
+      <section class="card book" id="bookCard" data-atab="book" aria-labelledby="h-book">
         <div class="card__head">
           <h2 id="h-book"><span class="eyebrow">이번 주 금융 도서</span></h2>
           <span class="week-range" id="bookRange"></span>
