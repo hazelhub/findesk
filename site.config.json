@@ -1,0 +1,12 @@
+{
+  "_설명": "검색 노출 설정. 값을 채운 뒤 python3 scripts/build_seo.py 를 실행하면(배포 시 자동 실행) index.html·robots.txt·sitemap.xml에 반영됩니다.",
+  "siteUrl": "",
+  "_siteUrl_예시": "https://아이디.github.io/findesk/  또는 내 도메인 https://findesk.kr/  (끝에 / 포함)",
+  "title": "FinDesk · 금융인을 위한 아침 데스크",
+  "description": "시간대별 마켓 브리핑(모닝·개장 전·장중·국내 마감·글로벌)으로 코스피·뉴욕증시 뉴스를 선별하고, 원자재·환율·금리·채권·디지털자산·금융정책 뉴스와 금융·정책 일정, 금융 자격시험 일정, 금융권 필수 사이트 170여 곳을 한 화면에 제공하는 무료 금융 정보 사이트.",
+  "keywords": "모닝 브리핑, 마켓 브리핑, 증시 뉴스, 코스피, 뉴욕증시, 프리마켓, 넥스트레이드, 환율, 기준금리, 국고채, 회사채, 신용스프레드, 스테이블코인, 금융위원회, FOMC 일정, 금통위 일정, 금융 자격증 일정, 투자자산운용사, 신용분석사, KIND, DART",
+  "googleVerification": "",
+  "_googleVerification_설명": "Google Search Console → HTML 태그 방식의 content 값만 붙여넣기",
+  "naverVerification": "",
+  "_naverVerification_설명": "네이버 서치어드바이저 → HTML 태그 방식의 content 값만 붙여넣기"
+}

@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <title>FinDesk 편집실</title>
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicon-32.png">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="assets/css/editor.css">
+  <script>try { var t = localStorage.getItem("fd-theme"); if (t === "light" || t === "dark") document.documentElement.dataset.theme = t; } catch (e) {}</script>
+</head>
+<body>
+  <header class="topbar">
+    <div class="topbar__inner">
+      <a class="brand" href="index.html" aria-label="FinDesk 홈으로">
+        <svg class="brand__mark" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="7"/><path d="M7 21l6-6 4 4 8-9"/></svg>
+        <div class="brand__text"><span class="brand__title">FinDesk 편집실</span><small>운영자 전용 · 검색엔진 비노출</small></div>
+      </a>
+      <div class="ed-top">
+        <label>세션
+          <select id="edSession"></select>
+        </label>
+        <button class="btn" id="edSettingsBtn" type="button">설정</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="ed">
+    <section class="panel ed-settings" id="edSettings" hidden>
+      <h2>연결 설정 <small>이 기기 브라우저에만 저장됩니다</small></h2>
+      <div class="ed-grid">
+        <label>후보 기사 서버 주소<input id="setApi" placeholder="https://findesk-editor.아이디.workers.dev"></label>
+        <label>편집 토큰<input id="setEdToken" type="password" placeholder="Cloudflare에 등록한 EDITOR_TOKEN"></label>
+        <label>GitHub 저장소<input id="setRepo" placeholder="아이디/findesk"></label>
+        <label>GitHub 토큰<input id="setGhToken" type="password" placeholder="github_pat_…"></label>
+      </div>
+      <div class="ed-actions"><button class="btn btn--primary" id="setSave" type="button">저장</button><span class="meta" id="setMsg"></span></div>
+    </section>
+
+    <div class="ed-cols">
+      <section class="panel ed-cands" aria-labelledby="h-cands">
+        <div class="panel__head panel__head--wrap">
+          <h2 id="h-cands">후보 기사</h2>
+          <span class="meta" id="candStatus"></span>
+          <button class="icon-btn sm" id="candReload" type="button" aria-label="새로고침"><svg viewBox="0 0 24 24"><path d="M21 12a9 9 0 1 1-2.6-6.4M21 4v5h-5"/></svg></button>
+        </div>
+        <p class="fineprint">운영자 개인 열람용입니다. 공개 화면에는 표시되지 않으며, 여기서 고른 기사에 <b>본인 문장</b>으로 코멘트를 달아 게시합니다.</p>
+        <div class="chips chips--sm" id="candChips"></div>
+        <div class="ed-filter">
+          <input id="candSearch" type="search" placeholder="제목 검색">
+          <label class="ed-check"><input type="checkbox" id="candWide"> 최근 24시간 전체</label>
+        </div>
+        <ol class="ed-list" id="candList"></ol>
+        <details class="ed-feeds"><summary>피드 상태</summary><ul id="feedStatus"></ul></details>
+      </section>
+
+      <section class="panel ed-draft" aria-labelledby="h-draft">
+        <div class="panel__head panel__head--wrap">
+          <h2 id="h-draft">이번 브리핑</h2>
+          <span class="session-pill" id="draftSession"></span>
+          <span class="meta" id="draftSaved"></span>
+        </div>
+        <details class="ed-rules" open>
+          <summary>작성 원칙 (저작권 보호)</summary>
+          <ul>
+            <li>원문 제목·문장을 복사하지 말고 <b>사실 + 의미</b>를 본인 문장으로 한 줄(120자 이내)에 씁니다.</li>
+            <li>예) "美 8월 CPI 3.1%로 예상 상회 → 연내 인하 기대 후퇴, 국고채 금리 상승 압력"</li>
+            <li>숫자·사실은 원문과 같게, 해석은 내 관점으로. 원문 링크는 자동으로 붙습니다.</li>
+            <li>매수·매도 권유나 목표가 제시는 하지 않습니다.</li>
+          </ul>
+        </details>
+        <label class="ed-label">오늘 시장 한 줄 (최대 3줄, 선택)
+          <textarea id="draftSummary" rows="3" maxlength="300" placeholder="예) 간밤 美 기술주 강세, 국내는 반도체 중심 반등 기대. 오늘 밤 美 CPI 발표 주목."></textarea>
+        </label>
+        <ol class="ed-items" id="draftItems"></ol>
+        <div class="ed-actions">
+          <button class="btn" id="addManual" type="button">+ 직접 추가</button>
+          <span class="spacer"></span>
+          <button class="btn" id="clearDraft" type="button">비우기</button>
+          <button class="btn btn--primary" id="publishBtn" type="button">게시하기</button>
+        </div>
+        <p class="meta" id="publishMsg"></p>
+
+        <h3 class="sub ed-sub">최근 게시한 브리핑</h3>
+        <ul class="ed-editions" id="editionList"></ul>
+      </section>
+    </div>
+  </main>
+
+  <script src="data/bundle.js"></script>
+  <script src="assets/js/news.js"></script>
+  <script src="assets/js/editor.js"></script>
+</body>
+</html>

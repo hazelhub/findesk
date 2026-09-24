@@ -1,0 +1,190 @@
+{
+  "note": "번역은 자체 번역입니다. verified: true = 원문 출처 확인, partial = 발언자로 널리 알려졌으나 원문 표현·출처가 문헌마다 다름, false = 발언자 귀속이 불확실(오귀속 사례).",
+  "quotes": [
+    {
+      "ko": "우리는 그저 남들이 탐욕스러울 때 두려워하고, 남들이 두려워할 때만 탐욕스러워지려 할 뿐입니다.",
+      "original": "We simply attempt to be fearful when others are greedy and to be greedy only when others are fearful.",
+      "speaker": "워런 버핏", "role": "버크셔 해서웨이 회장",
+      "source": "버크셔 해서웨이 주주서한", "year": "1986", "verified": true
+    },
+    {
+      "ko": "가격은 당신이 지불하는 것이고, 가치는 당신이 얻는 것이다.",
+      "original": "Price is what you pay; value is what you get.",
+      "speaker": "워런 버핏", "role": "버크셔 해서웨이 회장",
+      "source": "버크셔 해서웨이 주주서한 (벤저민 그레이엄에게 배운 말로 소개)", "year": "2008", "verified": true
+    },
+    {
+      "ko": "결국 썰물이 빠져나가야 누가 벌거벗고 수영하고 있었는지 알 수 있다.",
+      "original": "After all, you only find out who is swimming naked when the tide goes out.",
+      "speaker": "워런 버핏", "role": "버크셔 해서웨이 회장",
+      "source": "버크셔 해서웨이 주주서한", "year": "2001", "verified": true
+    },
+    {
+      "ko": "그저 그런 회사를 훌륭한 가격에 사는 것보다, 훌륭한 회사를 적당한 가격에 사는 편이 훨씬 낫다.",
+      "original": "It's far better to buy a wonderful company at a fair price than a fair company at a wonderful price.",
+      "speaker": "워런 버핏", "role": "버크셔 해서웨이 회장",
+      "source": "버크셔 해서웨이 주주서한", "year": "1989", "verified": true
+    },
+    {
+      "ko": "우리가 가장 좋아하는 보유 기간은 '영원히'입니다.",
+      "original": "Our favorite holding period is forever.",
+      "speaker": "워런 버핏", "role": "버크셔 해서웨이 회장",
+      "source": "버크셔 해서웨이 주주서한", "year": "1988", "verified": true
+    },
+    {
+      "ko": "투자자의 가장 큰 문제, 심지어 최악의 적은 바로 자기 자신일 가능성이 크다.",
+      "original": "The investor's chief problem—and even his worst enemy—is likely to be himself.",
+      "speaker": "벤저민 그레이엄", "role": "가치투자의 아버지",
+      "source": "『현명한 투자자(The Intelligent Investor)』 8장", "year": "1949", "verified": true
+    },
+    {
+      "ko": "건전한 투자의 비결을 세 단어로 줄이라면, 우리는 '안전마진(MARGIN OF SAFETY)'을 모토로 제시하겠다.",
+      "original": "Confronted with a challenge to distill the secret of sound investment into three words, we venture the motto, MARGIN OF SAFETY.",
+      "speaker": "벤저민 그레이엄", "role": "가치투자의 아버지",
+      "source": "『현명한 투자자』 20장", "year": "1949", "verified": true
+    },
+    {
+      "ko": "단기적으로 시장은 투표 기계지만, 장기적으로는 저울이다.",
+      "original": "In the short run, the market is a voting machine but in the long run it is a weighing machine.",
+      "speaker": "벤저민 그레이엄", "role": "가치투자의 아버지",
+      "source": "버핏이 주주서한 등에서 스승 그레이엄의 말로 여러 차례 인용", "year": "", "verified": "partial",
+      "note": "그레이엄 저서에서 이 문장 그대로의 원문은 확인하기 어렵습니다."
+    },
+    {
+      "ko": "세상의 지혜는, 관습을 거슬러 성공하는 것보다 관습을 따르다 실패하는 편이 평판에 낫다고 가르친다.",
+      "original": "Worldly wisdom teaches that it is better for reputation to fail conventionally than to succeed unconventionally.",
+      "speaker": "존 메이너드 케인스", "role": "경제학자",
+      "source": "『고용, 이자 및 화폐의 일반이론』 12장", "year": "1936", "verified": true
+    },
+    {
+      "ko": "시장은 당신이 지급능력을 유지할 수 있는 기간보다 더 오래 비이성적일 수 있다.",
+      "original": "The market can stay irrational longer than you can stay solvent.",
+      "speaker": "존 메이너드 케인스(로 알려짐)", "role": "경제학자",
+      "source": "케인스 저작에서 확인되지 않음", "year": "", "verified": false,
+      "note": "대표적인 오귀속 사례로, 1980년대 A. 게리 실링(A. Gary Shilling)의 말이라는 조사가 있습니다."
+    },
+    {
+      "ko": "강세장은 비관 속에서 태어나 회의 속에서 자라고, 낙관 속에서 성숙하며, 도취 속에서 죽는다.",
+      "original": "Bull markets are born on pessimism, grow on skepticism, mature on optimism, and die on euphoria.",
+      "speaker": "존 템플턴", "role": "템플턴 그로스 펀드 창업자",
+      "source": "템플턴의 투자 원칙으로 널리 소개됨", "year": "", "verified": "partial",
+      "note": "정확한 최초 출처·연도는 문헌마다 다르게 소개됩니다."
+    },
+    {
+      "ko": "투자에서 가장 위험한 네 단어는 '이번엔 다르다'이다.",
+      "original": "The four most dangerous words in investing are: 'this time it's different.'",
+      "speaker": "존 템플턴", "role": "템플턴 그로스 펀드 창업자",
+      "source": "템플턴의 말로 널리 인용됨", "year": "", "verified": "partial",
+      "note": "원문 표현(dangerous / expensive 등)이 문헌마다 다릅니다."
+    },
+    {
+      "ko": "큰돈을 벌어준 것은 결코 내 생각이 아니었다. 언제나 기다림이었다.",
+      "original": "It never was my thinking that made the big money for me. It always was my sitting.",
+      "speaker": "에드윈 르페브르", "role": "『어느 주식투자자의 회상』 저자",
+      "source": "『어느 주식투자자의 회상』 (제시 리버모어를 모델로 한 주인공의 말)", "year": "1923", "verified": true
+    },
+    {
+      "ko": "월스트리트에 새로운 것은 없다. 투기는 산만큼이나 오래되었기 때문이다.",
+      "original": "There is nothing new in Wall Street. There can't be because speculation is as old as the hills.",
+      "speaker": "에드윈 르페브르", "role": "『어느 주식투자자의 회상』 저자",
+      "source": "『어느 주식투자자의 회상』 (제시 리버모어를 모델로 한 주인공의 말)", "year": "1923", "verified": true
+    },
+    {
+      "ko": "건초더미에서 바늘을 찾지 마라. 그냥 건초더미를 사라!",
+      "original": "Don't look for the needle in the haystack. Just buy the haystack!",
+      "speaker": "존 보글", "role": "뱅가드 창업자",
+      "source": "『모든 주식을 소유하라(The Little Book of Common Sense Investing)』", "year": "2007", "verified": true
+    },
+    {
+      "ko": "예측할 수는 없다. 대비할 수는 있다.",
+      "original": "You can't predict. You can prepare.",
+      "speaker": "하워드 막스", "role": "오크트리캐피털 공동창업자",
+      "source": "오크트리 고객 메모 제목", "year": "2001", "verified": true
+    },
+    {
+      "ko": "시대를 너무 앞서가는 것은 틀린 것과 구별되지 않는다.",
+      "original": "Being too far ahead of your time is indistinguishable from being wrong.",
+      "speaker": "하워드 막스", "role": "오크트리캐피털 공동창업자",
+      "source": "고객 메모 등에서 언급", "year": "", "verified": "partial"
+    },
+    {
+      "ko": "우리의 권한 내에서, ECB는 유로를 지키기 위해 무엇이든 할 준비가 되어 있습니다. 그리고 믿어주십시오, 그것은 충분할 것입니다.",
+      "original": "Within our mandate, the ECB is ready to do whatever it takes to preserve the euro. And believe me, it will be enough.",
+      "speaker": "마리오 드라기", "role": "당시 유럽중앙은행 총재",
+      "source": "런던 글로벌 투자 콘퍼런스 연설", "year": "2012", "verified": true
+    },
+    {
+      "ko": "그러나 비이성적 과열이 자산 가치를 부당하게 끌어올렸는지 우리가 어떻게 알 수 있겠습니까?",
+      "original": "But how do we know when irrational exuberance has unduly escalated asset values?",
+      "speaker": "앨런 그린스펀", "role": "당시 미 연준 의장",
+      "source": "미국기업연구소(AEI) 연설", "year": "1996", "verified": true
+    },
+    {
+      "ko": "연준은 파티가 한창 무르익을 때 펀치볼을 치우라고 지시하는 샤프롱의 위치에 있다.",
+      "original": "…in the position of the chaperone who has ordered the punch bowl removed just when the party was really warming up.",
+      "speaker": "윌리엄 맥체스니 마틴", "role": "당시 미 연준 의장",
+      "source": "투자은행협회 연설", "year": "1955", "verified": true
+    },
+    {
+      "ko": "음악이 흐르는 동안에는 일어나서 춤을 춰야 합니다. 우리는 아직 춤추고 있습니다.",
+      "original": "As long as the music is playing, you've got to get up and dance. We're still dancing.",
+      "speaker": "척 프린스", "role": "당시 씨티그룹 CEO",
+      "source": "파이낸셜타임스 인터뷰 (금융위기 직전)", "year": "2007", "verified": true
+    },
+    {
+      "ko": "양적완화의 문제는, 실제로는 작동하는데 이론적으로는 작동하지 않는다는 것이다.",
+      "original": "The problem with QE is it works in practice, but it doesn't work in theory.",
+      "speaker": "벤 버냉키", "role": "당시 미 연준 의장",
+      "source": "브루킹스연구소 대담", "year": "2014", "verified": true
+    },
+    {
+      "ko": "지난 20년간 내가 본 가장 중요한 금융 혁신은 현금자동인출기(ATM)다.",
+      "original": "The most important financial innovation that I have seen the past 20 years is the automatic teller machine.",
+      "speaker": "폴 볼커", "role": "전 미 연준 의장",
+      "source": "월스트리트저널 '금융의 미래' 행사", "year": "2009", "verified": true
+    },
+    {
+      "ko": "이것들은 인플레이션을 낮추는 데 따르는 불행한 비용입니다. 그러나 물가 안정을 회복하지 못하면 훨씬 더 큰 고통이 따를 것입니다.",
+      "original": "These are the unfortunate costs of reducing inflation. But a failure to restore price stability would mean far greater pain.",
+      "speaker": "제롬 파월", "role": "미 연준 의장",
+      "source": "잭슨홀 경제정책 심포지엄 연설", "year": "2022", "verified": true
+    },
+    {
+      "ko": "인센티브를 보여주면, 결과를 보여주겠다.",
+      "original": "Show me the incentive and I will show you the outcome.",
+      "speaker": "찰리 멍거", "role": "전 버크셔 해서웨이 부회장",
+      "source": "강연·인터뷰에서 언급된 것으로 널리 알려짐", "year": "", "verified": "partial"
+    },
+    {
+      "ko": "큰돈은 사고파는 데 있지 않고 기다리는 데 있다.",
+      "original": "The big money is not in the buying and selling, but in the waiting.",
+      "speaker": "찰리 멍거", "role": "전 버크셔 해서웨이 부회장",
+      "source": "멍거의 말로 널리 인용됨", "year": "", "verified": "partial"
+    },
+    {
+      "ko": "경제와 증시의 관계는 주인과 산책하는 개와 같다. 개는 앞서거니 뒤서거니 하지만 결국 주인 곁으로 돌아온다.",
+      "original": "(독일어 원문, 저서 내 비유를 요약)",
+      "speaker": "앙드레 코스톨라니", "role": "유럽의 전설적 투자자",
+      "source": "『돈, 뜨겁게 사랑하고 차갑게 다루어라』", "year": "2000", "verified": "partial",
+      "note": "원문 비유를 요약한 문장이며 번역본마다 표현이 다릅니다."
+    },
+    {
+      "ko": "무엇을 보유하고 있는지, 그리고 왜 보유하는지 알아라.",
+      "original": "Know what you own, and know why you own it.",
+      "speaker": "피터 린치", "role": "전 피델리티 마젤란 펀드 매니저",
+      "source": "린치의 말로 널리 인용됨", "year": "", "verified": "partial"
+    },
+    {
+      "ko": "조정 자체로 잃은 돈보다, 조정에 대비하거나 조정을 예측하려다 잃은 돈이 훨씬 더 많다.",
+      "original": "Far more money has been lost by investors preparing for corrections, or trying to anticipate corrections, than has been lost in corrections themselves.",
+      "speaker": "피터 린치", "role": "전 피델리티 마젤란 펀드 매니저",
+      "source": "1990년대 기고·인터뷰로 알려짐", "year": "", "verified": "partial"
+    },
+    {
+      "ko": "수정구슬로 먹고사는 자는 깨진 유리를 먹게 된다.",
+      "original": "He who lives by the crystal ball will eat shattered glass.",
+      "speaker": "레이 달리오", "role": "브리지워터 창업자",
+      "source": "달리오가 자주 인용한 말 (이전부터 있던 격언)", "year": "", "verified": "partial"
+    }
+  ]
+}

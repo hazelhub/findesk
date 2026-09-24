@@ -1,0 +1,991 @@
+{
+ "updated": "2026-09-24",
+ "order_note": "각 분야 안의 순서는 현직자 사용 빈도를 추정한 운영자 판단 기준입니다(공식 통계 아님). 사이드바에는 분야별 앞 3개가 표시됩니다.",
+ "categories": [
+  {
+   "id": "filing",
+   "name": "공시·IPO",
+   "desc": "현직자가 매일 여는 공시 채널과 공모 일정",
+   "links": [
+    {
+     "name": "KIND 오늘의 공시",
+     "url": "https://kind.krx.co.kr/disclosure/todaydisclosure.do?method=searchTodayDisclosureMain",
+     "desc": "거래소 상장공시 실시간 목록"
+    },
+    {
+     "name": "DART 전자공시",
+     "url": "https://dart.fss.or.kr",
+     "desc": "금감원 전자공시(사업보고서·주요사항)"
+    },
+    {
+     "name": "KIND 공모일정",
+     "url": "https://kind.krx.co.kr/listinvstg/pubofrschdl.do?method=searchPubofrScholMain",
+     "desc": "IPO 수요예측·청약·상장일"
+    },
+    {
+     "name": "KIND IR일정",
+     "url": "https://kind.krx.co.kr/corpgeneral/irschedule.do?method=searchIRScheduleMain&gubun=iRSchedule",
+     "desc": "상장사 IR·실적발표 일정"
+    },
+    {
+     "name": "KIND 메인",
+     "url": "https://kind.krx.co.kr",
+     "desc": "기업공시채널 전체 메뉴"
+    },
+    {
+     "name": "38커뮤니케이션",
+     "url": "http://www.38.co.kr",
+     "desc": "공모주 청약·비상장 시세"
+    },
+    {
+     "name": "OpenDART",
+     "url": "https://opendart.fss.or.kr",
+     "desc": "공시·재무제표 오픈 API"
+    },
+    {
+     "name": "SEC EDGAR",
+     "url": "https://www.sec.gov/edgar/search/",
+     "desc": "미국 공시(10-K, 10-Q, 8-K)"
+    },
+    {
+     "name": "HKEXnews",
+     "url": "https://www.hkexnews.hk",
+     "desc": "홍콩거래소 공시"
+    },
+    {
+     "name": "EDINET",
+     "url": "https://disclosure2.edinet-fsa.go.jp",
+     "desc": "일본 금융청 전자공시"
+    }
+   ]
+  },
+  {
+   "id": "quote",
+   "name": "시세·차트",
+   "desc": "지수·종목 시세와 차트, 스크리너",
+   "links": [
+    {
+     "name": "네이버페이 증권",
+     "url": "https://finance.naver.com",
+     "desc": "국내 시세·종목 토론·리서치"
+    },
+    {
+     "name": "Investing.com",
+     "url": "https://kr.investing.com",
+     "desc": "글로벌 시세·경제 캘린더(한국어)"
+    },
+    {
+     "name": "TradingView",
+     "url": "https://kr.tradingview.com",
+     "desc": "글로벌 차트·보조지표·아이디어"
+    },
+    {
+     "name": "KRX 정보데이터시스템",
+     "url": "https://data.krx.co.kr",
+     "desc": "거래소 공식 통계·지수·투자자별 매매"
+    },
+    {
+     "name": "Finviz",
+     "url": "https://finviz.com",
+     "desc": "미국 주식 스크리너·히트맵"
+    },
+    {
+     "name": "Yahoo Finance",
+     "url": "https://finance.yahoo.com",
+     "desc": "미국 시세·재무·뉴스"
+    },
+    {
+     "name": "다음 금융",
+     "url": "https://finance.daum.net",
+     "desc": "국내 시세·업종·수급"
+    },
+    {
+     "name": "Koyfin",
+     "url": "https://www.koyfin.com",
+     "desc": "기관급 대시보드·차트(일부 무료)"
+    },
+    {
+     "name": "Stock Analysis",
+     "url": "https://stockanalysis.com",
+     "desc": "미국 종목 재무·밸류에이션"
+    },
+    {
+     "name": "CNN Fear & Greed",
+     "url": "https://www.cnn.com/markets/fear-and-greed",
+     "desc": "미국 시장 투자심리 지수"
+    },
+    {
+     "name": "StockCharts",
+     "url": "https://stockcharts.com",
+     "desc": "기술적 분석 차트"
+    },
+    {
+     "name": "Google Finance",
+     "url": "https://www.google.com/finance",
+     "desc": "간단한 글로벌 시세 확인"
+    },
+    {
+     "name": "MarketWatch",
+     "url": "https://www.marketwatch.com",
+     "desc": "미국 시장 뉴스·시세"
+    }
+   ]
+  },
+  {
+   "id": "research",
+   "name": "리서치·기업분석",
+   "desc": "증권사 리포트·컨센서스·재무 데이터",
+   "links": [
+    {
+     "name": "한경 컨센서스",
+     "url": "https://consensus.hankyung.com",
+     "desc": "증권사 리포트 모음"
+    },
+    {
+     "name": "네이버 증권 리서치",
+     "url": "https://finance.naver.com/research/",
+     "desc": "종목·산업·시황 리포트 모음"
+    },
+    {
+     "name": "FnGuide Company Guide",
+     "url": "https://comp.fnguide.com",
+     "desc": "국내 기업 재무·컨센서스 요약"
+    },
+    {
+     "name": "SEIBro",
+     "url": "https://seibro.or.kr",
+     "desc": "예탁결제원 증권정보(배당·채권·펀드)"
+    },
+    {
+     "name": "아이투자",
+     "url": "https://www.itooza.com",
+     "desc": "가치투자 지표·10년 재무"
+    },
+    {
+     "name": "FISIS 금융통계정보",
+     "url": "https://fisis.fss.or.kr",
+     "desc": "금융회사별 경영 통계"
+    },
+    {
+     "name": "딥서치",
+     "url": "https://www.deepsearch.com",
+     "desc": "기업 데이터·뉴스 분석"
+    },
+    {
+     "name": "Macrotrends",
+     "url": "https://www.macrotrends.net",
+     "desc": "장기 재무·주가 추이"
+    },
+    {
+     "name": "Seeking Alpha",
+     "url": "https://seekingalpha.com",
+     "desc": "미국 종목 분석·실적 콜 요약"
+    },
+    {
+     "name": "Morningstar",
+     "url": "https://www.morningstar.com",
+     "desc": "펀드·주식 평가"
+    }
+   ]
+  },
+  {
+   "id": "broker",
+   "name": "증권사",
+   "desc": "홈페이지 리서치·투자정보 메뉴에서 리포트 열람",
+   "links": [
+    {
+     "name": "미래에셋증권",
+     "url": "https://securities.miraeasset.com",
+     "desc": "리서치·글로벌 투자정보"
+    },
+    {
+     "name": "한국투자증권",
+     "url": "https://securities.koreainvestment.com",
+     "desc": "리서치·투자정보"
+    },
+    {
+     "name": "키움증권",
+     "url": "https://www.kiwoom.com",
+     "desc": "리서치·투자정보"
+    },
+    {
+     "name": "삼성증권",
+     "url": "https://www.samsungpop.com",
+     "desc": "리서치·투자정보"
+    },
+    {
+     "name": "NH투자증권",
+     "url": "https://www.nhqv.com",
+     "desc": "리서치센터"
+    },
+    {
+     "name": "KB증권",
+     "url": "https://www.kbsec.com",
+     "desc": "리서치"
+    },
+    {
+     "name": "신한투자증권",
+     "url": "https://www.shinhansec.com",
+     "desc": "리서치"
+    },
+    {
+     "name": "하나증권",
+     "url": "https://www.hanaw.com",
+     "desc": "리서치센터"
+    },
+    {
+     "name": "메리츠증권",
+     "url": "https://home.imeritz.com",
+     "desc": "리서치"
+    },
+    {
+     "name": "대신증권",
+     "url": "https://www.daishin.com",
+     "desc": "리서치"
+    },
+    {
+     "name": "유안타증권",
+     "url": "https://www.myasset.com",
+     "desc": "리서치"
+    },
+    {
+     "name": "교보증권",
+     "url": "https://www.iprovest.com",
+     "desc": "리서치"
+    },
+    {
+     "name": "IBK투자증권",
+     "url": "https://www.ibks.com",
+     "desc": "리서치"
+    },
+    {
+     "name": "한화투자증권",
+     "url": "https://www.hanwhawm.com",
+     "desc": "리서치"
+    }
+   ]
+  },
+  {
+   "id": "news-kr",
+   "name": "국내 경제 뉴스",
+   "desc": "통신사·경제지",
+   "links": [
+    {
+     "name": "연합인포맥스",
+     "url": "https://news.einfomax.co.kr",
+     "desc": "금융시장 전문 통신(채권·외환·증시)"
+    },
+    {
+     "name": "연합뉴스 경제",
+     "url": "https://www.yna.co.kr/economy/all",
+     "desc": "통신사 경제 속보"
+    },
+    {
+     "name": "한국경제",
+     "url": "https://www.hankyung.com",
+     "desc": "경제·증권 종합"
+    },
+    {
+     "name": "매일경제",
+     "url": "https://www.mk.co.kr",
+     "desc": "경제·증권 종합"
+    },
+    {
+     "name": "이데일리",
+     "url": "https://www.edaily.co.kr",
+     "desc": "경제·증권"
+    },
+    {
+     "name": "머니투데이",
+     "url": "https://www.mt.co.kr",
+     "desc": "경제·증권"
+    },
+    {
+     "name": "서울경제",
+     "url": "https://www.sedaily.com",
+     "desc": "경제 종합"
+    },
+    {
+     "name": "파이낸셜뉴스",
+     "url": "https://www.fnnews.com",
+     "desc": "금융·증권"
+    },
+    {
+     "name": "뉴스핌",
+     "url": "https://www.newspim.com",
+     "desc": "금융·증권 속보"
+    },
+    {
+     "name": "아시아경제",
+     "url": "https://www.asiae.co.kr",
+     "desc": "경제 종합"
+    },
+    {
+     "name": "헤럴드경제",
+     "url": "https://biz.heraldcorp.com",
+     "desc": "경제 종합"
+    },
+    {
+     "name": "조선비즈",
+     "url": "https://biz.chosun.com",
+     "desc": "경제·산업"
+    },
+    {
+     "name": "비즈니스워치",
+     "url": "https://news.bizwatch.co.kr",
+     "desc": "기업·금융 심층"
+    }
+   ]
+  },
+  {
+   "id": "news-ib",
+   "name": "IB·딜",
+   "desc": "M&A·자본시장·PE 딜 (IB·운용사 필독)",
+   "links": [
+    {
+     "name": "더벨",
+     "url": "https://www.thebell.co.kr",
+     "desc": "자본시장·IB 딜 전문"
+    },
+    {
+     "name": "딜사이트",
+     "url": "https://dealsite.co.kr",
+     "desc": "M&A·PE·ECM/DCM"
+    },
+    {
+     "name": "인베스트조선",
+     "url": "https://www.investchosun.com",
+     "desc": "IB·기업금융 전문"
+    },
+    {
+     "name": "한경 마켓인사이트",
+     "url": "https://marketinsight.hankyung.com",
+     "desc": "한경 IB·자본시장"
+    },
+    {
+     "name": "이데일리 마켓in",
+     "url": "https://marketin.edaily.co.kr",
+     "desc": "이데일리 자본시장"
+    }
+   ]
+  },
+  {
+   "id": "rates",
+   "name": "금리·채권·신용",
+   "desc": "채권 금리·신용등급·외환",
+   "links": [
+    {
+     "name": "KOFIA 채권정보센터",
+     "url": "https://www.kofiabond.or.kr",
+     "desc": "금투협 채권 시가평가·수익률"
+    },
+    {
+     "name": "한국신용평가",
+     "url": "https://www.kisrating.com",
+     "desc": "신용등급·평가 리포트"
+    },
+    {
+     "name": "한국기업평가",
+     "url": "https://www.korearatings.com",
+     "desc": "신용등급·KR 리서치"
+    },
+    {
+     "name": "NICE신용평가",
+     "url": "https://www.nicerating.com/main.do",
+     "desc": "신용등급·산업 리포트"
+    },
+    {
+     "name": "서울외국환중개",
+     "url": "https://www.smbs.biz",
+     "desc": "매매기준율·외환시장 정보"
+    },
+    {
+     "name": "CME FedWatch",
+     "url": "https://www.cmegroup.com/markets/interest-rates/cme-fedwatch-tool.html",
+     "desc": "FOMC 금리 확률"
+    },
+    {
+     "name": "한국은행 기준금리 추이",
+     "url": "https://www.bok.or.kr/portal/singl/baseRate/list.do?dataSeCd=01&menuNo=200643",
+     "desc": "기준금리 변경 이력"
+    },
+    {
+     "name": "국채 정보(기재부)",
+     "url": "https://ktb.moef.go.kr",
+     "desc": "국고채 발행·입찰 정보"
+    },
+    {
+     "name": "미 재무부 금리",
+     "url": "https://home.treasury.gov/resource-center/data-chart-center/interest-rates",
+     "desc": "미 국채 수익률 곡선"
+    },
+    {
+     "name": "은행연합회 소비자포털",
+     "url": "https://portal.kfb.or.kr",
+     "desc": "COFIX·예대금리 비교"
+    },
+    {
+     "name": "한국수출입은행 환율",
+     "url": "https://www.koreaexim.go.kr",
+     "desc": "고시 환율·환율 API"
+    }
+   ]
+  },
+  {
+   "id": "fund",
+   "name": "펀드·ETF",
+   "desc": "펀드 공시·ETF 비교",
+   "links": [
+    {
+     "name": "금투협 전자공시",
+     "url": "https://dis.kofia.or.kr/websquare/index.jsp?w2xPath=%2Fwq%2Fmain%2Fmain.xml",
+     "desc": "펀드·운용사·금투회사 공시"
+    },
+    {
+     "name": "ETF CHECK",
+     "url": "https://www.etfcheck.co.kr",
+     "desc": "코스콤 국내 ETF 정보"
+    },
+    {
+     "name": "FunETF",
+     "url": "https://www.funetf.co.kr",
+     "desc": "국내·미국 ETF 비교"
+    },
+    {
+     "name": "펀드닥터",
+     "url": "https://funddoctor.co.kr",
+     "desc": "제로인 펀드 평가·수익률"
+    },
+    {
+     "name": "KIND ETF 공시",
+     "url": "https://kind.krx.co.kr/disclosure/disclosurebystocktype.do?method=searchDisclosureByStockTypeEtf",
+     "desc": "ETF 상장·분배 공시"
+    }
+   ]
+  },
+  {
+   "id": "macro",
+   "name": "거시·통계",
+   "desc": "국내외 경제 통계 원천",
+   "links": [
+    {
+     "name": "한국은행 ECOS",
+     "url": "https://ecos.bok.or.kr",
+     "desc": "한국은행 경제통계시스템"
+    },
+    {
+     "name": "FRED",
+     "url": "https://fred.stlouisfed.org",
+     "desc": "세인트루이스 연은 경제 데이터"
+    },
+    {
+     "name": "KOSIS 국가통계포털",
+     "url": "https://kosis.kr",
+     "desc": "통계청 국가통계"
+    },
+    {
+     "name": "Trading Economics",
+     "url": "https://tradingeconomics.com",
+     "desc": "국가별 지표·전망"
+    },
+    {
+     "name": "한국은행",
+     "url": "https://www.bok.or.kr",
+     "desc": "통화정책·보고서·경제교육"
+    },
+    {
+     "name": "e-나라지표",
+     "url": "https://www.index.go.kr",
+     "desc": "주요 국가지표 해설"
+    },
+    {
+     "name": "BLS",
+     "url": "https://www.bls.gov",
+     "desc": "미국 고용·물가(CPI)"
+    },
+    {
+     "name": "BEA",
+     "url": "https://www.bea.gov",
+     "desc": "미국 GDP·PCE"
+    },
+    {
+     "name": "관세청 수출입무역통계",
+     "url": "https://tradedata.go.kr",
+     "desc": "품목·국가별 수출입"
+    },
+    {
+     "name": "K-stat 무역통계",
+     "url": "https://stat.kita.net",
+     "desc": "한국무역협회 무역통계"
+    },
+    {
+     "name": "KDI 경제교육·정보센터",
+     "url": "https://eiec.kdi.re.kr",
+     "desc": "경제정책 자료·경제교육"
+    },
+    {
+     "name": "기획재정부",
+     "url": "https://www.moef.go.kr",
+     "desc": "재정·경제정책 발표"
+    },
+    {
+     "name": "IMF Data",
+     "url": "https://data.imf.org",
+     "desc": "IMF 국제 통계"
+    },
+    {
+     "name": "World Bank Data",
+     "url": "https://data.worldbank.org",
+     "desc": "세계은행 개발 지표"
+    },
+    {
+     "name": "OECD Data Explorer",
+     "url": "https://data-explorer.oecd.org",
+     "desc": "OECD 통계"
+    },
+    {
+     "name": "BIS Data Portal",
+     "url": "https://data.bis.org",
+     "desc": "국제결제은행 금융 통계"
+    }
+   ]
+  },
+  {
+   "id": "commodity",
+   "name": "원자재",
+   "desc": "금속·에너지·철강 가격",
+   "links": [
+    {
+     "name": "LME",
+     "url": "https://www.lme.com",
+     "desc": "런던금속거래소(구리·알루미늄·니켈)"
+    },
+    {
+     "name": "CME Group",
+     "url": "https://www.cmegroup.com",
+     "desc": "COMEX 금·구리, NYMEX 원유, 열연(HRC) 선물"
+    },
+    {
+     "name": "KOMIS 한국자원정보서비스",
+     "url": "https://www.komis.or.kr",
+     "desc": "광물 가격·수급 동향"
+    },
+    {
+     "name": "스틸데일리",
+     "url": "https://www.steeldaily.co.kr",
+     "desc": "철강 시황·가격 전문 매체"
+    },
+    {
+     "name": "오피넷",
+     "url": "https://www.opinet.co.kr",
+     "desc": "국내 유가(한국석유공사)"
+    },
+    {
+     "name": "Kitco",
+     "url": "https://www.kitco.com",
+     "desc": "금·은 시세·뉴스"
+    },
+    {
+     "name": "한국물가정보(KPI)",
+     "url": "https://www.kpi.or.kr",
+     "desc": "LME 시세·국내 자재 가격"
+    },
+    {
+     "name": "EIA",
+     "url": "https://www.eia.gov",
+     "desc": "미 에너지정보청 재고·전망"
+    },
+    {
+     "name": "한국비철금속협회",
+     "url": "https://www.nonferrous.or.kr",
+     "desc": "LME 비철 시세 통계"
+    },
+    {
+     "name": "철강금속신문",
+     "url": "https://www.snmnews.com",
+     "desc": "철강·비철 산업 뉴스"
+    },
+    {
+     "name": "페트로넷",
+     "url": "https://www.petronet.co.kr",
+     "desc": "국제 유가·석유 통계"
+    },
+    {
+     "name": "OPEC",
+     "url": "https://www.opec.org",
+     "desc": "OPEC 월간 석유시장 보고서"
+    },
+    {
+     "name": "worldsteel",
+     "url": "https://worldsteel.org",
+     "desc": "세계철강협회 생산 통계"
+    },
+    {
+     "name": "한국금거래소",
+     "url": "https://www.koreagoldx.co.kr",
+     "desc": "국내 금 매매 시세"
+    },
+    {
+     "name": "한국광해광업공단",
+     "url": "https://www.komir.or.kr",
+     "desc": "광물자원 정보"
+    }
+   ]
+  },
+  {
+   "id": "crypto",
+   "name": "디지털자산",
+   "desc": "코인 시세·스테이블코인·공시",
+   "links": [
+    {
+     "name": "업비트",
+     "url": "https://upbit.com",
+     "desc": "국내 원화 거래소 시세"
+    },
+    {
+     "name": "CoinMarketCap",
+     "url": "https://coinmarketcap.com",
+     "desc": "글로벌 코인 시세·시총"
+    },
+    {
+     "name": "DefiLlama 스테이블코인",
+     "url": "https://defillama.com/stablecoins",
+     "desc": "스테이블코인 시총·발행량"
+    },
+    {
+     "name": "쟁글",
+     "url": "https://xangle.io",
+     "desc": "가상자산 공시·리서치"
+    },
+    {
+     "name": "빗썸",
+     "url": "https://www.bithumb.com",
+     "desc": "국내 원화 거래소"
+    },
+    {
+     "name": "CoinGecko",
+     "url": "https://www.coingecko.com",
+     "desc": "코인 시세·데이터"
+    },
+    {
+     "name": "블록미디어",
+     "url": "https://www.blockmedia.co.kr",
+     "desc": "블록체인 전문 매체"
+    },
+    {
+     "name": "디센터",
+     "url": "https://www.decenter.kr",
+     "desc": "서울경제 블록체인 매체"
+    },
+    {
+     "name": "CoinDesk",
+     "url": "https://www.coindesk.com",
+     "desc": "글로벌 가상자산 뉴스"
+    }
+   ]
+  },
+  {
+   "id": "regulator",
+   "name": "금융당국·기관",
+   "desc": "감독기관, 협회, 연구기관, 해외 중앙은행",
+   "links": [
+    {
+     "name": "금융위원회",
+     "url": "https://www.fsc.go.kr",
+     "desc": "금융정책·보도자료"
+    },
+    {
+     "name": "금융감독원",
+     "url": "https://www.fss.or.kr",
+     "desc": "감독·검사·제재 공시"
+    },
+    {
+     "name": "한국거래소",
+     "url": "https://www.krx.co.kr",
+     "desc": "시장 제도·공지"
+    },
+    {
+     "name": "금융투자협회",
+     "url": "https://www.kofia.or.kr",
+     "desc": "금투업계 통계·규정"
+    },
+    {
+     "name": "Federal Reserve",
+     "url": "https://www.federalreserve.gov",
+     "desc": "미 연준 성명·의사록"
+    },
+    {
+     "name": "은행연합회",
+     "url": "https://www.kfb.or.kr",
+     "desc": "은행업 통계·공시"
+    },
+    {
+     "name": "한국예탁결제원",
+     "url": "https://www.ksd.or.kr",
+     "desc": "증권 예탁·결제"
+    },
+    {
+     "name": "자본시장연구원",
+     "url": "https://www.kcmi.re.kr",
+     "desc": "자본시장 연구 보고서"
+    },
+    {
+     "name": "한국금융연구원",
+     "url": "https://www.kif.re.kr",
+     "desc": "금융 연구 보고서"
+    },
+    {
+     "name": "예금보험공사",
+     "url": "https://www.kdic.or.kr",
+     "desc": "예금자보호"
+    },
+    {
+     "name": "ECB",
+     "url": "https://www.ecb.europa.eu",
+     "desc": "유럽중앙은행"
+    },
+    {
+     "name": "Bank of Japan",
+     "url": "https://www.boj.or.jp/en/",
+     "desc": "일본은행"
+    },
+    {
+     "name": "생명보험협회",
+     "url": "https://www.klia.or.kr",
+     "desc": "생보 통계"
+    },
+    {
+     "name": "손해보험협회",
+     "url": "https://www.knia.or.kr",
+     "desc": "손보 통계"
+    },
+    {
+     "name": "여신금융협회",
+     "url": "https://www.crefia.or.kr",
+     "desc": "카드·캐피탈 통계"
+    },
+    {
+     "name": "보험연구원",
+     "url": "https://www.kiri.or.kr",
+     "desc": "보험 연구 보고서"
+    },
+    {
+     "name": "금융결제원",
+     "url": "https://www.kftc.or.kr",
+     "desc": "지급결제 인프라"
+    },
+    {
+     "name": "파인(FINE)",
+     "url": "https://fine.fss.or.kr",
+     "desc": "금감원 금융소비자 정보포털"
+    },
+    {
+     "name": "BIS",
+     "url": "https://www.bis.org",
+     "desc": "국제결제은행 보고서"
+    },
+    {
+     "name": "IMF",
+     "url": "https://www.imf.org",
+     "desc": "세계경제전망(WEO)"
+    }
+   ]
+  },
+  {
+   "id": "news-global",
+   "name": "해외 뉴스",
+   "desc": "글로벌 금융 매체",
+   "links": [
+    {
+     "name": "Bloomberg",
+     "url": "https://www.bloomberg.com/markets",
+     "desc": "글로벌 시장 뉴스"
+    },
+    {
+     "name": "Reuters",
+     "url": "https://www.reuters.com/markets/",
+     "desc": "통신사 시장 속보"
+    },
+    {
+     "name": "CNBC",
+     "url": "https://www.cnbc.com/markets/",
+     "desc": "미국 시장 실시간 뉴스"
+    },
+    {
+     "name": "Wall Street Journal",
+     "url": "https://www.wsj.com",
+     "desc": "미국 경제·기업"
+    },
+    {
+     "name": "Financial Times",
+     "url": "https://www.ft.com",
+     "desc": "글로벌 금융·정책"
+    },
+    {
+     "name": "Nikkei Asia",
+     "url": "https://asia.nikkei.com",
+     "desc": "아시아 경제"
+    },
+    {
+     "name": "Barron's",
+     "url": "https://www.barrons.com",
+     "desc": "투자 전문 주간지"
+    },
+    {
+     "name": "The Economist",
+     "url": "https://www.economist.com",
+     "desc": "경제·정책 분석"
+    }
+   ]
+  },
+  {
+   "id": "career",
+   "name": "채용·자격증",
+   "desc": "금융권 자격시험과 채용 정보",
+   "links": [
+    {
+     "name": "금투협 자격시험센터",
+     "url": "https://license.kofia.or.kr",
+     "desc": "투자자산운용사·금융투자분석사 등"
+    },
+    {
+     "name": "한국금융연수원",
+     "url": "https://www.kbi.or.kr",
+     "desc": "신용분석사·여신심사역·외환전문역"
+    },
+    {
+     "name": "잡알리오",
+     "url": "https://job.alio.go.kr",
+     "desc": "공공기관(금융공기업) 채용"
+    },
+    {
+     "name": "링커리어",
+     "url": "https://linkareer.com",
+     "desc": "공채·인턴·대외활동"
+    },
+    {
+     "name": "캐치",
+     "url": "https://www.catch.co.kr",
+     "desc": "기업 채용·합격 후기"
+    },
+    {
+     "name": "한국FPSB",
+     "url": "https://www.fpsbkorea.org",
+     "desc": "AFPK·CFP"
+    },
+    {
+     "name": "CFA Institute",
+     "url": "https://www.cfainstitute.org",
+     "desc": "CFA 시험"
+    },
+    {
+     "name": "GARP",
+     "url": "https://www.garp.org",
+     "desc": "FRM 시험"
+    },
+    {
+     "name": "매경TEST",
+     "url": "https://exam.mk.co.kr",
+     "desc": "경제·경영 이해력 인증"
+    },
+    {
+     "name": "한경 TESAT",
+     "url": "https://www.tesat.or.kr",
+     "desc": "경제이해력 검증시험"
+    },
+    {
+     "name": "블라인드",
+     "url": "https://www.teamblind.com/kr/",
+     "desc": "직장인 커뮤니티"
+    },
+    {
+     "name": "잡플래닛",
+     "url": "https://www.jobplanet.co.kr",
+     "desc": "기업 리뷰·연봉"
+    },
+    {
+     "name": "독취사",
+     "url": "https://cafe.naver.com/dokchi",
+     "desc": "취업 준비 카페"
+    },
+    {
+     "name": "잡코리아",
+     "url": "https://www.jobkorea.co.kr",
+     "desc": "채용 공고·자소서 예시"
+    },
+    {
+     "name": "사람인",
+     "url": "https://www.saramin.co.kr",
+     "desc": "채용 공고"
+    },
+    {
+     "name": "고용24",
+     "url": "https://www.work24.go.kr",
+     "desc": "고용노동부 채용·훈련"
+    },
+    {
+     "name": "TOEIC",
+     "url": "https://exam.toeic.co.kr",
+     "desc": "토익 접수·성적"
+    },
+    {
+     "name": "OPIc",
+     "url": "https://www.opic.or.kr",
+     "desc": "영어 말하기 평가"
+    },
+    {
+     "name": "보험연수원 자격",
+     "url": "https://www.in.or.kr/main/certification/aiu/outline/outline.do",
+     "desc": "보험심사역"
+    },
+    {
+     "name": "삼일회계법인 자격",
+     "url": "https://www.samilexam.com",
+     "desc": "재경관리사·회계관리"
+    }
+   ]
+  },
+  {
+   "id": "learn",
+   "name": "학습·용어",
+   "desc": "용어 사전, 밸류에이션·모델링 학습",
+   "links": [
+    {
+     "name": "한국은행 경제용어 (ECOS)",
+     "url": "https://ecos.bok.or.kr",
+     "desc": "ECOS 통계용어사전"
+    },
+    {
+     "name": "한경 경제용어사전",
+     "url": "https://dic.hankyung.com",
+     "desc": "시사 경제용어"
+    },
+    {
+     "name": "Investopedia",
+     "url": "https://www.investopedia.com",
+     "desc": "영문 금융 용어·개념"
+    },
+    {
+     "name": "Damodaran Online",
+     "url": "https://pages.stern.nyu.edu/~adamodar/",
+     "desc": "밸류에이션 데이터·강의"
+    },
+    {
+     "name": "CFI",
+     "url": "https://corporatefinanceinstitute.com",
+     "desc": "재무모델링 학습 자료"
+    },
+    {
+     "name": "Wall Street Prep",
+     "url": "https://www.wallstreetprep.com",
+     "desc": "IB 모델링 학습"
+    },
+    {
+     "name": "KDI 경제교육",
+     "url": "https://eiec.kdi.re.kr",
+     "desc": "경제 교육 콘텐츠"
+    }
+   ]
+  }
+ ]
+}

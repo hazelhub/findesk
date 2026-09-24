@@ -1,0 +1,64 @@
+name: 데이터 수집 및 배포
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch: {}
+  schedule:
+    # 한국은행 지표·금융위 보도자료 갱신: 2시간마다 (예약 실행은 늦어질 수 있음)
+    # 브리핑은 편집기에서 게시하면(push) 바로 배포됩니다.
+    - cron: "17 */2 * * *"
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - id: pages
+        uses: actions/configure-pages@v5
+
+      - name: 데이터 수집
+        env:
+          ECOS_API_KEY: ${{ secrets.ECOS_API_KEY }}
+        run: python scripts/update_data.py
+
+      - name: 검색 노출 파일 생성 (사이트맵·robots·메타태그)
+        env:
+          SITE_URL: ${{ steps.pages.outputs.base_url }}
+        run: python scripts/build_seo.py
+
+      - name: 배포 파일 준비
+        run: |
+          mkdir -p _site
+          cp -r index.html sites.html editor.html assets data robots.txt _site/
+          [ -f sitemap.xml ] && cp sitemap.xml _site/ || true
+          touch _site/.nojekyll
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
