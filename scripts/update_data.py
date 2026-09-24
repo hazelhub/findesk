@@ -274,6 +274,7 @@ def build_bundle() -> None:
         "ust": load("ust.json", {"rows": []}),
         "books": load("books.json", {"weeks": []}),
         "sectors": load("sectors.json", {"days": []}),
+        "news": (lambda n: {"editions": n.get("editions", [])[:2], "method": n.get("method", "")})(load("news.json", {"editions": []})),
     }
     js = "/* 자동 생성 파일: scripts/update_data.py 가 만듭니다. 직접 수정하지 마세요. */\n"
     js += "window.FD_DATA = " + json.dumps(bundle, ensure_ascii=False, separators=(",", ":")) + ";\n"

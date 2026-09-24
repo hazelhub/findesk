@@ -42,7 +42,7 @@
         <div class="brand__text"><h1 class="brand__title" id="siteName">FinDesk</h1><small id="tagline">금융인을 위한 아침 데스크</small></div>
       </a>
       <nav class="nav" aria-label="섹션 이동">
-        <a href="#brief">브리핑</a><a href="#indices">증시</a><a href="#sectors">섹터</a><a href="#commodities">원자재</a><a href="#rates">환율·금리</a><a href="#bonds">채권</a><a href="#crypto">디지털자산</a><a href="#policy">정책</a><a href="books.html">도서</a><a href="sites.html">사이트</a>
+        <a href="#brief">뉴스 온도</a><a href="#indices">증시</a><a href="#sectors">섹터</a><a href="#commodities">원자재</a><a href="#rates">환율·금리</a><a href="#bonds">채권</a><a href="#crypto">디지털자산</a><a href="#policy">정책</a><a href="books.html">도서</a><a href="sites.html">사이트</a>
       </nav>
       <div class="topbar__right">
         <div class="clock" aria-live="off">
@@ -63,33 +63,28 @@
     <main id="main" class="main">
 
       <!-- 마켓 브리핑 -->
-      <section class="panel brief" id="brief" aria-labelledby="h-brief">
-        <div class="panel__head">
-          <h2 id="h-brief">마켓 브리핑</h2>
-          <span class="session-pill" id="sessionPill"></span>
-          <span class="meta" id="newsStatus"></span>
-        </div>
-        <ol class="timeline" id="sessionTimeline" aria-label="시간대별 세션"></ol>
-        <div class="brief__cols">
-          <div class="brief__main">
-            <div class="edition" id="edition" aria-live="polite"></div>
+      <section class="panel ntemp" id="brief" aria-labelledby="h-news">
+        <div class="panel__head panel__head--wrap">
+          <h2 id="h-news">섹터별 뉴스 온도</h2>
+          <div class="chips chips--sm news__mkt" role="tablist" id="newsMarket">
+            <button class="chip" type="button" role="tab" data-mkt="kr" aria-selected="true">국내</button>
+            <button class="chip" type="button" role="tab" data-mkt="us" aria-selected="false">미국</button>
           </div>
-          <div class="brief__side">
-            <h3 class="sub" id="goTitle">지금 볼 곳</h3>
-            <div id="goLinks"></div>
-          </div>
+          <div class="chips chips--sm news__ed" role="tablist" id="newsEdition"></div>
+          <span class="meta" id="newsMeta"></span>
         </div>
-        <div class="gnews">
-          <h3 class="sub">해외 시장 뉴스 <small>TradingView 제공 · 영문 기사 포함</small></h3>
-          <div class="tv-box tv-box--gnews" id="globalNews"></div>
-        </div>
+        <p class="news__lead" id="newsLead">기사 제목을 금융 용어 사전으로 자동 판정해, 섹터마다 긍정·부정 기사 비율을 보여줘요. 건수를 누르면 원문 링크가 열려요.</p>
+        <div class="ngrid" id="newsGrid"></div>
+        <div class="nlist" id="newsList" hidden></div>
+        <p class="empty" id="newsEmpty" hidden>첫 뉴스 온도는 다음 업데이트(오전 07시대 · 오후 16시대)에 만들어져요.</p>
+        <div class="edition__auto" id="autoLine" hidden></div>
         <details class="criteria">
-          <summary>브리핑 작성 원칙</summary>
+          <summary>판정 방식과 한계</summary>
           <ul>
-            <li>FinDesk 운영자가 세션마다 주요 뉴스를 직접 고르고, 사실과 의미를 <b>자체 문장</b>으로 정리합니다. 기사 원문은 각 언론사 사이트에서 확인하세요.</li>
-            <li>원문 제목·본문을 옮기지 않으며, 출처와 원문 링크를 함께 표시합니다. 기사 저작권은 각 언론사에 있습니다.</li>
-            <li>세션: 모닝 브리핑(05~08시)·개장 전(08~09시)·장중(09~15:30)·국내 마감(15:30~20시)·글로벌(20~05시), 한국시간 기준.</li>
-            <li>정보 제공 목적이며 특정 종목의 매수·매도 권유가 아닙니다.</li>
+            <li>하루 2회 자동 업데이트: <b>오전판</b>(전일 15:30 이후 기사: 국내 마감·미국 장·정책) · <b>오후판</b>(당일 07시 이후 기사: 장중·속보). 한국시간 기준, 자동 실행이라 10~30분 늦을 수 있어요.</li>
+            <li>한국경제·매일경제·연합뉴스·이데일리·머니투데이 RSS의 <b>기사 제목</b>을 금융 용어 사전으로 긍정·부정·중립 판정합니다. 금리·환율·물가처럼 오르면 부담인 지표는 방향을 반대로 봅니다.</li>
+            <li>같은 사건을 여러 언론이 쓴 경우 사건당 최대 3건까지만 비율에 반영합니다. 판정 기사 5건 미만 섹터는 '표본 부족'으로 표시합니다.</li>
+            <li>자동 판정이라 틀릴 수 있으며 <b>투자 판단 근거가 아닙니다.</b> 기사 제목·본문은 싣지 않고 언론사·시각·판정 근거 단어와 원문 링크만 제공합니다. 기사 저작권은 각 언론사에 있습니다.</li>
           </ul>
         </details>
       </section>

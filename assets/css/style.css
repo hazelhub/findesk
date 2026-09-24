@@ -678,3 +678,38 @@ svg { display: block; }
 .kr-comment { font-size: 13.5px; line-height: 1.6; margin: 10px 0 0; padding: 8px 12px; background: var(--surface-2); border-radius: 8px; }
 .us-sub { margin-top: 20px; }
 .mini.up { color: var(--up); } .mini.down { color: var(--down); }
+
+/* ── 섹터별 뉴스 온도 ── */
+.ntemp .panel__head { row-gap: 8px; }
+.news__lead { font-size: 13px; color: var(--ink-2); margin: -6px 0 12px; }
+.ngrid { display: grid; grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)); gap: 10px; }
+.ncard { border: 1px solid var(--line); border-radius: var(--radius-sm); padding: 10px 12px; display: flex; flex-direction: column; gap: 6px; min-width: 0; }
+.ncard.is-open { border-color: var(--accent); box-shadow: 0 0 0 1px var(--accent) inset; }
+.ncard--thin { opacity: .72; }
+.ncard__head { display: flex; justify-content: space-between; align-items: baseline; gap: 6px; }
+.ncard__head b { font-size: 14.5px; }
+.ncard__head small { font-size: 11px; color: var(--ink-3); white-space: nowrap; }
+.nbar { display: flex; height: 8px; border-radius: 4px; overflow: hidden; background: var(--surface-2); }
+.nbar__pos { background: var(--up); }
+.nbar__neg { background: var(--down); }
+.nbar--thin { opacity: .5; }
+.ncard__cnt { display: flex; align-items: center; gap: 4px; flex-wrap: wrap; font-size: 13px; }
+.ncard__cnt .sep { color: var(--line-strong); }
+.ncnt { font: inherit; font-weight: 700; background: none; border: 0; padding: 2px 2px; cursor: pointer; border-radius: 4px; }
+.ncnt small { font-weight: 500; text-decoration: underline; text-underline-offset: 2px; }
+.ncnt--pos { color: var(--up); } .ncnt--neg { color: var(--down); } .ncnt--neu { color: var(--ink-3); font-weight: 500; margin-left: auto; font-size: 12px; }
+.ncnt:hover { background: var(--surface-2); }
+.ncnt:disabled { cursor: default; opacity: .5; }
+.ncnt:disabled small { text-decoration: none; }
+.ncard__kw { display: flex; flex-wrap: wrap; gap: 4px; }
+.ncard__kw span { font-size: 11px; color: var(--ink-2); background: var(--surface-2); padding: 1px 6px; border-radius: 4px; }
+.nlist { margin-top: 12px; border: 1px solid var(--line); border-radius: var(--radius-sm); padding: 10px 14px; background: var(--surface); }
+.nlist__head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px; }
+.nlist__head .btn-link { margin: 0; }
+.nlist ol { margin: 0; padding-left: 20px; font-size: 13.5px; columns: 2; column-gap: 24px; }
+.nlist li { break-inside: avoid; padding: 4px 0; }
+.nlist li a { text-decoration: none; color: var(--ink); }
+.nlist li a:hover b { text-decoration: underline; }
+.nlist li small { display: block; font-size: 11px; color: var(--ink-3); }
+@media (max-width: 720px) { .nlist ol { columns: 1; } .ngrid { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); } }
+@media (max-width: 420px) { .ngrid { grid-template-columns: minmax(0, 1fr); } }

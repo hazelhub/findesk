@@ -536,70 +536,7 @@
       h("ul", null, (C.cryptoLinks || []).map(function (l) { return h("li", null, h("a", { href: l.url, target: "_blank", rel: "noopener" }, l.name + " →")); })))));
   })();
 
-  /* ── 편집 브리핑 (운영자가 직접 쓴 코멘트 + 원문 링크) ─────── */
-  var SESSIONS = [
-    { id: "morning", label: "모닝 브리핑", range: "05:00–08:00", desc: "간밤 미국·유럽 증시 마감 + 전일 국내 마감 이후 이슈" },
-    { id: "pre", label: "개장 전", range: "08:00–09:00", desc: "넥스트레이드 프리마켓·장 시작 전 동시호가·환율 개장" },
-    { id: "intraday", label: "장중", range: "09:00–15:30", desc: "개장 시황·특징주·수급" },
-    { id: "close", label: "국내 마감", range: "15:30–20:00", desc: "마감 시황·수급·장 마감 후 공시·실적" },
-    { id: "global", label: "글로벌", range: "20:00–05:00", desc: "유럽 증시·미국 개장 전후·지표 발표" }
-  ];
-  var SEC_LABEL = { market: "증시", commodity: "원자재", macro: "매크로", bond: "채권", crypto: "디지털자산", policy: "정책" };
-  function currentSessionId() {
-    var z = zoneParts("Asia/Seoul"), m = z.min;
-    var id = m >= 300 && m < 480 ? "morning" : m >= 480 && m < 540 ? "pre" : m >= 540 && m < 930 ? "intraday" : m >= 930 && m < 1200 ? "close" : "global";
-    var holiday = z.wd === "Sat" || z.wd === "Sun" || (HOLI.KR || []).indexOf(z.date) >= 0;
-    return { id: id, holiday: holiday && id !== "global" };
-  }
-  var BRIEF = { data: D.briefing || { editions: [] }, pick: null };
-  function sessionInfo(id) { return SESSIONS.filter(function (s) { return s.id === id; })[0] || { id: id, label: id, range: "", desc: "" }; }
-  function todayEditions() { var t = kstDateStr(); return (BRIEF.data.editions || []).filter(function (e) { return e.date === t; }); }
-  function fmtIso(iso) { return iso ? fmtStamp(iso) : ""; }
-  function linkList(links) {
-    return h("ul", { class: "golinks" }, (links || []).map(function (l) {
-      return h("li", null, h("a", { href: l.url, target: "_blank", rel: "noopener" }, h("b", { text: l.name }), l.desc ? h("small", { text: l.desc }) : null));
-    }));
-  }
-  function itemLi(it, showSec) {
-    return h("li", { class: "bitem" },
-      showSec ? h("span", { class: "bitem__sec bitem__sec--" + it.sec, text: SEC_LABEL[it.sec] || it.sec }) : null,
-      h("div", { class: "bitem__body" },
-        h("p", { class: "bitem__text", text: it.comment }),
-        h("a", { class: "bitem__src", href: it.url, target: "_blank", rel: "noopener nofollow" }, "원문: " + (it.source || "기사") + " ↗")));
-  }
-  function renderBrief() {
-    var cur = currentSessionId();
-    var today = todayEditions();
-    var bySession = {}; today.forEach(function (e) { if (!bySession[e.session]) bySession[e.session] = e; });
-    if (!BRIEF.pick) BRIEF.pick = bySession[cur.id] ? cur.id : (today[0] ? today[0].session : cur.id);
-    var info = sessionInfo(cur.id);
-    $("#sessionPill").textContent = cur.holiday ? "지금: 휴장일" : "지금: " + info.label + " (" + info.range + ")";
-    $("#newsStatus").textContent = BRIEF.data.updated_at ? "마지막 게시 " + fmtIso(BRIEF.data.updated_at) : "";
-    var ol = $("#sessionTimeline"); ol.innerHTML = "";
-    SESSIONS.forEach(function (x) {
-      ol.appendChild(h("li", null, h("button", {
-        type: "button", class: "tl" + (x.id === cur.id ? " is-now" : "") + (x.id === BRIEF.pick ? " is-pick" : "") + (bySession[x.id] ? " has-brief" : ""),
-        "aria-pressed": x.id === BRIEF.pick ? "true" : "false", title: x.desc,
-        onclick: function () { BRIEF.pick = x.id; renderBrief(); }
-      }, h("span", { class: "tl__label", text: x.label }), h("span", { class: "tl__range mono", text: x.range }), x.id === cur.id ? h("span", { class: "tl__now", text: "지금" }) : null)));
-    });
-    // 선택한 세션의 브리핑
-    var box = $("#edition"); box.innerHTML = "";
-    var ed = bySession[BRIEF.pick];
-    var pickInfo = sessionInfo(BRIEF.pick);
-    if (!ed) {
-      var last = (BRIEF.data.editions || [])[0];
-      box.appendChild(h("div", { class: "edition__empty" },
-        h("p", null, h("b", { text: pickInfo.label }), " 브리핑이 아직 올라오지 않았어요. 아래 '지금 볼 곳'에서 바로 확인할 수 있어요."),
-        last ? h("button", { class: "linkish", type: "button", onclick: function () { showEdition(last, true); } }, "가장 최근 브리핑 보기 (" + last.date.slice(5).replace("-", "/") + " " + sessionInfo(last.session).label + ")") : null,
-        autoLine()));
-    } else showEdition(ed, false);
-    // 지금 볼 곳
-    var go = $("#goLinks"); go.innerHTML = "";
-    $("#goTitle").textContent = "지금 볼 곳 · " + (cur.holiday ? "휴장일" : info.label);
-    go.appendChild(linkList((C.sessionLinks || {})[cur.holiday ? "holiday" : cur.id] || (C.sessionLinks || {}).global));
-    renderSectionPicks();
-  }
+  /* ── 섹터별 뉴스 온도 (자동: 제목 기반 긍정·부정 비율 + 원문 링크) ── */
   // 운영자 브리핑이 없을 때 보여줄 '숫자로 보는 시장' (수치만, 자동 생성)
   function autoLine() {
     var parts = [];
@@ -618,22 +555,75 @@
     var base = ks && ks.length ? fmtCycle(ks[ks.length - 1][0]) + " 종가 기준" : "최근 발표 기준";
     return h("div", { class: "edition__auto" }, h("b", { text: "숫자로 보는 시장 · " + base + " (자동)" }), parts.join(" · "));
   }
-  function showEdition(ed, stale) {
-    var box = $("#edition"); box.innerHTML = "";
-    box.appendChild(h("div", { class: "edition__head" },
-      h("span", { class: "ai__tag", text: "편집 브리핑" }), h("strong", { text: sessionInfo(ed.session).label }),
-      h("span", { class: "ai__desc", text: (stale ? "지난 브리핑 · " : "") + ed.date.slice(5).replace("-", "/") + " " + fmtIso(ed.published_at).split(" ")[1] + " 게시 · " + ed.items.length + "건" })));
-    if (ed.summary && ed.summary.length) box.appendChild(h("div", { class: "edition__summary" }, ed.summary.map(function (s) { return h("p", { text: s }); })));
-    box.appendChild(h("ol", { class: "bitems" }, ed.items.map(function (it) { return itemLi(it, true); })));
+  var NEWS = { data: D.news || { editions: [] }, mkt: "kr", ed: 0, open: null };
+  try { var sm = localStorage.getItem("fd-news-mkt"); if (sm === "kr" || sm === "us") NEWS.mkt = sm; } catch (e) {}
+  var LBL = { pos: "긍정", neg: "부정", neu: "중립" };
+  function slotName(e) { return (e.slot === "am" ? "오전판" : "오후판"); }
+  function renderNews() {
+    var eds = NEWS.data.editions || [];
+    var grid = $("#newsGrid"), list = $("#newsList");
+    grid.innerHTML = ""; list.hidden = true; list.innerHTML = "";
+    document.querySelectorAll("#newsMarket .chip").forEach(function (b) { b.setAttribute("aria-selected", b.dataset.mkt === NEWS.mkt ? "true" : "false"); });
+    var edBox = $("#newsEdition"); edBox.innerHTML = "";
+    eds.slice(0, 2).forEach(function (e, i) {
+      edBox.appendChild(h("button", { class: "chip", type: "button", role: "tab", "aria-selected": i === NEWS.ed ? "true" : "false",
+        onclick: function () { NEWS.ed = i; NEWS.open = null; renderNews(); } }, e.date.slice(5).replace("-", "/") + " " + slotName(e)));
+    });
+    var e = eds[NEWS.ed];
+    $("#newsEmpty").hidden = !!e;
+    var al = autoLine(), ab = $("#autoLine"); ab.innerHTML = ""; if (al) { ab.appendChild(al); ab.hidden = false; }
+    if (!e) { $("#newsMeta").textContent = ""; return; }
+    $("#newsMeta").textContent = fmtStamp(e.built_at) + " 업데이트 · " + fmtStamp(e.from) + " 이후 기사 " + e.articles + "건";
+    var secs = (e.markets && e.markets[NEWS.mkt]) || [];
+    if (!secs.length) { grid.appendChild(h("p", { class: "empty", text: "이 시간대에 분류된 기사가 없어요." })); return; }
+    secs.forEach(function (sc) {
+      var pos = sc.pos_pct, neg = sc.neg_pct;
+      var bar = h("div", { class: "nbar" + (sc.enough ? "" : " nbar--thin") },
+        pos != null ? h("span", { class: "nbar__pos", style: "width:" + pos + "%" }) : null,
+        neg != null ? h("span", { class: "nbar__neg", style: "width:" + neg + "%" }) : null);
+      function cnt(kind) {
+        var n = sc[kind], links = (sc.links && sc.links[kind]) || [];
+        return h("button", { class: "ncnt ncnt--" + kind, type: "button", disabled: links.length ? null : true,
+          onclick: function () { showList(sc, kind); } },
+          LBL[kind] + (kind !== "neu" && sc[kind + "_pct"] != null ? " " + sc[kind + "_pct"] + "%" : ""), h("small", { text: " (" + n + "건)" }));
+      }
+      grid.appendChild(h("article", { class: "ncard" + (sc.enough ? "" : " ncard--thin") + (NEWS.open && NEWS.open.id === sc.id ? " is-open" : "") },
+        h("div", { class: "ncard__head" }, h("b", { text: sc.name }), h("small", { text: sc.enough ? "기사 " + sc.articles + "건" : "표본 부족 (" + sc.total + "건)" })),
+        bar,
+        h("div", { class: "ncard__cnt" }, cnt("pos"), h("span", { class: "sep", text: "|" }), cnt("neg"), cnt("neu")),
+        (sc.keywords || []).length ? h("div", { class: "ncard__kw" }, sc.keywords.map(function (k) { return h("span", { text: "#" + k }); })) : null));
+    });
+    if (NEWS.open) { var again = secs.filter(function (x) { return x.id === NEWS.open.id; })[0]; if (again) showList(again, NEWS.open.kind, true); }
   }
-  function renderSectionPicks() {
-    var today = todayEditions();
+  function showList(sc, kind, silent) {
+    NEWS.open = { id: sc.id, kind: kind };
+    var list = $("#newsList"), links = (sc.links && sc.links[kind]) || [];
+    list.innerHTML = "";
+    list.appendChild(h("div", { class: "nlist__head" },
+      h("b", { text: sc.name + " · " + LBL[kind] + " 기사 " + sc[kind] + "건" }),
+      h("button", { class: "btn-link", type: "button", onclick: function () { NEWS.open = null; list.hidden = true; document.querySelectorAll(".ncard.is-open").forEach(function (c) { c.classList.remove("is-open"); }); } }, "닫기")));
+    list.appendChild(h("ol", null, links.map(function (l) {
+      return h("li", null, h("a", { href: l.u, target: "_blank", rel: "noopener nofollow" }, h("b", { text: l.s }), h("span", { class: "mono", text: " " + l.t })),
+        (l.w || []).length ? h("small", { text: "판정 근거: " + l.w.join(", ") }) : null);
+    })));
+    list.appendChild(h("p", { class: "fineprint", text: "기사 제목은 싣지 않아요. 링크를 누르면 각 언론사 원문으로 이동합니다." }));
+    list.hidden = false;
+    document.querySelectorAll(".ncard").forEach(function (c) { c.classList.toggle("is-open", c.querySelector("b").textContent === sc.name); });
+    if (!silent) list.scrollIntoView({ block: "nearest", behavior: "smooth" });
+  }
+  document.querySelectorAll("#newsMarket .chip").forEach(function (b) {
+    b.addEventListener("click", function () { NEWS.mkt = b.dataset.mkt; NEWS.open = null; try { localStorage.setItem("fd-news-mkt", NEWS.mkt); } catch (e) {} renderNews(); });
+  });
+  renderNews();
+  fetch("data/news.json?t=" + Date.now(), { cache: "no-store" }).then(function (r) { return r.ok ? r.json() : null; })
+    .then(function (j) { if (j && (j.editions || []).length && ((j.editions[0] || {}).built_at !== ((NEWS.data.editions || [])[0] || {}).built_at)) { NEWS.data = j; NEWS.ed = 0; renderNews(); } }).catch(function () {});
+
+  /* ── 섹션별 바로가기 (금융위 보도자료 + 관련 뉴스 링크) ── */
+  (function renderSectionPicks() {
     document.querySelectorAll(".secnews").forEach(function (box) {
       var sec = box.dataset.sec, title = box.dataset.title;
-      var items = []; today.forEach(function (e) { e.items.forEach(function (it) { if (it.sec === sec) items.push(it); }); });
       box.innerHTML = "";
-      box.appendChild(h("div", { class: "secnews__head" }, title ? h("h3", { class: "sub", text: title }) : null, h("span", { class: "meta", text: items.length ? "오늘 브리핑 " + items.length + "건" : "" })));
-      if (items.length) box.appendChild(h("ol", { class: "bitems bitems--compact" }, items.slice(0, 6).map(function (it) { return itemLi(it, false); })));
+      box.appendChild(h("div", { class: "secnews__head" }, title ? h("h3", { class: "sub", text: title }) : null));
       if (sec === "policy" && (D.policy && D.policy.items || []).length) {
         box.appendChild(h("h3", { class: "sub sub--gap", text: "금융위원회 보도자료" }));
         box.appendChild(h("ul", { class: "press" }, D.policy.items.slice(0, 8).map(function (p) {
@@ -644,16 +634,7 @@
       if (links && links.length) box.appendChild(h("div", { class: "secgo" }, h("span", { class: "secgo__label", text: "관련 뉴스 보러가기" }),
         links.map(function (l) { return h("a", { href: l.url, target: "_blank", rel: "noopener", text: l.name }); })));
     });
-  }
-  // 해외 뉴스 (TradingView 공식 위젯)
-  tvWidget($("#globalNews"), "timeline", function (t) {
-    return { feedMode: "all_symbols", isTransparent: true, displayMode: "compact", width: "100%", height: "100%", colorTheme: t, locale: LOCALE };
-  }, "https://kr.tradingview.com/news/");
-  renderBrief();
-  // 최신 브리핑 파일을 다시 읽어 반영 (배포 직후 캐시 대비)
-  fetch("data/briefing.json?t=" + Date.now(), { cache: "no-store" }).then(function (r) { return r.ok ? r.json() : null; })
-    .then(function (j) { if (j && (j.updated_at || "") !== (BRIEF.data.updated_at || "")) { BRIEF.data = j; BRIEF.pick = null; renderBrief(); } }).catch(function () {});
-  setInterval(function () { if (!document.hidden) renderBrief(); }, 60000);
+  })();
 
   /* ── 주간 일정 (월~일) ──────────────────────────── */
   var WD = ["일", "월", "화", "수", "목", "금", "토"];
