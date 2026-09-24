@@ -310,7 +310,6 @@
     row(mt, "경상수지", "경상수지", eok(100));      // 백만달러 → 억달러
     row(mt, "외환보유액", "외환보유액", eok(100000)); // 천달러 → 억달러
     row(mt, "실업률", "실업률", function (r) { return num(r.value, 1) + "%"; });
-    row(mt, "소비자심리지수", "소비자심리지수", function (r) { return num(r.value, 1); });
     row(mt, "두바이유 (월평균)", "Dubai유(현물)", function (r) { return "$" + num(r.value, 2); });
 
     $("#ratesMeta").textContent = "한국은행 ECOS" + (market.fetched_at ? " · 수집 " + fmtStamp(market.fetched_at) : "") + (market.snapshot ? " (초기 스냅샷)" : "");
@@ -377,6 +376,121 @@
     }
     if (cd) box.appendChild(tile("CD 91일", num(cd.value, 2) + "%", fmtCycle(cd.cycle)));
     if (base) box.appendChild(tile("한국은행 기준금리", num(base.value, 2) + "%", fmtCycle(base.cycle)));
+  })();
+
+  /* ── 소비자동향조사 (한국은행) ─────────────────────── */
+  (function buildCsi() {
+    var sm = market.sentiment, grid = $("#csiGrid");
+    if (!grid || !sm || !(sm.items || []).length) return;
+    var last = null;
+    sm.items.forEach(function (it) {
+      var s = it.series || []; if (!s.length) return;
+      var cur = s[s.length - 1], prev = s.length > 1 ? s[s.length - 2] : null;
+      last = last && last > cur[0] ? last : cur[0];
+      var diff = prev ? cur[1] - prev[1] : null;
+      var cls = diff == null || diff === 0 ? "flat" : diff > 0 ? "up" : "down";
+      var isIndex = it.code === "FME";
+      var hint = isIndex ? (cur[1] >= 100 ? "장기평균보다 낙관" : "장기평균보다 비관")
+        : (cur[1] > 100 ? "상승·개선 응답 우세" : cur[1] < 100 ? "하락·악화 응답 우세" : "응답 균형");
+      grid.appendChild(h("div", { class: "csi__item" + (isIndex ? " csi__item--main" : "") },
+        h("span", { class: "csi__name", text: it.name }),
+        h("div", { class: "csi__row" },
+          h("strong", { class: "mono", text: num(cur[1], isIndex ? 1 : 0) }),
+          h("span", { class: "mono " + cls, text: diff == null ? "" : diff === 0 ? "보합" : (diff > 0 ? "▲ " : "▼ ") + num(Math.abs(diff), isIndex ? 1 : 0) })),
+        sparkline(s, cls),
+        h("small", { text: hint })));
+    });
+    $("#csiMeta").textContent = (last ? fmtCycle(last) + " 조사 · 전월 대비" : "") + " · 출처: 한국은행 ECOS";
+    $("#csiBox").hidden = false;
+  })();
+
+  /* ── 미국채 (미 재무부) + 한미 금리차 ─────────────────── */
+  (function buildUst() {
+    var U = D.ust || {}, rows = U.rows || [], tb = $("#ustTable tbody");
+    if (!tb || rows.length < 2) return;
+    var tenors = U.tenors || ["3M", "2Y", "5Y", "10Y", "30Y"];
+    var LABEL = { "3M": "3개월", "2Y": "2년", "5Y": "5년", "10Y": "10년", "30Y": "30년" };
+    var cur = rows[rows.length - 1], prev = rows[rows.length - 2];
+    // 한 달 전: 약 21영업일 전 (없으면 가장 오래된 값)
+    var monthAgo = rows[Math.max(0, rows.length - 22)];
+    function bp(a, b) { return a == null || b == null ? null : Math.round((a - b) * 1000) / 10; }
+    function bpCell(v) {
+      if (v == null) return h("td", { text: "–" });
+      return h("td", { class: v > 0 ? "up" : v < 0 ? "down" : "flat", text: (v > 0 ? "+" : "") + num(v, 1) + "bp" });
+    }
+    tenors.forEach(function (t, i) {
+      var c = cur[i + 1];
+      tb.appendChild(h("tr", null, h("th", { text: LABEL[t] || t }), h("td", { text: c == null ? "–" : num(c, 2) + "%" }), bpCell(bp(c, prev[i + 1])), bpCell(bp(c, monthAgo[i + 1]))));
+    });
+    var idx = function (t) { return tenors.indexOf(t) + 1; };
+    function tile(label, value, sub, cls) {
+      return h("div", { class: "tile" + (cls ? " " + cls : "") }, h("span", { class: "tile__label", text: label }), h("strong", { class: "tile__value mono", text: value }), h("small", { text: sub || "" }));
+    }
+    function sgn(v) { return (v > 0 ? "+" : "") + num(v, 1) + "bp"; }
+    var box = $("#ustTiles");
+    var s210 = bp(cur[idx("10Y")], cur[idx("2Y")]), s310 = bp(cur[idx("10Y")], cur[idx("3M")]);
+    if (s210 != null) box.appendChild(tile("장단기 금리차 (10년 − 2년)", sgn(s210), s210 < 0 ? "역전: 경기 둔화 신호로 해석되곤 함" : "정상(우상향) 곡선"));
+    if (s310 != null) box.appendChild(tile("10년 − 3개월", sgn(s310), s310 < 0 ? "역전 구간" : "정상 구간"));
+    // 한미 10년 금리차: 같은 날짜의 국고 10년(ECOS)과 비교
+    var ktb = (market.series || {}).KTB10Y || [];
+    if (ktb.length) {
+      var byDate = {}; rows.forEach(function (r) { byDate[r[0].replace(/-/g, "")] = r; });
+      var pair = null;
+      for (var k = ktb.length - 1; k >= 0 && !pair; k--) { var r = byDate[ktb[k][0]]; if (r && r[idx("10Y")] != null) pair = [ktb[k], r]; }
+      if (!pair) pair = [ktb[ktb.length - 1], cur];
+      var gap = bp(pair[0][1], pair[1][idx("10Y")]);
+      var same = pair[0][0] === pair[1][0].replace(/-/g, "");
+      box.appendChild(tile("한미 10년 금리차 (국고 − 미국채)", sgn(gap), "국고 " + num(pair[0][1], 3) + "% · 미 " + num(pair[1][idx("10Y")], 2) + "% · " + (same ? fmtCycle(pair[0][0]) + " 기준" : "기준일 다름"), "tile--accent"));
+    }
+    if (U.fetched_at) $("#ustMeta").textContent = cur[0].replace(/-/g, ".") + " 기준 (미국 시간)" + (U.snapshot ? " · 초기 스냅샷" : "");
+    $("#ustBox").hidden = false;
+  })();
+
+  /* ── 이번 주 금융 도서 (운영자 코멘트) ─────────────────── */
+  var BOOK_LEVEL = { intro: "입문", mid: "중급", pro: "실무" };
+  function bookLinks(b) {
+    var q = encodeURIComponent(b.title + (b.author ? " " + b.author : ""));
+    var qt = encodeURIComponent(b.title);
+    return h("div", { class: "book__links" },
+      h("a", { href: b.link || ("https://search.kyobobook.co.kr/search?keyword=" + q), target: "_blank", rel: "noopener nofollow" }, "서점에서 보기"),
+      h("a", { href: "https://www.nl.go.kr/NL/contents/search.do?kwd=" + qt, target: "_blank", rel: "noopener nofollow" }, "국립중앙도서관 검색"));
+  }
+  function bookMeta(b) {
+    return [b.author, b.publisher, b.year].filter(Boolean).join(" · ");
+  }
+  function bookTags(b) {
+    var t = [];
+    if (b.level && BOOK_LEVEL[b.level]) t.push(BOOK_LEVEL[b.level]);
+    (b.audience || []).forEach(function (a) { t.push(a); });
+    if (b.time) t.push(b.time);
+    (b.tags || []).forEach(function (a) { t.push("#" + a); });
+    return h("div", { class: "book__tags" }, t.map(function (x) { return h("span", { class: "book__tag", text: x }); }));
+  }
+  (function buildBook() {
+    var weeks = ((D.books && D.books.weeks) || []).slice().sort(function (a, b) { return a.week < b.week ? 1 : -1; });
+    var today = kstDateStr();
+    var w = weeks.filter(function (x) { return x.week <= today; })[0];
+    if (!w || !(w.books || []).length) return;
+    var start = new Date(w.week + "T00:00:00Z"), end = new Date(start.getTime() + 6 * DAY);
+    $("#bookRange").textContent = (start.getUTCMonth() + 1) + "/" + start.getUTCDate() + " – " + (end.getUTCMonth() + 1) + "/" + end.getUTCDate();
+    if (w.theme) { $("#bookTheme").textContent = w.theme; $("#bookTheme").hidden = false; }
+    var main = w.books.filter(function (b) { return b.role === "main"; })[0] || w.books[0];
+    var subs = w.books.filter(function (b) { return b !== main; });
+    var comment = h("p", { class: "book__comment clamp", text: main.comment || "" });
+    var more = h("button", { class: "btn-link", type: "button", text: "코멘트 더 보기", onclick: function () { var c = comment.classList.toggle("clamp"); more.textContent = c ? "코멘트 더 보기" : "접기"; } });
+    $("#bookMain").appendChild(h("article", { class: "book__main" },
+      h("h3", { class: "book__title", text: main.title }),
+      h("p", { class: "book__meta", text: bookMeta(main) }),
+      bookTags(main),
+      main.reason ? h("div", { class: "book__block" }, h("b", { text: "추천 이유" }), h("p", { text: main.reason })) : null,
+      main.comment ? h("div", { class: "book__block" }, h("b", { text: "운영자 코멘트" }), comment, (main.comment || "").length > 120 ? more : null) : null,
+      main.disclosure ? h("p", { class: "book__disc", text: main.disclosure }) : null,
+      bookLinks(main)));
+    var ul = $("#bookSubs");
+    subs.forEach(function (b) {
+      ul.appendChild(h("li", null, h("b", { text: b.title }), h("small", { text: bookMeta(b) }), b.reason ? h("p", { text: b.reason }) : null, b.disclosure ? h("p", { class: "book__disc", text: b.disclosure }) : null, bookLinks(b)));
+    });
+    $("#bookCard").hidden = false;
   })();
 
   /* ── 디지털자산 ─────────────────────────────────── */

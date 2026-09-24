@@ -592,3 +592,64 @@ svg { display: block; }
 .press a:hover { color: var(--accent); text-decoration: underline; }
 .press small { color: var(--ink-3); font-family: var(--mono); }
 .sub--gap { margin-top: 14px; }
+
+/* ── 소비자동향조사 ── */
+.csi { margin-top: 20px; }
+.csi .sub small { font-weight: 400; margin-left: 6px; }
+.csi__grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; }
+.csi__item { border: 1px solid var(--line); border-radius: var(--radius-sm); padding: 10px 12px; display: flex; flex-direction: column; min-width: 0; }
+.csi__item--main { grid-column: span 2; border-color: var(--accent); background: color-mix(in srgb, var(--accent) 5%, transparent); }
+.csi__name { font-size: 12px; color: var(--ink-2); font-weight: 600; }
+.csi__row { display: flex; align-items: baseline; gap: 8px; margin-top: 2px; }
+.csi__row strong { font-size: 20px; letter-spacing: -.02em; }
+.csi__row span { font-size: 12px; font-weight: 600; }
+.csi__item .ecos__spark { min-height: 28px; height: 28px; flex: none; margin: 4px 0; }
+.csi__item small { font-size: 11px; color: var(--ink-3); }
+@media (max-width: 1180px) { .csi__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+
+/* ── 미국채 ── */
+.ust { margin-top: 20px; }
+.ust .sub small { font-weight: 400; margin-left: 6px; }
+.ytable { width: 100%; border-collapse: collapse; font-size: 14px; }
+.ytable th, .ytable td { padding: 7px 4px; border-bottom: 1px solid var(--line); text-align: right; white-space: nowrap; }
+.ytable thead th { font-size: 11.5px; color: var(--ink-3); font-weight: 600; }
+.ytable th:first-child { text-align: left; }
+.ytable tbody th { color: var(--ink-2); font-weight: 500; }
+.ytable td { font-family: var(--mono); font-variant-numeric: tabular-nums; font-weight: 600; }
+.ytable tr:last-child th, .ytable tr:last-child td { border-bottom: 0; }
+.tiles--2 { grid-template-columns: minmax(0, 1fr); align-content: start; }
+.tiles--2 .tile small { line-height: 1.4; }
+#bonds > .sub { margin-top: 2px; }
+
+/* ── 이번 주 금융 도서 ── */
+.book__theme { font-size: 13px; color: var(--ink-2); background: var(--surface-2); border-radius: 8px; padding: 6px 10px; margin: 0 0 10px; }
+.book__title { font-size: 16px; line-height: 1.35; margin: 0; letter-spacing: -.01em; }
+.book__meta { font-size: 12px; color: var(--ink-3); margin: 3px 0 6px; }
+.book__tags { display: flex; flex-wrap: wrap; gap: 4px; margin-bottom: 8px; }
+.book__tag { font-size: 11px; font-weight: 600; color: var(--accent); background: color-mix(in srgb, var(--accent) 9%, transparent); padding: 1px 7px; border-radius: 5px; }
+.book__block { margin-top: 8px; }
+.book__block b { font-size: 11.5px; color: var(--ink-3); display: block; margin-bottom: 2px; }
+.book__block p { font-size: 13.5px; line-height: 1.6; margin: 0; white-space: pre-line; }
+.book__comment.clamp { display: -webkit-box; -webkit-line-clamp: 4; -webkit-box-orient: vertical; overflow: hidden; }
+.book__block .btn-link { margin-top: 2px; }
+.book__disc { font-size: 11.5px; color: var(--gold); margin: 6px 0 0; }
+.book__links { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 8px; font-size: 12.5px; }
+.book__links a { color: var(--accent); font-weight: 600; text-decoration: none; }
+.book__links a:hover { text-decoration: underline; }
+.book__subs { list-style: none; margin: 12px 0 0; padding: 0; }
+.book__subs li { border-top: 1px solid var(--line); padding: 9px 0; }
+.book__subs li b { font-size: 13.5px; display: block; }
+.book__subs li small { font-size: 11.5px; color: var(--ink-3); }
+.book__subs li p { font-size: 12.5px; color: var(--ink-2); margin: 4px 0 0; line-height: 1.5; }
+.book__subs .book__links { margin-top: 4px; font-size: 12px; }
+
+/* ── 도서 아카이브 페이지 ── */
+.bweek { border-top: 1px solid var(--line); padding: 18px 0; }
+.bweek:first-of-type { border-top: 0; }
+.bweek__head { display: flex; gap: 10px; align-items: baseline; flex-wrap: wrap; margin-bottom: 10px; }
+.bweek__head h2 { font-size: 15px; margin: 0; }
+.bweek__head span { font-size: 13px; color: var(--ink-2); }
+.bgrid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 12px; }
+.bcard { border: 1px solid var(--line); border-radius: var(--radius-sm); padding: 14px 16px; background: var(--surface); min-width: 0; }
+.bcard--main { border-color: var(--accent); }
+.bcard__role { font-size: 11px; font-weight: 700; color: var(--ink-3); margin-bottom: 4px; }

@@ -42,7 +42,7 @@
         <div class="brand__text"><h1 class="brand__title" id="siteName">FinDesk</h1><small id="tagline">금융인을 위한 아침 데스크</small></div>
       </a>
       <nav class="nav" aria-label="섹션 이동">
-        <a href="#brief">브리핑</a><a href="#indices">증시</a><a href="#commodities">원자재</a><a href="#rates">환율·금리</a><a href="#bonds">채권</a><a href="#crypto">디지털자산</a><a href="#policy">정책</a><a href="sites.html">사이트</a>
+        <a href="#brief">브리핑</a><a href="#indices">증시</a><a href="#commodities">원자재</a><a href="#rates">환율·금리</a><a href="#bonds">채권</a><a href="#crypto">디지털자산</a><a href="#policy">정책</a><a href="books.html">도서</a><a href="sites.html">사이트</a>
       </nav>
       <div class="topbar__right">
         <div class="clock" aria-live="off">
@@ -137,6 +137,11 @@
           </div>
         </div>
         <p class="fineprint">표의 수치는 한국은행 ECOS 100대 통계지표이며 지표마다 기준일(발표 주기)이 다릅니다.</p>
+        <div class="csi" id="csiBox" hidden>
+          <h3 class="sub">소비자동향조사 <small class="meta" id="csiMeta"></small></h3>
+          <div class="csi__grid" id="csiGrid"></div>
+          <p class="fineprint">개별 지표는 100보다 크면 '오를 것·좋아질 것'이라는 응답이 더 많다는 뜻이고, 소비자심리지수(CCSI)는 장기평균을 100으로 한 종합지수입니다. 매월 한국은행 발표 · 전국 도시 약 2,500가구 대상 조사.</p>
+        </div>
         <div class="secnews" data-sec="macro" data-title="통화정책·환율·거시 뉴스"></div>
       </section>
 
@@ -146,7 +151,19 @@
           <h2 id="h-bonds">채권 · 크레딧</h2>
           <span class="meta">국고채 입찰 · 회사채 수요예측 · 신용등급 · PF</span>
         </div>
+        <h3 class="sub">국내</h3>
         <div class="tiles" id="bondTiles"></div>
+        <div class="ust" id="ustBox" hidden>
+          <h3 class="sub">미국 국채 <small class="meta" id="ustMeta"></small></h3>
+          <div class="split">
+            <table class="ytable" id="ustTable">
+              <thead><tr><th>만기</th><th>금리</th><th>전일 대비</th><th>한 달 전 대비</th></tr></thead>
+              <tbody></tbody>
+            </table>
+            <div class="tiles tiles--2" id="ustTiles"></div>
+          </div>
+          <p class="fineprint">미국 재무부 공식 일별 수익률곡선(Par Yield Curve) 기준 · 미국 영업일 장 마감 후 갱신 · bp = 0.01%p. 한미 금리차는 같은 날짜 기준으로 계산하며, 날짜가 다르면 표시합니다.</p>
+        </div>
         <div class="secnews" data-sec="bond" data-title="채권·크레딧 뉴스"></div>
       </section>
 
@@ -200,6 +217,18 @@
         <p class="quote__src"><span class="badge" id="quoteBadge"></span> <span id="quoteSrc"></span></p>
         <p class="caution" id="quoteNote" hidden></p>
         <button class="btn-link" id="quoteToggle" type="button">원문 보기</button>
+      </section>
+
+      <section class="card book" id="bookCard" aria-labelledby="h-book" hidden>
+        <div class="card__head">
+          <h2 id="h-book"><span class="eyebrow">이번 주 금융 도서</span></h2>
+          <span class="week-range" id="bookRange"></span>
+        </div>
+        <p class="book__theme" id="bookTheme" hidden></p>
+        <div id="bookMain"></div>
+        <ul class="book__subs" id="bookSubs"></ul>
+        <a class="btn-link" href="books.html">지난 추천 도서 모두 보기 →</a>
+        <p class="card__src">운영자가 직접 읽고 쓴 코멘트입니다. 책 소개문·표지는 싣지 않으며 링크는 서점·도서관 검색으로 연결됩니다.</p>
       </section>
 
       <section class="card" id="weekCard" aria-labelledby="h-week">

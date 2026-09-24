@@ -45,7 +45,7 @@ jobs:
       - name: 배포 파일 준비
         run: |
           mkdir -p _site
-          cp -r index.html sites.html editor.html assets data robots.txt _site/
+          cp -r index.html sites.html books.html editor.html editor-books.html assets data robots.txt _site/
           [ -f sitemap.xml ] && cp sitemap.xml _site/ || true
           touch _site/.nojekyll
 

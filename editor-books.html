@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <title>FinDesk 편집실 · 주간 도서</title>
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicon-32.png">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="assets/css/editor.css">
+  <script>try { var t = localStorage.getItem("fd-theme"); if (t === "light" || t === "dark") document.documentElement.dataset.theme = t; } catch (e) {}</script>
+</head>
+<body>
+  <header class="topbar">
+    <div class="topbar__inner">
+      <a class="brand" href="index.html" aria-label="FinDesk 홈으로">
+        <svg class="brand__mark" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="7"/><path d="M7 21l6-6 4 4 8-9"/></svg>
+        <div class="brand__text"><span class="brand__title">FinDesk 편집실</span><small>운영자 전용 · 검색엔진 비노출</small></div>
+      </a>
+      <nav class="ed-tabs" aria-label="편집실 메뉴"><a href="editor.html">브리핑</a><a href="editor-books.html" aria-current="page">주간 도서</a></nav>
+      <div class="ed-top"><button class="btn" id="edSettingsBtn" type="button">설정</button></div>
+    </div>
+  </header>
+
+  <main class="ed">
+    <section class="panel ed-settings" id="edSettings" hidden>
+      <h2>연결 설정 <small>브리핑 편집실과 같은 설정을 씁니다 · 이 기기 브라우저에만 저장</small></h2>
+      <div class="ed-grid">
+        <label>GitHub 저장소<input id="setRepo" placeholder="아이디/findesk"></label>
+        <label>GitHub 토큰<input id="setGhToken" type="password" placeholder="github_pat_…"></label>
+      </div>
+      <div class="ed-actions"><button class="btn btn--primary" id="setSave" type="button">저장</button><span class="meta" id="setMsg"></span></div>
+    </section>
+
+    <div class="ed-cols">
+      <section class="panel" aria-labelledby="h-bdraft">
+        <div class="panel__head panel__head--wrap">
+          <h2 id="h-bdraft">이번 주 도서 작성</h2>
+          <span class="meta" id="draftSaved"></span>
+        </div>
+        <details class="ed-rules" open>
+          <summary>작성 원칙 (저작권·표시 의무)</summary>
+          <ul>
+            <li>제목·저자·출판사·출간연도는 사실 정보라 그대로 써도 됩니다.</li>
+            <li><b>출판사 책 소개문, 목차, 서점 리뷰, 표지 이미지는 옮기지 않습니다.</b> 추천 이유와 코멘트는 본인 문장으로 씁니다.</li>
+            <li>본문을 길게 인용하거나 장별로 자세히 요약하지 않습니다. 핵심은 "왜 지금, 누구에게 도움이 되는지"입니다.</li>
+            <li>비판은 의견으로 쓰고, 저자에 대해 사실과 다른 내용은 쓰지 않습니다.</li>
+            <li>출판사에서 책을 받았거나 제휴 링크를 넣으면 반드시 '표시' 항목을 선택합니다 (공정위 추천·보증 심사지침).</li>
+            <li>특정 종목 매수·매도 권유로 읽히는 문장은 쓰지 않습니다.</li>
+          </ul>
+        </details>
+        <div class="ed-grid ed-grid--week">
+          <label class="ed-label">주 시작일 (월요일)<input id="bWeek" type="date"></label>
+          <label class="ed-label">이번 주 테마 (선택, 60자)<input id="bTheme" maxlength="60" placeholder="예) 금통위 주간 — 금리가 채권 가격을 움직이는 원리"></label>
+        </div>
+        <div id="bBooks"></div>
+        <div class="ed-actions">
+          <button class="btn" id="bAdd" type="button">+ 함께 읽기 추가</button>
+          <span class="spacer"></span>
+          <button class="btn" id="bClear" type="button">비우기</button>
+          <button class="btn btn--primary" id="bPublish" type="button">게시하기</button>
+        </div>
+        <label class="ed-confirm"><input type="checkbox" id="bOwn"> 추천 이유와 코멘트는 제가 직접 쓴 문장이며, 출판사 소개문·목차·표지를 옮기지 않았습니다.</label>
+        <p class="meta" id="bMsg"></p>
+      </section>
+
+      <section class="panel" aria-labelledby="h-bweeks">
+        <div class="panel__head"><h2 id="h-bweeks">게시한 도서</h2></div>
+        <ul class="ed-editions" id="bWeeks"></ul>
+        <p class="fineprint">같은 주를 다시 게시하면 새 내용으로 교체됩니다. 공개 화면에는 해당 주가 시작된 날(월요일)부터 표시돼요.</p>
+      </section>
+    </div>
+  </main>
+
+  <script src="assets/js/editor-books.js"></script>
+</body>
+</html>

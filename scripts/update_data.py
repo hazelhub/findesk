@@ -40,7 +40,19 @@ KEYSTAT_PICK = [
     "경제성장률(실질, 계절조정 전기대비)", "소비자물가지수", "생산자물가지수", "경상수지", "외환보유액",
     "실업률", "고용률", "소비자심리지수", "Dubai유(현물)", "금",
 ]
-SERIES = {"KOSPI": ("802Y001", "0001000"), "KOSDAQ": ("802Y001", "0089000")}
+SERIES = {"KOSPI": ("802Y001", "0001000"), "KOSDAQ": ("802Y001", "0089000"),
+          "KTB10Y": ("817Y002", "010210000")}  # 국고채 10년 (한미 금리차 계산용)
+
+# ── 소비자동향조사 (월 1회, 전체 가구) ─────────────────────────
+SENTIMENT_STAT, SENTIMENT_CLASS = "511Y002", "99988"
+SENTIMENT = [("FME", "소비자심리지수"), ("FMCA", "가계수입전망"), ("FMFC", "임금수준전망"),
+             ("FMBG", "금리수준전망"), ("FMFB", "주택가격전망"), ("FMFA", "물가수준전망(1년후)"),
+             ("FMBB", "향후경기전망")]
+
+# ── 미국 재무부 국채 수익률곡선 (미 연방정부 공개 데이터) ─────────────
+UST_URL = ("https://home.treasury.gov/resource-center/data-chart-center/interest-rates/pages/xml"
+           "?data=daily_treasury_yield_curve&field_tdr_date_value_month={ym}")
+UST_TENORS = [("3M", "BC_3MONTH"), ("2Y", "BC_2YEAR"), ("5Y", "BC_5YEAR"), ("10Y", "BC_10YEAR"), ("30Y", "BC_30YEAR")]
 
 
 def log(*a):
@@ -118,6 +130,31 @@ def update_market(key: str) -> None:
                 log(f"{label} 일별 시계열 {len(pts)}개")
         except Exception as e:
             log(f"{label} 시계열 실패, 기존 값 유지: {e}")
+
+    # 소비자동향조사: 최근 14개월
+    m_end = end.strftime("%Y%m")
+    y, mo = end.year, end.month - 13
+    while mo <= 0:
+        y, mo = y - 1, mo + 12
+    m_start = f"{y}{mo:02d}"
+    old = {it["code"]: it for it in market.get("sentiment", {}).get("items", [])}
+    items = []
+    for code, name in SENTIMENT:
+        try:
+            res = ecos(key, "StatisticSearch", 1, 30, SENTIMENT_STAT, "M", m_start, m_end, code, SENTIMENT_CLASS)
+            rows = res.get("StatisticSearch", {}).get("row", [])
+            pts = [[r["TIME"], float(r["DATA_VALUE"])] for r in rows if r.get("DATA_VALUE")]
+            if pts:
+                items.append({"code": code, "name": name, "series": pts})
+                continue
+        except Exception as e:
+            log(f"소비자동향 {name} 실패, 기존 값 유지: {e}")
+        if code in old:
+            items.append(old[code])
+    if items:
+        market["sentiment"] = {"source": "한국은행 소비자동향조사 (ECOS 511Y002)",
+                               "source_url": "https://ecos.bok.or.kr", "items": items}
+        log(f"소비자동향 {len(items)}개 (최근 {items[0]['series'][-1][0]})")
     market["source"] = "한국은행 ECOS 100대 통계지표 (Open API)"
     market["source_url"] = "https://ecos.bok.or.kr"
     save("market.json", market)
@@ -172,6 +209,54 @@ def update_policy() -> None:
         log(f"금융위 보도자료 실패, 기존 값 유지: {e}")
 
 
+# ── 미국채 수익률곡선 (미 재무부) ─────────────────────────────
+def parse_ust(xml_bytes: bytes) -> list:
+    import xml.etree.ElementTree as ET
+    root = ET.fromstring(xml_bytes)
+    out = []
+    for props in root.iter():
+        if not props.tag.endswith("}properties"):
+            continue
+        vals = {c.tag.split("}")[-1]: (c.text or "").strip() for c in props}
+        date = vals.get("NEW_DATE", "")[:10]
+        if not date:
+            continue
+        row = [date]
+        for _, key in UST_TENORS:
+            try:
+                row.append(float(vals.get(key, "")))
+            except ValueError:
+                row.append(None)
+        out.append(row)
+    return out
+
+
+def update_ust() -> None:
+    ust = load("ust.json", {"rows": []})
+    today = dt.datetime.now(KST).date()
+    prev = (today.replace(day=1) - dt.timedelta(days=1))
+    rows = {}
+    try:
+        for d in (prev, today):
+            for r in parse_ust(http_get(UST_URL.format(ym=d.strftime("%Y%m")), timeout=30)):
+                rows[r[0]] = r
+        if not rows:
+            raise RuntimeError("데이터 없음")
+        merged = {r[0]: r for r in ust.get("rows", [])}
+        merged.update(rows)
+        ust.update({
+            "source": "미국 재무부 Daily Treasury Par Yield Curve Rates",
+            "source_url": "https://home.treasury.gov/resource-center/data-chart-center/interest-rates/TextView?type=daily_treasury_yield_curve",
+            "fetched_at": now_iso(), "snapshot": False,
+            "tenors": [t for t, _ in UST_TENORS],
+            "rows": [merged[k] for k in sorted(merged)][-40:],
+        })
+        save("ust.json", ust)
+        log(f"미국채 수익률 {len(rows)}일 (최근 {max(rows)})")
+    except Exception as e:
+        log(f"미국채 수익률 실패, 기존 값 유지: {e}")
+
+
 # ── 번들 ────────────────────────────────────────────────────
 def build_bundle() -> None:
     terms = load("terms.json", {})
@@ -186,6 +271,8 @@ def build_bundle() -> None:
         "stocks": load("stocks.json", {}),
         "briefing": load("briefing.json", {"editions": []}),
         "policy": load("policy.json", {"items": []}),
+        "ust": load("ust.json", {"rows": []}),
+        "books": load("books.json", {"weeks": []}),
     }
     js = "/* 자동 생성 파일: scripts/update_data.py 가 만듭니다. 직접 수정하지 마세요. */\n"
     js += "window.FD_DATA = " + json.dumps(bundle, ensure_ascii=False, separators=(",", ":")) + ";\n"
@@ -205,6 +292,7 @@ def main() -> int:
         else:
             log("ECOS_API_KEY 없음 → 지표·용어는 기존 스냅샷 사용")
         update_policy()
+        update_ust()
     build_bundle()
     return 0
 

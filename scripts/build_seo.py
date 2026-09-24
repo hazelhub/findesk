@@ -68,7 +68,7 @@ def main() -> None:
         raise SystemExit("index.html 에서 SEO 표시 구간을 찾지 못했습니다.")
     index.write_text(new, "utf-8")
 
-    robots = "User-agent: *\nAllow: /\nDisallow: /editor.html\n"
+    robots = "User-agent: *\nAllow: /\nDisallow: /editor.html\nDisallow: /editor-books.html\n"
     if url:
         robots += f"\nSitemap: {url}sitemap.xml\n"
     (ROOT / "robots.txt").write_text(robots, "utf-8")
@@ -79,6 +79,7 @@ def main() -> None:
             '<?xml version="1.0" encoding="UTF-8"?>\n'
             '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
             f"  <url><loc>{esc(url)}</loc><lastmod>{today}</lastmod><changefreq>hourly</changefreq><priority>1.0</priority></url>\n"
+            f"  <url><loc>{esc(url)}books.html</loc><lastmod>{today}</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>\n"
             f"  <url><loc>{esc(url)}sites.html</loc><lastmod>{today}</lastmod><changefreq>weekly</changefreq><priority>0.7</priority></url>\n"
             "</urlset>\n", "utf-8")
         print(f"[seo] 주소 {url} 기준으로 index.html, robots.txt, sitemap.xml 생성")

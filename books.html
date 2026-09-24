@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>이번 주 금융 도서 · 추천 도서 모음 · FinDesk</title>
+  <meta name="description" content="금융권 취업 준비생과 현직자를 위해 운영자가 직접 읽고 고른 주간 금융 도서. 추천 이유와 운영자 코멘트, 난이도·대상·주제 태그로 정리했습니다.">
+  <meta property="og:title" content="이번 주 금융 도서 · FinDesk">
+  <meta property="og:description" content="운영자가 직접 읽고 고른 주간 금융 도서 — 추천 이유와 코멘트, 난이도·대상별 정리">
+  <meta property="og:image" content="assets/img/og-image.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicon-32.png">
+  <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <script>try { var t = localStorage.getItem("fd-theme"); if (t === "light" || t === "dark") document.documentElement.dataset.theme = t; } catch (e) {}</script>
+</head>
+<body>
+  <header class="topbar">
+    <div class="topbar__inner">
+      <a class="brand" href="index.html" aria-label="FinDesk 홈으로">
+        <svg class="brand__mark" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="7"/><path d="M7 21l6-6 4 4 8-9"/></svg>
+        <div class="brand__text"><span class="brand__title">FinDesk</span><small>금융인을 위한 아침 데스크</small></div>
+      </a>
+      <nav class="nav" aria-label="이동"><a href="index.html">← 대시보드로</a></nav>
+      <div class="topbar__right">
+        <button class="icon-btn" id="themeToggle" type="button" aria-label="테마 전환">
+          <svg class="i-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+          <svg class="i-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+  <main class="page">
+    <section class="panel" aria-labelledby="h-books">
+      <div class="panel__head panel__head--wrap">
+        <h1 id="h-books" class="page__title">주간 금융 도서</h1>
+        <span class="meta" id="bookCount"></span>
+        <label class="search">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+          <input id="bookSearch" type="search" placeholder="제목·저자·주제 검색 (예: 채권, 재무제표)" autocomplete="off">
+        </label>
+      </div>
+      <p class="fineprint">운영자가 매주 직접 읽고 고른 책입니다. 추천 이유와 코멘트는 운영자의 개인 의견이며, 책 소개문·목차·표지는 싣지 않습니다. 링크는 서점·국립중앙도서관 검색으로 연결됩니다.</p>
+      <div class="chips chips--scroll" id="bookChips" role="tablist"></div>
+      <div id="bookWeeks"></div>
+      <p class="empty" id="bookEmpty" hidden>첫 추천 도서를 준비하고 있어요.</p>
+    </section>
+  </main>
+  <footer class="footer"><p>FinDesk는 정보 제공 목적의 비영리 사이트입니다. 도서 추천은 운영자 개인 의견이며 출판사·서점과의 제휴나 협찬이 있는 경우 해당 도서에 표시합니다.</p></footer>
+  <script src="data/bundle.js"></script>
+  <script src="assets/js/books.js"></script>
+</body>
+</html>
