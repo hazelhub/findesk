@@ -2,6 +2,611 @@
  "editions": [
   {
    "date": "2026-09-26",
+   "slot": "pm",
+   "built_at": "2026-09-26T16:18:02+09:00",
+   "from": "2026-09-26T07:00+09:00",
+   "to": "2026-09-26T16:18+09:00",
+   "articles": 233,
+   "feeds": {
+    "hk_fin": 50,
+    "hk_eco": 50,
+    "hk_int": 50,
+    "hk_re": 50,
+    "hk_it": 50,
+    "hk_ind": "실패: HTTP Error 404: Not Found",
+    "mk_stock": 50,
+    "mk_eco": 50,
+    "yna_eco": 120,
+    "yna_mkt": 51,
+    "yna_int": 120,
+    "yna_ind": 120,
+    "ed_all": 50,
+    "mt_all": 100
+   },
+   "markets": {
+    "kr": [
+     {
+      "id": "semi",
+      "name": "반도체",
+      "pos": 1,
+      "neg": 0,
+      "neu": 6,
+      "total": 7,
+      "articles": 7,
+      "events": 7,
+      "pos_pct": 100,
+      "neg_pct": 0,
+      "enough": true,
+      "keywords": [
+       "솔리다임",
+       "하이닉스",
+       "다시"
+      ],
+      "links": {
+       "pos": [
+        {
+         "s": "머니투데이",
+         "u": "https://www.mt.co.kr/world/2026/09/26/2026092610191583514",
+         "t": "09/26 10:25",
+         "w": [
+          "최대"
+         ]
+        }
+       ],
+       "neg": [],
+       "neu": [
+        {
+         "s": "머니투데이",
+         "u": "https://www.mt.co.kr/world/2026/09/26/2026092613073039770",
+         "t": "09/26 13:30",
+         "w": [
+          "호재",
+          "악재"
+         ]
+        },
+        {
+         "s": "머니투데이",
+         "u": "https://www.mt.co.kr/industry/2026/09/26/2026092311055075916",
+         "t": "09/26 12:30",
+         "w": []
+        },
+        {
+         "s": "한국경제",
+         "u": "https://www.hankyung.com/article/2026092325796",
+         "t": "09/26 11:55",
+         "w": []
+        },
+        {
+         "s": "연합뉴스",
+         "u": "https://www.yna.co.kr/view/AKR20260921078300017",
+         "t": "09/26 10:30",
+         "w": []
+        },
+        {
+         "s": "연합뉴스",
+         "u": "https://www.yna.co.kr/view/AKR20260923128300054",
+         "t": "09/26 08:50",
+         "w": []
+        },
+        {
+         "s": "연합뉴스",
+         "u": "https://www.yna.co.kr/view/AKR20260926014400002",
+         "t": "09/26 08:23",
+         "w": []
+        }
+       ]
+      }
+     },
+     {
+      "id": "fin",
+      "name": "금융",
+      "pos": 2,
+      "neg": 1,
+      "neu": 3,
+      "total": 6,
+      "articles": 6,
+      "events": 6,
+      "pos_pct": 67,
+      "neg_pct": 33,
+      "enough": true,
+      "keywords": [
+       "보험사",
+       "지원"
+      ],
+      "links": {
+       "pos": [
+        {
+         "s": "연합뉴스",
+         "u": "https://www.yna.co.kr/view/AKR20260926026100064",
+         "t": "09/26 11:43",
+         "w": [
+          "확대"
+         ]
+        },
+        {
+         "s": "연합뉴스",
+         "u": "https://www.yna.co.kr/view/AKR20260923128900057",
+         "t": "09/26 09:00",
+         "w": [
+          "최대"
+         ]
+        }
+       ],
+       "neg": [
+        {
+         "s": "매일경제",
+         "u": "https://www.mk.co.kr/news/stock/12161547",
+         "t": "09/26 07:19",
+         "w": [
+          "하향"
+         ]
+        }
+       ],
+       "neu": [
+        {
+         "s": "한국경제",
+         "u": "https://www.hankyung.com/article/202609221940i",
+         "t": "09/26 15:00",
+         "w": []
+        },
+        {
+         "s": "머니투데이",
+         "u": "https://www.mt.co.kr/finance/2026/09/26/2026092313433440866",
+         "t": "09/26 14:00",
+         "w": []
+        },
+        {
+         "s": "한국경제",
+         "u": "https://www.hankyung.com/article/202609256104i",
+         "t": "09/26 07:00",
+         "w": []
+        }
+       ]
+      }
+     },
+     {
+      "id": "consumer",
+      "name": "유통·소비",
+      "pos": 0,
+      "neg": 0,
+      "neu": 6,
+      "total": 6,
+      "articles": 6,
+      "events": 6,
+      "pos_pct": null,
+      "neg_pct": null,
+      "enough": true,
+      "keywords": [],
+      "links": {
+       "pos": [],
+       "neg": [],
+       "neu": [
+        {
+         "s": "연합뉴스",
+         "u": "https://www.yna.co.kr/view/AKR20260922113500052",
+         "t": "09/26 09:15",
+         "w": []
+        },
+        {
+         "s": "머니투데이",
+         "u": "https://www.mt.co.kr/entertainment/2026/09/26/2026092609007246912",
+         "t": "09/26 09:00",
+         "w": []
+        },
+        {
+         "s": "머니투데이",
+         "u": "https://www.mt.co.kr/industry/2026/09/26/2026092314471452760",
+         "t": "09/26 09:00",
+         "w": []
+        },
+        {
+         "s": "머니투데이",
+         "u": "https://www.mt.co.kr/culture/2026/09/26/2026092314124481720",
+         "t": "09/26 09:00",
+         "w": []
+        },
+        {
+         "s": "머니투데이",
+         "u": "https://www.mt.co.kr/industry/2026/09/26/2026092315215137445",
+         "t": "09/26 08:05",
+         "w": []
+        },
+        {
+         "s": "연합뉴스",
+         "u": "https://www.yna.co.kr/view/AKR20260923082600065",
+         "t": "09/26 07:27",
+         "w": []
+        }
+       ]
+      }
+     },
+     {
+      "id": "ship",
+      "name": "조선·방산",
+      "pos": 2,
+      "neg": 0,
+      "neu": 3,
+      "total": 5,
+      "articles": 5,
+      "events": 5,
+      "pos_pct": 100,
+      "neg_pct": 0,
+      "enough": true,
+      "keywords": [],
+      "links": {
+       "pos": [
+        {
+         "s": "연합뉴스",
+         "u": "https://www.yna.co.kr/view/AKR20260923166300008",
+         "t": "09/26 11:00",
+         "w": [
+          "수혜"
+         ]
+        },
+        {
+         "s": "연합뉴스",
+         "u": "https://www.yna.co.kr/view/AKR20260923144900003",
+         "t": "09/26 07:01",
+         "w": [
+          "상승",
+          "수주"
+         ]
+        }
+       ],
+       "neg": [],
+       "neu": [
+        {
+         "s": "한국경제",
+         "u": "https://www.hankyung.com/article/2026092663887",
+         "t": "09/26 09:57",
+         "w": []
+        },
+        {
+         "s": "연합뉴스",
+         "u": "https://www.yna.co.kr/view/AKR20260926018600009",
+         "t": "09/26 08:58",
+         "w": []
+        },
+        {
+         "s": "한국경제",
+         "u": "https://www.hankyung.com/article/202609245056i",
+         "t": "09/26 08:24",
+         "w": []
+        }
+       ]
+      }
+     },
+     {
+      "id": "realty",
+      "name": "건설·부동산",
+      "pos": 1,
+      "neg": 1,
+      "neu": 2,
+      "total": 4,
+      "articles": 4,
+      "events": 4,
+      "pos_pct": 50,
+      "neg_pct": 50,
+      "enough": false,
+      "keywords": [
+       "3년"
+      ],
+      "links": {
+       "pos": [
+        {
+         "s": "연합뉴스",
+         "u": "https://www.yna.co.kr/view/AKR20260923181000003",
+         "t": "09/26 09:31",
+         "w": [
+          "상승"
+         ]
+        }
+       ],
+       "neg": [
+        {
+         "s": "연합뉴스",
+         "u": "https://www.yna.co.kr/view/AKR20260924048600002",
+         "t": "09/26 09:30",
+         "w": [
+          "손실"
+         ]
+        }
+       ],
+       "neu": [
+        {
+         "s": "머니투데이",
+         "u": "https://www.mt.co.kr/finance/2026/09/26/2026092315584054361",
+         "t": "09/26 09:00",
+         "w": []
+        },
+        {
+         "s": "연합뉴스",
+         "u": "https://www.yna.co.kr/view/AKR20260923165600001",
+         "t": "09/26 07:00",
+         "w": []
+        }
+       ]
+      }
+     },
+     {
+      "id": "platform",
+      "name": "인터넷·게임",
+      "pos": 0,
+      "neg": 0,
+      "neu": 4,
+      "total": 4,
+      "articles": 4,
+      "events": 3,
+      "pos_pct": null,
+      "neg_pct": null,
+      "enough": false,
+      "keywords": [
+       "뿌요뿌요",
+       "11살",
+       "부담되진"
+      ],
+      "links": {
+       "pos": [],
+       "neg": [],
+       "neu": [
+        {
+         "s": "연합뉴스",
+         "u": "https://www.yna.co.kr/view/AKR20260926034700007",
+         "t": "09/26 15:10",
+         "w": []
+        },
+        {
+         "s": "연합뉴스",
+         "u": "https://www.yna.co.kr/view/AKR20260926030500007",
+         "t": "09/26 13:44",
+         "w": []
+        },
+        {
+         "s": "연합뉴스",
+         "u": "https://www.yna.co.kr/view/AKR20260926028900017",
+         "t": "09/26 12:56",
+         "w": []
+        },
+        {
+         "s": "연합뉴스",
+         "u": "https://www.yna.co.kr/view/AKR20260923138100017",
+         "t": "09/26 11:00",
+         "w": []
+        }
+       ]
+      }
+     },
+     {
+      "id": "auto",
+      "name": "자동차",
+      "pos": 0,
+      "neg": 1,
+      "neu": 2,
+      "total": 3,
+      "articles": 3,
+      "events": 3,
+      "pos_pct": 0,
+      "neg_pct": 100,
+      "enough": false,
+      "keywords": [
+       "기아",
+       "현대차",
+       "빠진"
+      ],
+      "links": {
+       "pos": [],
+       "neg": [
+        {
+         "s": "매일경제",
+         "u": "https://www.mk.co.kr/news/stock/12161547",
+         "t": "09/26 07:19",
+         "w": [
+          "하향"
+         ]
+        }
+       ],
+       "neu": [
+        {
+         "s": "연합뉴스",
+         "u": "https://www.yna.co.kr/view/AKR20260923138200003",
+         "t": "09/26 11:05",
+         "w": []
+        },
+        {
+         "s": "한국경제",
+         "u": "https://www.hankyung.com/article/202609255795i",
+         "t": "09/26 09:00",
+         "w": []
+        }
+       ]
+      }
+     },
+     {
+      "id": "bio",
+      "name": "바이오·제약",
+      "pos": 0,
+      "neg": 0,
+      "neu": 2,
+      "total": 2,
+      "articles": 2,
+      "events": 2,
+      "pos_pct": null,
+      "neg_pct": null,
+      "enough": false,
+      "keywords": [],
+      "links": {
+       "pos": [],
+       "neg": [],
+       "neu": [
+        {
+         "s": "머니투데이",
+         "u": "https://www.mt.co.kr/thebio/2026/09/26/2026092315390164344",
+         "t": "09/26 10:18",
+         "w": []
+        },
+        {
+         "s": "연합뉴스",
+         "u": "https://www.yna.co.kr/view/AKR20260923099000017",
+         "t": "09/26 10:00",
+         "w": []
+        }
+       ]
+      }
+     },
+     {
+      "id": "energy",
+      "name": "에너지·화학",
+      "pos": 0,
+      "neg": 0,
+      "neu": 2,
+      "total": 2,
+      "articles": 2,
+      "events": 2,
+      "pos_pct": null,
+      "neg_pct": null,
+      "enough": false,
+      "keywords": [],
+      "links": {
+       "pos": [],
+       "neg": [],
+       "neu": [
+        {
+         "s": "머니투데이",
+         "u": "https://www.mt.co.kr/sports/2026/09/26/2026092609161184531",
+         "t": "09/26 09:52",
+         "w": []
+        },
+        {
+         "s": "연합뉴스",
+         "u": "https://www.yna.co.kr/view/AKR20260926018600009",
+         "t": "09/26 08:58",
+         "w": []
+        }
+       ]
+      }
+     },
+     {
+      "id": "battery",
+      "name": "2차전지",
+      "pos": 1,
+      "neg": 0,
+      "neu": 0,
+      "total": 1,
+      "articles": 1,
+      "events": 1,
+      "pos_pct": 100,
+      "neg_pct": 0,
+      "enough": false,
+      "keywords": [],
+      "links": {
+       "pos": [
+        {
+         "s": "연합뉴스",
+         "u": "https://www.yna.co.kr/view/AKR20260923154100064",
+         "t": "09/26 09:40",
+         "w": [
+          "최대"
+         ]
+        }
+       ],
+       "neg": [],
+       "neu": []
+      }
+     }
+    ],
+    "us": [
+     {
+      "id": "bigtech",
+      "name": "빅테크",
+      "pos": 0,
+      "neg": 0,
+      "neu": 2,
+      "total": 2,
+      "articles": 2,
+      "events": 2,
+      "pos_pct": null,
+      "neg_pct": null,
+      "enough": false,
+      "keywords": [
+       "오픈AI",
+       "에이전트"
+      ],
+      "links": {
+       "pos": [],
+       "neg": [],
+       "neu": [
+        {
+         "s": "연합뉴스",
+         "u": "https://www.yna.co.kr/view/AKR20260926032000084",
+         "t": "09/26 14:44",
+         "w": []
+        },
+        {
+         "s": "연합뉴스",
+         "u": "https://www.yna.co.kr/view/AKR20260926014200009",
+         "t": "09/26 07:46",
+         "w": []
+        }
+       ]
+      }
+     },
+     {
+      "id": "market",
+      "name": "미국 증시 전반",
+      "pos": 0,
+      "neg": 0,
+      "neu": 1,
+      "total": 1,
+      "articles": 1,
+      "events": 1,
+      "pos_pct": null,
+      "neg_pct": null,
+      "enough": false,
+      "keywords": [],
+      "links": {
+       "pos": [],
+       "neg": [],
+       "neu": [
+        {
+         "s": "한국경제",
+         "u": "https://www.hankyung.com/article/202609266153i",
+         "t": "09/26 08:11",
+         "w": []
+        }
+       ]
+      }
+     },
+     {
+      "id": "semi",
+      "name": "반도체",
+      "pos": 0,
+      "neg": 0,
+      "neu": 1,
+      "total": 1,
+      "articles": 1,
+      "events": 1,
+      "pos_pct": null,
+      "neg_pct": null,
+      "enough": false,
+      "keywords": [],
+      "links": {
+       "pos": [],
+       "neg": [],
+       "neu": [
+        {
+         "s": "머니투데이",
+         "u": "https://www.mt.co.kr/stock/2026/09/26/2026092608170096601",
+         "t": "09/26 08:42",
+         "w": []
+        }
+       ]
+      }
+     }
+    ]
+   }
+  },
+  {
+   "date": "2026-09-26",
    "slot": "am",
    "built_at": "2026-09-26T07:20:05+09:00",
    "from": "2026-09-25T15:30+09:00",
@@ -1493,6 +2098,17 @@
    "us": {
     "market": 67
    }
+  },
+  {
+   "date": "2026-09-26",
+   "slot": "pm",
+   "kr": {
+    "semi": 100,
+    "fin": 67,
+    "consumer": null,
+    "ship": 100
+   },
+   "us": {}
   }
  ],
  "method": "언론사 RSS 기사 제목을 금융 용어 사전으로 자동 판정 (긍정·부정·중립). 같은 사건은 최대 3건까지만 비율에 반영."
