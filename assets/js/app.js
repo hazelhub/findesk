@@ -180,7 +180,7 @@
   tick(); setInterval(tick, 1000);
 
   tvWidget($("#tickerTape"), "ticker-tape", function (t) {
-    return { symbols: C.tickerTape || [], showSymbolLogo: true, isTransparent: true, displayMode: "adaptive", colorTheme: t, locale: LOCALE };
+    return { symbols: C.tickerTape || [], showSymbolLogo: true, isTransparent: true, displayMode: "compact", colorTheme: t, locale: LOCALE };
   }, "https://kr.tradingview.com/markets/", { eager: true });
 
   /* ── 시장 데이터 (ECOS) ─────────────────────────── */
@@ -591,7 +591,7 @@
           LBL[kind] + (kind !== "neu" && sc[kind + "_pct"] != null ? " " + sc[kind + "_pct"] + "%" : ""), h("small", { text: " (" + n + "건)" }));
       }
       grid.appendChild(h("article", { class: "ncard" + (sc.enough ? "" : " ncard--thin") + (NEWS.open && NEWS.open.id === sc.id ? " is-open" : "") },
-        h("div", { class: "ncard__head" }, h("b", { text: sc.name }), h("small", { text: sc.enough ? "기사 " + sc.articles + "건" : "표본 부족 (" + sc.total + "건)" })),
+        h("div", { class: "ncard__head" }, h("b", { text: sc.name }), h("small", { text: sc.enough ? "기사 " + sc.articles + "건" : "표본 부족 (판정 " + (sc.pos + sc.neg) + "건)" })),
         bar,
         h("div", { class: "ncard__cnt" }, cnt("pos"), h("span", { class: "sep", text: "|" }), cnt("neg"), cnt("neu")),
         (sc.keywords || []).length ? h("div", { class: "ncard__kw" }, sc.keywords.map(function (k) { return h("span", { text: "#" + k }); })) : null));

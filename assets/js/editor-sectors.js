@@ -56,6 +56,8 @@
       });
       var name = nameParts.join(" ").replace(/[▲▼△▽]/g, "").trim();
       if (!name || /^(업종|지수명|종목명|구분)/.test(name)) return;
+      // 시장 전체·규모별 지수는 업종이 아니라서 제외 (코스피, 코스피 200, 대형주 등)
+      if (/^(코스피|코스닥|KOSPI|KOSDAQ|KRX)(\s?(200|150|100|50|대형주|중형주|소형주|종합|지수))?$/i.test(name) || /^(대형주|중형주|소형주)$/.test(name)) return;
       if (pct == null) pct = nums.length >= 3 ? nums[2] : nums[nums.length - 1];
       if (pct == null || !isFinite(pct) || Math.abs(pct) > 30) return;
       if (/[▼▽]|하락/.test(line) && pct > 0) pct = -pct;

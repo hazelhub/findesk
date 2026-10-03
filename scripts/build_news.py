@@ -46,7 +46,6 @@ FEEDS = [
     ("hk_int", "https://www.hankyung.com/feed/international", "한국경제"),
     ("hk_re", "https://www.hankyung.com/feed/realestate", "한국경제"),
     ("hk_it", "https://www.hankyung.com/feed/it", "한국경제"),
-    ("hk_ind", "https://www.hankyung.com/feed/industry", "한국경제"),
     ("mk_stock", "https://www.mk.co.kr/rss/50200011/", "매일경제"),
     ("mk_eco", "https://www.mk.co.kr/rss/30100041/", "매일경제"),
     ("yna_eco", "https://www.yna.co.kr/rss/economy.xml", "연합뉴스"),
@@ -292,7 +291,7 @@ def summarize(sector_id, name, arts):
         "articles": len(arts), "events": len(events),
         "pos_pct": round(weight["pos"] / polar * 100) if polar else None,
         "neg_pct": round(weight["neg"] / polar * 100) if polar else None,
-        "enough": total >= MIN_SAMPLE,
+        "enough": polar >= MIN_SAMPLE,  # 긍정+부정 판정 기사가 5건 이상일 때만 비율을 신뢰
         "keywords": kws,
         "links": {k: [link(a) for a in v[:MAX_LINKS]] for k, v in lists.items()},
     }
