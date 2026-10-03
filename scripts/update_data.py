@@ -21,6 +21,7 @@ import re
 import sys
 import urllib.parse
 import urllib.request
+import time
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -59,7 +60,13 @@ def log(*a):
     print("[update]", *a, flush=True)
 
 
+_T0 = time.monotonic()
+BUDGET = 300  # 외부 API가 느려도 배포가 막히지 않게: 5분이 지나면 남은 요청은 건너뛰고 기존 스냅샷 사용
+
+
 def http_get(url: str, headers: dict | None = None, timeout: int = 20) -> bytes:
+    if time.monotonic() - _T0 > BUDGET:
+        raise TimeoutError("수집 시간 예산(5분) 초과 — 기존 데이터 유지")
     req = urllib.request.Request(url, headers={"User-Agent": UA, **(headers or {})})
     with urllib.request.urlopen(req, timeout=timeout) as r:
         return r.read()
@@ -286,15 +293,20 @@ def main() -> int:
     offline = "--offline" in sys.argv
     if not offline:
         key = os.getenv("ECOS_API_KEY", "").strip()
+        def safe(fn, *a):
+            try:
+                fn(*a)
+            except Exception as e:  # 한 곳이 실패해도 나머지·배포는 계속
+                log(f"{fn.__name__} 실패 → 기존 데이터 유지: {e}")
         if key:
-            update_market(key)
+            safe(update_market, key)
             # 용어는 하루 한 번이면 충분: 오늘 이미 받았으면 건너뜀
             if load("terms.json", {}).get("fetched") != dt.datetime.now(KST).date().isoformat():
-                update_terms(key)
+                safe(update_terms, key)
         else:
             log("ECOS_API_KEY 없음 → 지표·용어는 기존 스냅샷 사용")
-        update_policy()
-        update_ust()
+        safe(update_policy)
+        safe(update_ust)
     build_bundle()
     return 0
 
