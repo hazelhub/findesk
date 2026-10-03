@@ -575,7 +575,7 @@
     var e = eds[NEWS.ed];
     $("#newsEmpty").hidden = !!e;
     var al = autoLine(), ab = $("#autoLine"); ab.innerHTML = ""; if (al) { ab.appendChild(al); ab.hidden = false; }
-    if (!e) { $("#newsMeta").textContent = ""; return; }
+    if (!e) { $("#newsMeta").textContent = ""; renderHomeTemp(); return; }
     $("#newsMeta").textContent = fmtStamp(e.built_at) + " 업데이트 · " + fmtStamp(e.from) + " 이후 기사 " + e.articles + "건";
     var secs = (e.markets && e.markets[NEWS.mkt]) || [];
     if (!secs.length) { grid.appendChild(h("p", { class: "empty", text: "이 시간대에 분류된 기사가 없어요." })); return; }
@@ -597,6 +597,7 @@
         (sc.keywords || []).length ? h("div", { class: "ncard__kw" }, sc.keywords.map(function (k) { return h("span", { text: "#" + k }); })) : null));
     });
     if (NEWS.open) { var again = secs.filter(function (x) { return x.id === NEWS.open.id; })[0]; if (again) showList(again, NEWS.open.kind, true); }
+    renderHomeTemp();
   }
   function showList(sc, kind, silent) {
     NEWS.open = { id: sc.id, kind: kind };
@@ -780,33 +781,79 @@
   })();
 
 
-  /* ── 탭: 메인(시장 분류) · 사이드(오늘/일정/사이트) ───────── */
-  (function tabs() {
-    function load(k, d) { try { return localStorage.getItem(k) || d; } catch (e) { return d; } }
-    function save(k, v) { try { localStorage.setItem(k, v); } catch (e) {} }
-    function setup(barSel, attr, key, def) {
-      var bar = $(barSel); if (!bar) return function () {};
-      var btns = bar.querySelectorAll("button[" + attr + "]");
-      var items = document.querySelectorAll("section[" + attr + "]");
-      function show(id, persist) {
-        btns.forEach(function (b) { b.setAttribute("aria-selected", b.getAttribute(attr) === id ? "true" : "false"); });
-        items.forEach(function (el) { el.classList.toggle("is-off", el.getAttribute(attr) !== id); });
-        if (persist) save(key, id);
-        window.dispatchEvent(new Event("scroll")); // 지연 로딩 위젯 깨우기
-      }
-      btns.forEach(function (b) { b.addEventListener("click", function () { show(b.getAttribute(attr), true); }); });
-      var ids = Array.prototype.map.call(btns, function (b) { return b.getAttribute(attr); });
-      var cur = load(key, def); show(ids.indexOf(cur) >= 0 ? cur : def, false);
-      return show;
+  /* ── 홈: 오늘 한눈에 ─────────────────────────────── */
+  function renderHomeTemp() {
+    var box = $("#homeTemp"); if (!box) return;
+    box.innerHTML = "";
+    var al = autoLine(), ha = $("#homeAuto"); ha.innerHTML = ""; if (al) { ha.appendChild(al); ha.hidden = false; }
+    var e = (NEWS.data.editions || [])[0];
+    if (!e) { box.appendChild(h("p", { class: "empty", text: "다음 업데이트(07시대·16시대)에 만들어져요." })); return; }
+    $("#homeTempMeta").textContent = e.date.slice(5).replace("-", "/") + " " + (e.slot === "am" ? "오전판" : "오후판");
+    function row(sc) {
+      return h("li", null, h("b", { text: sc.name }),
+        h("div", { class: "nbar" }, h("span", { class: "nbar__pos", style: "width:" + sc.pos_pct + "%" }), h("span", { class: "nbar__neg", style: "width:" + sc.neg_pct + "%" })),
+        h("span", { class: sc.pos_pct >= 50 ? "up" : "down", text: "긍정 " + sc.pos_pct + "%" }));
     }
-    var showMain = setup("#mtabs", "data-tab", "fd-tab", "stock");
-    setup("#atabs", "data-atab", "fd-atab2", "sched");
-    // 상단 메뉴·해시(#rates 등)로 들어오면 해당 탭 열기
-    function fromHash() {
-      var el = location.hash && document.getElementById(location.hash.slice(1));
-      var t = el && el.getAttribute("data-tab");
-      if (t) { showMain(t, true); setTimeout(function () { el.scrollIntoView({ block: "start" }); }, 0); }
-    }
-    window.addEventListener("hashchange", fromHash); fromHash();
+    [["kr", "국내"], ["us", "미국"]].forEach(function (m) {
+      var ok = ((e.markets || {})[m[0]] || []).filter(function (x) { return x.enough && x.pos_pct != null; })
+        .sort(function (a, b) { return b.pos_pct - a.pos_pct; });
+      if (!ok.length) return;
+      var pick = ok.length <= 4 ? ok : ok.slice(0, 2).concat(ok.slice(-2));
+      box.appendChild(h("p", { class: "htemp__lbl", text: m[1] + (ok.length > 4 ? " · 가장 긍정적 2 / 가장 부정적 2" : "") }));
+      box.appendChild(h("ul", { class: "htemp" }, pick.map(row)));
+    });
+    if (!box.children.length) box.appendChild(h("p", { class: "empty", text: "표본이 충분한 섹터가 아직 없어요." }));
+  }
+  (function homeSchedule() {
+    var ul = $("#homeSched"); if (!ul) return;
+    var S = D.schedule || {}, today = kstDateStr();
+    var items = [];
+    (S.market || []).forEach(function (ev) { if (ev.date >= today) items.push({ date: ev.date, time: ev.time || "", text: (ev.region ? "[" + ev.region + "] " : "") + ev.title }); });
+    (S.exams || []).forEach(function (x) {
+      var ph = [];
+      if (x.apply) { ph.push([x.apply[0], "접수 시작"]); ph.push([x.apply[1], "접수 마감"]); }
+      if (x.exam) ph.push([x.exam, "시험"]); if (x.result) ph.push([x.result, "합격 발표"]);
+      ph.forEach(function (p) { if (p[0] && p[0] >= today) items.push({ date: p[0], time: "", text: x.name + (x.round ? " " + x.round : "") + " " + p[1] }); });
+    });
+    items.sort(function (a, b) { return (a.date + a.time) < (b.date + b.time) ? -1 : 1; });
+    var todays = items.filter(function (i) { return i.date === today; });
+    var list = todays.length ? todays : items.slice(0, 4);
+    if (!todays.length) ul.appendChild(h("li", { class: "empty", text: "오늘은 주요 일정이 없어요. 다가오는 일정:" }));
+    list.slice(0, 6).forEach(function (i) {
+      ul.appendChild(h("li", null, h("small", { text: i.date === today ? (i.time || "오늘") : i.date.slice(5).replace("-", "/") }), h("span", { text: i.text })));
+    });
+    $("#homeMeta").textContent = today.replace(/-/g, ".") + " 기준";
   })();
+
+  /* ── 개장 전 체크 (선물 대용·변동성·달러) ─────────────── */
+  (function buildFutures() {
+    var grid = $("#futGrid"); if (!grid) return;
+    (C.futures || []).forEach(function (it) { grid.appendChild(tvCard(it, "24시간")); });
+    var tiles = $("#futTiles");
+    function tile(label, value, sub, cls) { return h("div", { class: "tile" + (cls ? " " + cls : "") }, h("span", { class: "tile__label", text: label }), h("strong", { class: "tile__value mono", text: value }), h("small", { text: sub || "" })); }
+    var U = D.ust || {}, ur = U.rows || [], i10 = (U.tenors || []).indexOf("10Y") + 1;
+    if (ur.length > 1 && i10 > 0) {
+      var c = ur[ur.length - 1][i10], pv = ur[ur.length - 2][i10], d = Math.round((c - pv) * 1000) / 10;
+      tiles.appendChild(tile("미국 10년물", num(c, 2) + "%", (d > 0 ? "+" : "") + num(d, 1) + "bp · " + ur[ur.length - 1][0].slice(5).replace("-", "/") + " 마감", d > 0 ? "" : ""));
+    }
+    var fx = rowsByName["원/달러 환율(종가)"]; if (fx) tiles.appendChild(tile("원/달러 (전일 종가)", num(fx.value, 1) + "원", fmtCycle(fx.cycle)));
+    var ks = (market.series || {}).KOSPI; if (ks && ks.length) tiles.appendChild(tile("코스피 (전일 종가)", num(ks[ks.length - 1][1], 2), fmtCycle(ks[ks.length - 1][0])));
+  })();
+
+  /* ── 상단 페이지 탭 (홈·주식·채권금리·환율거시·원자재·디지털자산·정책·일정·자료실) ── */
+  var PAGES = ["home", "stock", "rates", "fx", "comm", "crypto", "policy", "sched", "lib"];
+  var LEGACY = { brief: "stock", indices: "stock", sectors: "stock", futures: "stock", commodities: "comm", rates: "fx", bonds: "rates", crypto: "crypto", policy: "policy" };
+  function showPage(id, push) {
+    if (PAGES.indexOf(id) < 0) id = "home";
+    document.querySelectorAll("#ptabs [data-page-tab]").forEach(function (b) { b.setAttribute("aria-selected", b.dataset.pageTab === id ? "true" : "false"); });
+    document.querySelectorAll("[data-page]").forEach(function (el) { el.classList.toggle("is-off", el.getAttribute("data-page") !== id); });
+    var btn = document.querySelector('#ptabs [data-page-tab="' + id + '"]'); if (btn && btn.scrollIntoView) btn.scrollIntoView({ block: "nearest", inline: "center" });
+    if (push && location.hash !== "#" + id) history.replaceState(null, "", "#" + id);
+    window.scrollTo(0, 0);
+    window.dispatchEvent(new Event("scroll")); // 지연 로딩 위젯 깨우기
+  }
+  document.querySelectorAll("#ptabs [data-page-tab]").forEach(function (b) { b.addEventListener("click", function () { showPage(b.dataset.pageTab, true); }); });
+  document.querySelectorAll("[data-go]").forEach(function (b) { b.addEventListener("click", function () { showPage(b.dataset.go, true); }); });
+  function fromHash() { var h = (location.hash || "").slice(1); showPage(LEGACY[h] || h || "home", false); }
+  window.addEventListener("hashchange", fromHash); fromHash();
 })();

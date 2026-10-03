@@ -42,9 +42,6 @@
         <svg class="brand__mark" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="7"/><path d="M7 21l6-6 4 4 8-9"/></svg>
         <div class="brand__text"><h1 class="brand__title" id="siteName">FinDesk</h1><small id="tagline">금융인을 위한 아침 데스크</small></div>
       </a>
-      <nav class="nav" aria-label="섹션 이동">
-        <a href="#brief">뉴스 온도</a><a href="#indices">증시</a><a href="#sectors">섹터</a><a href="#commodities">원자재</a><a href="#rates">환율·금리</a><a href="#bonds">채권</a><a href="#crypto">디지털자산</a><a href="#policy">정책</a><a href="books.html">도서</a><a href="sites.html">사이트</a>
-      </nav>
       <div class="topbar__right">
         <div class="clock" aria-live="off">
           <span id="clockDate"></span>
@@ -58,13 +55,93 @@
       </div>
     </div>
     <div class="tape" id="tickerTape" aria-label="실시간 시세 띠"></div>
+    <nav class="ptabs" id="ptabs" role="tablist" aria-label="메뉴">
+      <button type="button" role="tab" data-page-tab="home">홈</button>
+      <button type="button" role="tab" data-page-tab="stock">주식</button>
+      <button type="button" role="tab" data-page-tab="rates">채권·금리</button>
+      <button type="button" role="tab" data-page-tab="fx">환율·거시</button>
+      <button type="button" role="tab" data-page-tab="comm">원자재</button>
+      <button type="button" role="tab" data-page-tab="crypto">디지털자산</button>
+      <button type="button" role="tab" data-page-tab="policy">정책</button>
+      <button type="button" role="tab" data-page-tab="sched">일정</button>
+      <button type="button" role="tab" data-page-tab="lib">자료실</button>
+    </nav>
   </header>
 
   <div class="layout" id="top">
     <main id="main" class="main">
 
-      <!-- 마켓 브리핑 -->
-      <section class="panel ntemp" id="brief" aria-labelledby="h-news">
+      <!-- 홈: 오늘 한눈에 -->
+      <section class="panel home" data-page="home" id="home" aria-labelledby="h-home">
+        <div class="panel__head"><h2 id="h-home">오늘 한눈에</h2><span class="meta" id="homeMeta"></span></div>
+        <div class="edition__auto" id="homeAuto" hidden></div>
+        <div class="home__grid">
+          <div>
+            <h3 class="sub">섹터별 뉴스 온도 <small class="meta" id="homeTempMeta"></small></h3>
+            <div id="homeTemp"></div>
+            <button class="btn-link" type="button" data-go="stock">주식 탭에서 전체 보기 →</button>
+          </div>
+          <div>
+            <h3 class="sub">오늘 일정</h3>
+            <ul class="home__sched" id="homeSched"></ul>
+            <button class="btn-link" type="button" data-go="sched">일정 탭에서 이번 주 전체 보기 →</button>
+          </div>
+        </div>
+      </section>
+
+
+
+      <!-- 지수 -->
+      <section class="panel" data-page="stock" id="indices" aria-labelledby="h-indices">
+        <div class="panel__head">
+          <h2 id="h-indices">주요 지수</h2>
+          <div class="tabs" role="tablist" id="indexTabs"></div>
+          <div class="carousel-ctrl">
+            <button class="icon-btn sm" type="button" data-scroll="-1" aria-label="이전"><svg viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg></button>
+            <button class="icon-btn sm" type="button" data-scroll="1" aria-label="다음"><svg viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg></button>
+          </div>
+        </div>
+        <div class="carousel" id="indexCarousel" tabindex="0" aria-label="지수 카드, 좌우로 넘겨 보세요"></div>
+        <p class="fineprint">코스피·코스닥은 한국은행 ECOS 일별 종가(전 영업일 기준), 해외 지수는 TradingView CFD 시세입니다.</p>
+        <div class="secnews" data-sec="market" data-title="증시 뉴스"></div>
+      </section>
+
+      <!-- 개장 전 체크 (선물·변동성) -->
+      <section class="panel" data-page="stock" id="futures" aria-labelledby="h-fut">
+        <div class="panel__head">
+          <h2 id="h-fut">개장 전 체크</h2>
+          <span class="meta">미국 지수 선물 대용(CFD) · 변동성 · 달러 · 유가 · 미 10년물</span>
+        </div>
+        <div class="grid-cards grid-cards--4" id="futGrid"></div>
+        <div class="tiles tiles--fut" id="futTiles"></div>
+        <p class="fineprint">미국 지수는 24시간 거래되는 지수 연동 상품(CFD) 시세로, 실제 선물(ES·NQ)과 약간 다를 수 있어요. 코스피200 야간선물은 한국거래소 시세 재배포 제한으로 바로가기만 제공합니다 →
+          <a href="https://data.krx.co.kr/contents/MDC/MAIN/main/index.cmd" target="_blank" rel="noopener">KRX 정보데이터시스템</a> ·
+          <a href="https://kr.investing.com/indices/indices-futures" target="_blank" rel="noopener nofollow">인베스팅 지수 선물</a></p>
+      </section>
+
+      <!-- 섹터 등락 -->
+      <section class="panel" data-page="stock" id="sectors" aria-labelledby="h-sectors">
+        <div class="panel__head">
+          <h2 id="h-sectors">섹터 등락</h2>
+          <span class="meta">오늘 돈이 몰린 곳 · 빠진 곳</span>
+        </div>
+        <div class="kr-sectors" id="krSectors">
+          <h3 class="sub">한국 · 오늘의 섹터 <small class="meta" id="krMeta">운영자 정리 · 장 마감 후</small></h3>
+          <div class="split" id="krSplit" hidden>
+            <div><h4 class="mini up">강세 업종</h4><ol class="rank" id="krUp"></ol></div>
+            <div><h4 class="mini down">약세 업종</h4><ol class="rank" id="krDown"></ol></div>
+          </div>
+          <p class="kr-comment" id="krComment" hidden></p>
+          <p class="fineprint" id="krNote">장 마감(15:30) 후 운영자가 한국거래소 업종지수 등락을 확인해 정리합니다. 아직 오늘 정리가 없으면 <a href="https://data.krx.co.kr/contents/MDC/MAIN/main/index.cmd" target="_blank" rel="noopener">KRX 정보데이터시스템</a>에서 확인하세요.</p>
+        </div>
+        <h3 class="sub us-sub">미국 · S&amp;P 500 섹터 히트맵 <small class="meta">색: 초록=상승 · 빨강=하락 (해외 표기)</small></h3>
+        <div class="sector-us">
+          <div class="tv-box tv-box--heatmap" id="usHeatmap"></div>
+          <div class="tv-box tv-box--movers" id="usMovers"></div>
+        </div>
+      </section>
+
+      <section class="panel ntemp" data-page="stock" id="brief" aria-labelledby="h-news">
         <div class="panel__head panel__head--wrap">
           <h2 id="h-news">섹터별 뉴스 온도</h2>
           <div class="chips chips--sm news__mkt" role="tablist" id="newsMarket">
@@ -90,55 +167,8 @@
         </details>
       </section>
 
-      <!-- 시장 탭 -->
-      <nav class="mtabs" id="mtabs" role="tablist" aria-label="시장 분류">
-        <button type="button" role="tab" data-tab="stock">증시·섹터</button>
-        <button type="button" role="tab" data-tab="comm">원자재</button>
-        <button type="button" role="tab" data-tab="rates">환율·금리</button>
-        <button type="button" role="tab" data-tab="bond">채권</button>
-        <button type="button" role="tab" data-tab="crypto">디지털자산</button>
-        <button type="button" role="tab" data-tab="policy">정책</button>
-      </nav>
-
-      <!-- 지수 -->
-      <section class="panel" data-tab="stock" id="indices" aria-labelledby="h-indices">
-        <div class="panel__head">
-          <h2 id="h-indices">주요 지수</h2>
-          <div class="tabs" role="tablist" id="indexTabs"></div>
-          <div class="carousel-ctrl">
-            <button class="icon-btn sm" type="button" data-scroll="-1" aria-label="이전"><svg viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"/></svg></button>
-            <button class="icon-btn sm" type="button" data-scroll="1" aria-label="다음"><svg viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg></button>
-          </div>
-        </div>
-        <div class="carousel" id="indexCarousel" tabindex="0" aria-label="지수 카드, 좌우로 넘겨 보세요"></div>
-        <p class="fineprint">코스피·코스닥은 한국은행 ECOS 일별 종가(전 영업일 기준), 해외 지수는 TradingView CFD 시세입니다.</p>
-        <div class="secnews" data-sec="market" data-title="증시 뉴스"></div>
-      </section>
-
-      <!-- 섹터 등락 -->
-      <section class="panel" data-tab="stock" id="sectors" aria-labelledby="h-sectors">
-        <div class="panel__head">
-          <h2 id="h-sectors">섹터 등락</h2>
-          <span class="meta">오늘 돈이 몰린 곳 · 빠진 곳</span>
-        </div>
-        <div class="kr-sectors" id="krSectors">
-          <h3 class="sub">한국 · 오늘의 섹터 <small class="meta" id="krMeta">운영자 정리 · 장 마감 후</small></h3>
-          <div class="split" id="krSplit" hidden>
-            <div><h4 class="mini up">강세 업종</h4><ol class="rank" id="krUp"></ol></div>
-            <div><h4 class="mini down">약세 업종</h4><ol class="rank" id="krDown"></ol></div>
-          </div>
-          <p class="kr-comment" id="krComment" hidden></p>
-          <p class="fineprint" id="krNote">장 마감(15:30) 후 운영자가 한국거래소 업종지수 등락을 확인해 정리합니다. 아직 오늘 정리가 없으면 <a href="https://data.krx.co.kr/contents/MDC/MAIN/main/index.cmd" target="_blank" rel="noopener">KRX 정보데이터시스템</a>에서 확인하세요.</p>
-        </div>
-        <h3 class="sub us-sub">미국 · S&amp;P 500 섹터 히트맵 <small class="meta">색: 초록=상승 · 빨강=하락 (해외 표기)</small></h3>
-        <div class="sector-us">
-          <div class="tv-box tv-box--heatmap" id="usHeatmap"></div>
-          <div class="tv-box tv-box--movers" id="usMovers"></div>
-        </div>
-      </section>
-
       <!-- 원자재 -->
-      <section class="panel" data-tab="comm" id="commodities" aria-labelledby="h-comm">
+      <section class="panel" data-page="comm" id="commodities" aria-labelledby="h-comm">
         <div class="panel__head">
           <h2 id="h-comm">원자재</h2>
           <span class="meta">CFD 시세 · TradingView</span>
@@ -148,17 +178,13 @@
       </section>
 
       <!-- 환율·금리 -->
-      <section class="panel" data-tab="rates" id="rates" aria-labelledby="h-rates">
+      <section class="panel" data-page="fx" id="rates" aria-labelledby="h-rates">
         <div class="panel__head">
-          <h2 id="h-rates">환율 · 금리 · 거시지표</h2>
+          <h2 id="h-rates">환율 · 거시지표</h2>
           <span class="meta" id="ratesMeta"></span>
         </div>
         <div class="grid-cards grid-cards--4" id="fxGrid"></div>
-        <div class="split">
-          <div>
-            <h3 class="sub">국내 금리</h3>
-            <table class="stat-table" id="rateTable"><tbody></tbody></table>
-          </div>
+        <div>
           <div>
             <h3 class="sub">환율 고시 · 거시</h3>
             <table class="stat-table" id="macroTable"><tbody></tbody></table>
@@ -174,13 +200,15 @@
       </section>
 
       <!-- 채권·크레딧 -->
-      <section class="panel" data-tab="bond" id="bonds" aria-labelledby="h-bonds">
+      <section class="panel" data-page="rates" id="bonds" aria-labelledby="h-bonds">
         <div class="panel__head">
-          <h2 id="h-bonds">채권 · 크레딧</h2>
+          <h2 id="h-bonds">채권 · 금리</h2>
           <span class="meta">국고채 입찰 · 회사채 수요예측 · 신용등급 · PF</span>
         </div>
         <h3 class="sub">국내</h3>
         <div class="tiles" id="bondTiles"></div>
+        <h3 class="sub sub--gap">국내 금리 <small class="meta">한국은행 ECOS</small></h3>
+        <table class="stat-table stat-table--wide" id="rateTable"><tbody></tbody></table>
         <div class="ust" id="ustBox" hidden>
           <h3 class="sub">미국 국채 <small class="meta" id="ustMeta"></small></h3>
           <div class="split">
@@ -196,7 +224,7 @@
       </section>
 
       <!-- 디지털자산 -->
-      <section class="panel" data-tab="crypto" id="crypto" aria-labelledby="h-crypto">
+      <section class="panel" data-page="crypto" id="crypto" aria-labelledby="h-crypto">
         <div class="panel__head">
           <h2 id="h-crypto">디지털자산</h2>
           <span class="meta">비트코인 · 스테이블코인 · 가상자산 제도</span>
@@ -206,7 +234,7 @@
       </section>
 
       <!-- 금융정책 -->
-      <section class="panel" data-tab="policy" id="policy" aria-labelledby="h-policy">
+      <section class="panel" data-page="policy" id="policy" aria-labelledby="h-policy">
         <div class="panel__head">
           <h2 id="h-policy">금융정책 · 규제</h2>
           <span class="meta">금융위원회 · 금융감독원 · 한국은행</span>
@@ -216,7 +244,7 @@
     </main>
 
     <aside class="aside" aria-label="오늘의 카드와 일정">
-      <section class="card term" id="termCard" aria-labelledby="h-term">
+      <section class="card term" id="termCard" data-page="home" aria-labelledby="h-term">
         <div class="card__head">
           <h2 id="h-term"><span class="eyebrow">오늘의 경제용어</span></h2>
           <div class="pager">
@@ -231,7 +259,7 @@
         <p class="card__src">출처: <a href="https://ecos.bok.or.kr" target="_blank" rel="noopener">한국은행 ECOS 통계용어사전</a></p>
       </section>
 
-      <section class="card quote" id="quoteCard" aria-labelledby="h-quote">
+      <section class="card quote" id="quoteCard" data-page="home" aria-labelledby="h-quote">
         <div class="card__head">
           <h2 id="h-quote"><span class="eyebrow">오늘의 명언</span></h2>
           <div class="pager">
@@ -247,13 +275,8 @@
         <button class="btn-link" id="quoteToggle" type="button">원문 보기</button>
       </section>
 
-      <nav class="atabs" id="atabs" role="tablist" aria-label="사이드 분류">
-        <button type="button" role="tab" data-atab="sched">일정</button>
-        <button type="button" role="tab" data-atab="book">도서</button>
-        <button type="button" role="tab" data-atab="sites">사이트</button>
-      </nav>
 
-      <section class="card book" id="bookCard" data-atab="book" aria-labelledby="h-book">
+      <section class="card book" id="bookCard" data-page="lib" aria-labelledby="h-book">
         <div class="card__head">
           <h2 id="h-book"><span class="eyebrow">이번 주 금융 도서</span></h2>
           <span class="week-range" id="bookRange"></span>
@@ -265,7 +288,7 @@
         <p class="card__src">운영자가 직접 읽고 쓴 코멘트입니다. 책 소개문·표지는 싣지 않으며 링크는 서점·도서관 검색으로 연결됩니다.</p>
       </section>
 
-      <section class="card" id="weekCard" data-atab="sched" aria-labelledby="h-week">
+      <section class="card" id="weekCard" data-page="sched" aria-labelledby="h-week">
         <div class="card__head">
           <h2 id="h-week"><span class="eyebrow">금융·정책 일정</span></h2>
           <span class="week-range" id="weekRange"></span>
@@ -276,7 +299,7 @@
         <p class="card__src">한국시간 기준 · 월~일 · 국내 휴장일 포함</p>
       </section>
 
-      <section class="card" id="examCard" data-atab="sched" aria-labelledby="h-exam">
+      <section class="card" id="examCard" data-page="sched" aria-labelledby="h-exam">
         <div class="card__head">
           <h2 id="h-exam"><span class="eyebrow">자격시험 일정</span></h2>
           <span class="week-range" id="examRange"></span>
@@ -286,7 +309,7 @@
         <p class="card__src" id="examNote">주관 기관 공지 기준 · 응시 전 반드시 재확인하세요.</p>
       </section>
 
-      <section class="card" id="siteMini" data-atab="sites" aria-labelledby="h-sites">
+      <section class="card" id="siteMini" data-page="lib" aria-labelledby="h-sites">
         <div class="card__head">
           <h2 id="h-sites"><span class="eyebrow">자주 쓰는 사이트</span></h2>
           <a class="btn-link" href="sites.html">전체 보기 →</a>
@@ -294,7 +317,7 @@
         <div id="siteMiniList"></div>
       </section>
 
-      <section class="card card--muted" data-atab="sites" aria-labelledby="h-data">
+      <section class="card card--muted" data-page="lib" aria-labelledby="h-data">
         <h2 id="h-data" class="eyebrow">데이터 안내</h2>
         <ul class="datainfo" id="dataInfo"></ul>
       </section>

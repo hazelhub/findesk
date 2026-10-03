@@ -55,6 +55,14 @@ window.FD_CONFIG = {
     }
   ],
 
+  // 개장 전 체크: 미국 지수 선물 대용(CFD)·변동성·달러
+  futures: [
+    { symbol: "FOREXCOM:NSXUSD", name: "나스닥100 (선물 대용)" },
+    { symbol: "FOREXCOM:SPXUSD", name: "S&P500 (선물 대용)" },
+    { symbol: "CAPITALCOM:VIX", name: "VIX 변동성" },
+    { symbol: "CAPITALCOM:DXY", name: "달러인덱스" }
+  ],
+
   // 원자재
   commodities: [
     { symbol: "OANDA:XAUUSD", name: "금", unit: "USD/온스" },
