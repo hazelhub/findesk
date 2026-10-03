@@ -498,20 +498,28 @@
 
   function renderKrSectors(S) {
     var days = ((S && S.days) || []).slice().sort(function (a, b) { return a.date < b.date ? 1 : -1; });
-    var d = days[0];
-    if (!d) return;
+    if (!days.length) return;
+    var date = days[0].date, ORDER = ["코스피", "코스닥", "KRX 섹터", "테마"];
+    var group = days.filter(function (d) { return d.date === date; })
+      .sort(function (a, b) { return (ORDER.indexOf(a.market) + 9) % 9 - (ORDER.indexOf(b.market) + 9) % 9; });
     function li(x) {
       var v = x.chg, cls = v > 0 ? "up" : v < 0 ? "down" : "flat";
       return h("li", null, h("b", { text: x.name }), h("span", { class: cls, text: (v > 0 ? "+" : "") + num(v, 2) + "%" }));
     }
-    var up = $("#krUp"), dn = $("#krDown"); up.innerHTML = ""; dn.innerHTML = "";
-    (d.up || []).forEach(function (x) { up.appendChild(li(x)); });
-    (d.down || []).forEach(function (x) { dn.appendChild(li(x)); });
-    var isToday = d.date === kstDateStr();
-    $("#krMeta").textContent = d.date.slice(5).replace("-", "/") + " 장 마감 · " + (d.market || "코스피") + " 업종지수 기준 · 운영자 정리" + (isToday ? "" : " (최근 정리)");
-    $("#krSplit").hidden = false;
-    var c = $("#krComment"); c.hidden = !d.comment; c.textContent = d.comment || "";
-    $("#krNote").textContent = "장 마감 후 운영자가 한국거래소 업종지수 등락을 확인해 정리한 내용입니다. 투자 권유가 아닙니다.";
+    var box = $("#krSplit"); box.innerHTML = "";
+    var comments = [];
+    group.forEach(function (d) {
+      if (d.comment) comments.push(d.comment);
+      box.appendChild(h("div", { class: "krblock" },
+        h("h4", { class: "krblock__t" }, d.market || "코스피", d.index ? h("small", { class: d.index.chg > 0 ? "up" : d.index.chg < 0 ? "down" : "flat", text: " " + (d.index.chg > 0 ? "+" : "") + num(d.index.chg, 2) + "%" }) : null),
+        h("p", { class: "mini up", text: "강세" }), h("ol", { class: "rank" }, (d.up || []).map(li)),
+        h("p", { class: "mini down", text: "약세" }), h("ol", { class: "rank" }, (d.down || []).map(li))));
+    });
+    var isToday = date === kstDateStr();
+    $("#krMeta").textContent = date.slice(5).replace("-", "/") + " 장 마감 · 한국거래소 업종·테마 지수 기준 · 운영자 정리" + (isToday ? "" : " (최근 정리)");
+    box.hidden = false;
+    var c = $("#krComment"); c.hidden = !comments.length; c.textContent = comments.join(" / ");
+    $("#krNote").textContent = "장 마감 후 운영자가 한국거래소 업종·테마 지수 등락을 확인해 정리한 내용입니다. 투자 권유가 아닙니다.";
   }
   /* ── 섹터 등락: 미국(TradingView 위젯) + 한국(공공데이터, 전 영업일) ── */
   (function buildSectors() {
@@ -561,6 +569,13 @@
   var NEWS = { data: D.news || { editions: [] }, mkt: "kr", ed: 0, open: null };
   try { var sm = localStorage.getItem("fd-news-mkt"); if (sm === "kr" || sm === "us") NEWS.mkt = sm; } catch (e) {}
   var LBL = { pos: "긍정", neg: "부정", neu: "중립" };
+  // 주말·국내 휴장일 판인지 (일정 데이터의 [KR] 휴장 표기 기준)
+  function quietDay(date) {
+    var d = new Date(date + "T12:00:00+09:00").getUTCDay();
+    if (d === 0 || d === 6) return "주말";
+    var hol = ((D.schedule || {}).market || []).some(function (ev) { return ev.date === date && /휴장/.test(ev.title || "") && (!ev.region || ev.region === "KR"); });
+    return hol ? "국내 휴장일" : "";
+  }
   function slotName(e) { return (e.slot === "am" ? "오전판" : "오후판"); }
   function renderNews() {
     var eds = NEWS.data.editions || [];
@@ -576,8 +591,12 @@
     $("#newsEmpty").hidden = !!e;
     var al = autoLine(), ab = $("#autoLine"); ab.innerHTML = ""; if (al) { ab.appendChild(al); ab.hidden = false; }
     if (!e) { $("#newsMeta").textContent = ""; renderHomeTemp(); return; }
-    $("#newsMeta").textContent = fmtStamp(e.built_at) + " 업데이트 · " + fmtStamp(e.from) + " 이후 기사 " + e.articles + "건";
+    $("#newsMeta").textContent = fmtStamp(e.built_at) + " 업데이트 · 최근 24시간(" + fmtStamp(e.from) + " 이후) 기사 " + e.articles + "건";
     var secs = (e.markets && e.markets[NEWS.mkt]) || [];
+    var quiet = quietDay(e.date), thin = secs.filter(function (x) { return x.enough; }).length < 3;
+    if (quiet || thin) grid.appendChild(h("p", { class: "nnote", text: quiet
+      ? quiet + "이라 기사 수가 평소보다 적어요. '표본 부족' 섹터가 많을 수 있으니 비율은 참고만 해 주세요."
+      : "이번 판은 판정 기사 수가 적어 '표본 부족' 섹터가 많아요. 비율은 참고만 해 주세요." }));
     if (!secs.length) { grid.appendChild(h("p", { class: "empty", text: "이 시간대에 분류된 기사가 없어요." })); return; }
     secs.forEach(function (sc) {
       var pos = sc.pos_pct, neg = sc.neg_pct;

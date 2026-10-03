@@ -1,7 +1,7 @@
-/* FinDesk 편집실 — 오늘의 섹터 (장 마감 후 업종 등락표 붙여넣기 → 상·하위 추출 → 게시) */
+/* FinDesk 편집실 — 오늘의 섹터 (KRX 엑셀 올리기 또는 표 붙여넣기 → 시장별 상·하위 추출 → 한 번에 게시) */
 (function () {
   "use strict";
-  var PATH = "data/sectors.json", KEEP = 60, PICK = 3;
+  var PATH = "data/sectors.json", KEEP = 240, PICK = 3;
   function $(s) { return document.querySelector(s); }
   function h(tag, attrs) {
     var n = document.createElement(tag);
@@ -29,11 +29,14 @@
   /* ── 초안 ── */
   var draft;
   try { draft = JSON.parse(store("fd-ed-sec-draft") || "null"); } catch (e) { draft = null; }
-  if (!draft || draft.date !== kstToday()) draft = { date: kstToday(), market: "코스피", up: [], down: [], comment: "" };
+  var MARKETS = ["코스피", "코스닥", "KRX 섹터", "테마"];
+  if (draft && !draft.m) { var old = draft; draft = { date: old.date, market: old.market || "코스피", comment: old.comment || "", m: {} }; draft.m[draft.market] = { up: old.up || [], down: old.down || [] }; }
+  if (!draft || draft.date !== kstToday()) draft = { date: kstToday(), market: "코스피", comment: "", m: {} };
+  function cur() { if (!draft.m[draft.market]) draft.m[draft.market] = { up: [], down: [] }; return draft.m[draft.market]; }
   function save() { store("fd-ed-sec-draft", JSON.stringify(draft)); $("#secSaved").textContent = "임시저장됨"; }
   $("#secDate").value = draft.date; $("#secMarket").value = draft.market; $("#secComment").value = draft.comment || "";
   $("#secDate").addEventListener("change", function (e) { draft.date = e.target.value; save(); });
-  $("#secMarket").addEventListener("change", function (e) { draft.market = e.target.value; save(); });
+  $("#secMarket").addEventListener("change", function (e) { draft.market = e.target.value; save(); renderLists(); });
   $("#secComment").addEventListener("input", function (e) { draft.comment = e.target.value; save(); });
 
   /* ── 붙여넣은 표 읽기 ── */
@@ -68,27 +71,104 @@
   $("#secParse").addEventListener("click", function () {
     var rows = parse($("#secPaste").value);
     if (!rows.length) { $("#secParseMsg").textContent = "업종명과 등락률을 찾지 못했어요. 표를 다시 복사하거나 아래에 직접 입력하세요."; return; }
-    rows.sort(function (a, b) { return b.chg - a.chg; });
-    draft.up = rows.filter(function (r) { return r.chg > 0; }).slice(0, PICK);
-    draft.down = rows.filter(function (r) { return r.chg < 0; }).slice(-PICK).reverse();
-    $("#secParseMsg").textContent = rows.length + "개 업종을 읽었어요. 상·하위 " + PICK + "개씩 골랐어요 — 확인해 주세요.";
+    var g = pick(rows), m = cur(); m.up = g.up; m.down = g.down;
+    $("#secParseMsg").textContent = rows.length + "개 업종을 읽었어요. " + draft.market + " 상·하위 " + PICK + "개씩 골랐어요 — 확인해 주세요.";
     save(); renderLists();
   });
 
+  function pick(rows) {
+    rows = rows.slice().sort(function (a, b) { return b.chg - a.chg; });
+    return { up: rows.filter(function (r) { return r.chg > 0; }).slice(0, PICK),
+      down: rows.filter(function (r) { return r.chg < 0; }).slice(-PICK).reverse() };
+  }
+
+  /* ── KRX 엑셀(xlsx/csv) 올리기 ──
+     KRX 정보데이터시스템 > 지수 > 전체지수 시세에서 받은 파일(코스피·코스닥·KRX·테마)을 그대로 올리면
+     파일마다 시장을 알아보고, 시장 전체·규모·전략 지수는 빼고 업종·테마만 남겨 상·하위를 고릅니다. */
+  function nameOf(n) { return String(n || "").replace(/\s+/g, " ").trim(); }
+  function short(n) { return n.replace(/^KRX[-\/][A-Za-z&]+\s+/, "").replace(/^KRX\s+/, "").replace(/\s*지수$/, "").trim(); }
+  var RULES = {
+    "코스피": function (n) { return !/^(코스피|코스닥|KRX|KOSPI)/i.test(n) && !/^(제조|대형주|중형주|소형주)$/.test(n) && !/\(/.test(n); },
+    "코스닥": function (n) { return !/^(코스피|코스닥|KRX|KOSDAQ)/i.test(n) && !/^(제조|대형주|중형주|소형주)$/.test(n) && !/\(/.test(n); },
+    "KRX 섹터": function (n) { return /^KRX [^\d\s]+$/.test(n) && !/TMI/.test(n); },
+    "테마": function (n) { return !/ESG|배당|우선주|거버넌스|Governance|Leaders|탄소|리츠|부동산|블루칩|미국채|샤프|밸류업|TMI|KTOP|^코스닥 TOP|^코스피 200 기후|^KRX 300|^KRX 100$|^코스피|^코스닥 150/.test(n); }
+  };
+  function detect(names) {
+    var has = function (re) { return names.some(function (n) { return re.test(n); }); };
+    if (has(/^코스피$/)) return "코스피";
+    if (has(/^코스닥$/)) return "코스닥";
+    if (has(/^KRX 반도체$/) || has(/^KRX 300$/)) return "KRX 섹터";
+    return "테마";
+  }
+  function sheetRows(wb) {
+    var ws = wb.Sheets[wb.SheetNames[0]], aoa = XLSX.utils.sheet_to_json(ws, { header: 1, raw: true, defval: "" });
+    var hi = -1, ni = 0, pi = -1;
+    for (var i = 0; i < Math.min(aoa.length, 10); i++) {
+      var r = aoa[i].map(nameOf), p = r.indexOf("등락률");
+      if (p >= 0) { hi = i; pi = p; ni = Math.max(0, r.indexOf("지수명")); break; }
+    }
+    if (hi < 0) return null;
+    return aoa.slice(hi + 1).map(function (r) { return { name: nameOf(r[ni]), chg: toNum(r[pi]), close: toNum(r[pi - 2]) }; })
+      .filter(function (r) { return r.name && r.chg != null && isFinite(r.chg); });
+  }
+  function readFile(f) {
+    return f.arrayBuffer().then(function (buf) {
+      if (/\.csv$/i.test(f.name)) {
+        var t = new TextDecoder("utf-8").decode(buf);
+        if (t.indexOf("\uFFFD") >= 0) t = new TextDecoder("euc-kr").decode(buf);
+        return XLSX.read(t, { type: "string" });
+      }
+      return XLSX.read(buf, { type: "array" });
+    });
+  }
+  function loadLib() {
+    if (window.XLSX) return Promise.resolve();
+    return new Promise(function (ok, no) { var sc = document.createElement("script"); sc.src = "assets/vendor/xlsx.full.min.js"; sc.onload = ok; sc.onerror = function () { no(new Error("엑셀 도구를 불러오지 못했어요")); }; document.head.appendChild(sc); });
+  }
+  var fileIn = $("#secFiles");
+  if (fileIn) fileIn.addEventListener("change", function () {
+    var files = Array.prototype.slice.call(fileIn.files || []), out = $("#secFileMsg");
+    if (!files.length) return;
+    out.textContent = "읽는 중…";
+    loadLib().then(function () { return Promise.all(files.map(function (f) { return readFile(f).then(function (wb) { return { f: f, rows: sheetRows(wb) }; }); })); })
+      .then(function (res) {
+        var lines = [], fdate = null;
+        res.forEach(function (x) {
+          if (!x.rows || !x.rows.length) { lines.push(x.f.name + ": '지수명·등락률' 표를 찾지 못했어요"); return; }
+          var names = x.rows.map(function (r) { return r.name; }), mk = detect(names), rule = RULES[mk];
+          var idx = x.rows.filter(function (r) { return r.name === mk; })[0];
+          var keep = x.rows.filter(function (r) { return rule(r.name) && Math.abs(r.chg) <= 30; })
+            .map(function (r) { return { name: short(r.name).slice(0, 20), chg: Math.round(r.chg * 100) / 100 }; });
+          var g = pick(keep);
+          draft.m[mk] = { up: g.up, down: g.down, index: idx ? { chg: Math.round(idx.chg * 100) / 100 } : null };
+          lines.push(mk + ": " + keep.length + "개 중 강세 " + g.up.length + " · 약세 " + g.down.length);
+          var d = x.f.name.match(/(20\d{2})(\d{2})(\d{2})/); if (d) fdate = d[1] + "-" + d[2] + "-" + d[3];
+          draft.market = mk;
+        });
+        if (fdate && fdate !== draft.date) { lines.push("파일 이름 날짜 " + fdate + " — 거래일이 다르면(휴장일 다음날 받은 경우 등) 위 날짜를 고쳐 주세요."); }
+        $("#secMarket").value = draft.market; save(); renderLists();
+        out.textContent = lines.join(" / ");
+        fileIn.value = "";
+      }).catch(function (e) { out.textContent = "읽기 실패: " + e.message; });
+  });
+
   function renderLists() {
+    var m = cur(), sum = $("#secSummary");
+    if (sum) sum.textContent = MARKETS.filter(function (k) { var x = draft.m[k]; return x && (x.up.length || x.down.length); })
+      .map(function (k) { var x = draft.m[k]; return k + " (▲" + x.up.length + "·▼" + x.down.length + ")"; }).join(" · ") || "아직 정리한 시장이 없어요";
     [["up", "#secUp"], ["down", "#secDown"]].forEach(function (p) {
       var ol = $(p[1]); ol.innerHTML = "";
-      draft[p[0]].forEach(function (r, i) {
+      m[p[0]].forEach(function (r, i) {
         var n = h("input", { value: r.name, placeholder: "업종명", maxlength: 20 });
         var c = h("input", { value: r.chg, type: "number", step: "0.01", placeholder: "%" });
         n.addEventListener("input", function () { r.name = n.value; save(); });
         c.addEventListener("input", function () { r.chg = parseFloat(c.value); save(); });
-        ol.appendChild(h("li", null, n, c, h("button", { class: "btn btn--sm", type: "button", onclick: function () { draft[p[0]].splice(i, 1); save(); renderLists(); } }, "삭제")));
+        ol.appendChild(h("li", null, n, c, h("button", { class: "btn btn--sm", type: "button", onclick: function () { m[p[0]].splice(i, 1); save(); renderLists(); } }, "삭제")));
       });
     });
   }
   document.querySelectorAll("[data-add]").forEach(function (b) {
-    b.addEventListener("click", function () { var k = b.getAttribute("data-add"); if (draft[k].length < 5) { draft[k].push({ name: "", chg: k === "up" ? 0.5 : -0.5 }); save(); renderLists(); } });
+    b.addEventListener("click", function () { var k = b.getAttribute("data-add"); var m = cur(); if (m[k].length < 5) { m[k].push({ name: "", chg: k === "up" ? 0.5 : -0.5 }); save(); renderLists(); } });
   });
 
   /* ── GitHub ── */
@@ -109,16 +189,24 @@
   $("#secPublish").addEventListener("click", function () {
     var c = cfg(), msg = $("#secMsg");
     if (!c.repo || !c.gh) { msg.textContent = "브리핑 탭의 설정(GitHub 저장소·토큰)을 먼저 완료해 주세요."; return; }
-    var day = { date: draft.date, market: draft.market, up: clean(draft.up), down: clean(draft.down), comment: (draft.comment || "").trim(), published_at: new Date().toISOString() };
-    if (!day.up.length && !day.down.length) { msg.textContent = "강세·약세 업종을 하나 이상 넣어 주세요."; return; }
-    if (!confirm(day.date + " " + day.market + " 섹터 정리(강세 " + day.up.length + " · 약세 " + day.down.length + ")를 게시할까요?")) return;
+    var now = new Date().toISOString(), comment = (draft.comment || "").trim(), list = [];
+    MARKETS.forEach(function (k) {
+      var x = draft.m[k]; if (!x) return;
+      var day = { date: draft.date, market: k, up: clean(x.up), down: clean(x.down), published_at: now };
+      if (!day.up.length && !day.down.length) return;
+      if (x.index && isFinite(x.index.chg)) day.index = { chg: x.index.chg };
+      if (comment && !list.length) day.comment = comment;
+      list.push(day);
+    });
+    if (!list.length) { msg.textContent = "강세·약세 업종을 하나 이상 넣어 주세요."; return; }
+    if (!confirm(draft.date + " 섹터 정리를 게시할까요?\n" + list.map(function (d) { return "· " + d.market + " (강세 " + d.up.length + " · 약세 " + d.down.length + ")"; }).join("\n"))) return;
     msg.textContent = "게시 중…";
-    ghGet(c).then(function (cur) {
-      var data = cur.data || {};
-      data.days = [day].concat((data.days || []).filter(function (d) { return !(d.date === day.date && d.market === day.market); }))
+    ghGet(c).then(function (curr) {
+      var data = curr.data || {};
+      data.days = list.concat((data.days || []).filter(function (d) { return !list.some(function (n) { return n.date === d.date && n.market === d.market; }); }))
         .sort(function (a, b) { return a.date < b.date ? 1 : -1; }).slice(0, KEEP);
-      data.updated_at = day.published_at;
-      return ghPut(c, data, cur.sha, "오늘의 섹터: " + day.date + " " + day.market);
+      data.updated_at = now;
+      return ghPut(c, data, curr.sha, "오늘의 섹터: " + draft.date + " " + list.map(function (d) { return d.market; }).join("·"));
     }).then(function () { msg.textContent = "게시했어요. 1~2분 뒤 사이트에 반영됩니다."; loadDays(); })
       .catch(function (e) { msg.textContent = "게시 실패: " + e.message; });
   });

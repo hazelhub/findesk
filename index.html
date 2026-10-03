@@ -27,7 +27,7 @@
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%231d3557'/%3E%3Cpath d='M7 21l6-6 4 4 8-9' stroke='%23f4c95d' stroke-width='3' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
   <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
-  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="assets/css/style.css?v=20261003">
   <script>
     // 테마 깜빡임 방지: 저장된 테마를 가장 먼저 적용
     try { var t = localStorage.getItem("fd-theme"); if (t === "light" || t === "dark") document.documentElement.dataset.theme = t; } catch (e) {}
@@ -127,10 +127,7 @@
         </div>
         <div class="kr-sectors" id="krSectors">
           <h3 class="sub">한국 · 오늘의 섹터 <small class="meta" id="krMeta">운영자 정리 · 장 마감 후</small></h3>
-          <div class="split" id="krSplit" hidden>
-            <div><h4 class="mini up">강세 업종</h4><ol class="rank" id="krUp"></ol></div>
-            <div><h4 class="mini down">약세 업종</h4><ol class="rank" id="krDown"></ol></div>
-          </div>
+          <div class="krgrid" id="krSplit" hidden></div>
           <p class="kr-comment" id="krComment" hidden></p>
           <p class="fineprint" id="krNote">장 마감(15:30) 후 운영자가 한국거래소 업종지수 등락을 확인해 정리합니다. 아직 오늘 정리가 없으면 <a href="https://data.krx.co.kr/contents/MDC/MAIN/main/index.cmd" target="_blank" rel="noopener">KRX 정보데이터시스템</a>에서 확인하세요.</p>
         </div>
@@ -159,9 +156,9 @@
         <details class="criteria">
           <summary>판정 방식과 한계</summary>
           <ul>
-            <li>하루 2회 자동 업데이트: <b>오전판</b>(전일 15:30 이후 기사: 국내 마감·미국 장·정책) · <b>오후판</b>(당일 07시 이후 기사: 장중·속보). 한국시간 기준, 자동 실행이라 10~30분 늦을 수 있어요.</li>
-            <li>한국경제·매일경제·연합뉴스·이데일리·머니투데이 RSS의 <b>기사 제목</b>을 금융 용어 사전으로 긍정·부정·중립 판정합니다. 금리·환율·물가처럼 오르면 부담인 지표는 방향을 반대로 봅니다.</li>
-            <li>같은 사건을 여러 언론이 쓴 경우 사건당 최대 3건까지만 비율에 반영합니다. 판정 기사 5건 미만 섹터는 '표본 부족'으로 표시합니다.</li>
+            <li>하루 2회 자동 업데이트: <b>오전판</b>(07시대) · <b>오후판</b>(16시대). 두 판 모두 업데이트 시각 기준 <b>최근 24시간</b> 기사를 봅니다. 한국시간 기준, 자동 실행이라 10~30분 늦을 수 있어요.</li>
+            <li>한국경제·매일경제·연합뉴스·이데일리·머니투데이·파이낸셜뉴스·아시아경제·뉴시스·조선비즈·전자신문·연합인포맥스 등 국내 경제 매체 RSS의 <b>기사 제목</b>을 금융 용어 사전으로 긍정·부정·중립 판정합니다. 금리·환율·물가처럼 오르면 부담인 지표는 방향을 반대로 봅니다.</li>
+            <li>같은 사건을 여러 언론이 쓴 경우 사건당 최대 3건까지만 비율에 반영합니다. 판정 기사 5건 미만 섹터는 '표본 부족'으로 표시합니다. 주말·휴장일에는 기사가 적어 표본이 부족할 수 있어요.</li>
             <li>자동 판정이라 틀릴 수 있으며 <b>투자 판단 근거가 아닙니다.</b> 기사 제목·본문은 싣지 않고 언론사·시각·판정 근거 단어와 원문 링크만 제공합니다. 기사 저작권은 각 언론사에 있습니다.</li>
           </ul>
         </details>
@@ -334,8 +331,8 @@
     <p>시세 위젯: <a href="https://www.tradingview.com/" target="_blank" rel="noopener nofollow">TradingView</a> · 국내 지표·용어: <a href="https://ecos.bok.or.kr" target="_blank" rel="noopener">한국은행 ECOS</a> · 브리핑: 운영자 직접 작성, 원문 링크 제공 (기사 저작권은 각 언론사에 있습니다)</p>
   </footer>
 
-  <script src="assets/js/config.js"></script>
+  <script src="assets/js/config.js?v=20261003"></script>
   <script src="data/bundle.js"></script>
-  <script src="assets/js/app.js"></script>
+  <script src="assets/js/app.js?v=20261003"></script>
 </body>
 </html>

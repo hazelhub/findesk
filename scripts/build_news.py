@@ -9,9 +9,10 @@
 공개 데이터에는 기사 제목·본문을 넣지 않습니다 (언론사·시각·링크·판정 근거 단어만).
 판정은 제목 기반 자동 분류라 오류가 있을 수 있으며 투자 판단 근거가 아닙니다.
 
-실행 시점 (한국시간)
-  오전판: 전일 15:30 ~ 실행 시각   (국내 마감 이후 + 미국 장)
-  오후판: 당일 07:00 ~ 실행 시각   (당일 장중·속보)
+실행 시점 (한국시간) — 두 판 모두 '실행 시각 기준 최근 24시간' 기사를 봅니다
+  오전판: 07시대 실행 (국내 마감 이후 + 미국 장 포함)
+  오후판: 16시대 실행 (당일 장중·마감 포함)
+  피드 목록·집계 방식(CONFIG_VER)이 바뀌면 이미 만든 판도 다음 실행 때 한 번 다시 만듭니다.
 사용법
   python scripts/build_news.py            # 시간대에 맞는 판(오전/오후)을 새로 만들 때만 갱신
   python scripts/build_news.py --force am # 강제로 오전판 생성
@@ -27,6 +28,8 @@ import os
 import re
 import sys
 import urllib.request
+import hashlib
+from concurrent.futures import ThreadPoolExecutor
 import xml.etree.ElementTree as ET
 from pathlib import Path
 
@@ -39,6 +42,7 @@ KEEP_HISTORY = 120
 MAX_LINKS = 30
 EVENT_CAP = 3      # 같은 사건은 최대 3건까지만 비율에 반영 (한 사건이 비율을 독차지하지 않게)
 MIN_SAMPLE = 5
+WINDOW_HOURS = 24
 
 FEEDS = [
     ("hk_fin", "https://www.hankyung.com/feed/finance", "한국경제"),
@@ -54,6 +58,23 @@ FEEDS = [
     ("yna_ind", "https://www.yna.co.kr/rss/industry.xml", "연합뉴스"),
     ("ed_all", "http://rss.edaily.co.kr/edaily_news.xml", "이데일리"),
     ("mt_all", "http://rss.mt.co.kr/mt_news.xml", "머니투데이"),
+    # 2026-10 표본 확대: 국내 경제·증권 매체 추가 (실패하는 주소는 다음 점검 때 정리)
+    ("hk_all", "https://www.hankyung.com/feed/all-news", "한국경제"),
+    ("mk_all", "https://www.mk.co.kr/rss/30000001/", "매일경제"),
+    ("fn_stock", "https://www.fnnews.com/rss/r20/fn_realnews_stock.xml", "파이낸셜뉴스"),
+    ("fn_fin", "https://www.fnnews.com/rss/r20/fn_realnews_finance.xml", "파이낸셜뉴스"),
+    ("fn_eco", "https://www.fnnews.com/rss/r20/fn_realnews_economy.xml", "파이낸셜뉴스"),
+    ("fn_ind", "https://www.fnnews.com/rss/r20/fn_realnews_industry.xml", "파이낸셜뉴스"),
+    ("ae_stock", "https://www.asiae.co.kr/rss/stock.htm", "아시아경제"),
+    ("ae_eco", "https://www.asiae.co.kr/rss/economy.htm", "아시아경제"),
+    ("nis_eco", "https://www.newsis.com/RSS/economy.xml", "뉴시스"),
+    ("nis_ind", "https://www.newsis.com/RSS/industry.xml", "뉴시스"),
+    ("nis_bank", "https://www.newsis.com/RSS/bank.xml", "뉴시스"),
+    ("cb_all", "https://biz.chosun.com/arc/outboundfeeds/rss/?outputType=xml", "조선비즈"),
+    ("et_all", "https://rss.etnews.com/Section901.xml", "전자신문"),
+    ("inf_all", "https://news.einfomax.co.kr/rss/allArticle.xml", "연합인포맥스"),
+    ("fnt_all", "https://www.fntimes.com/rss/allArticle.xml", "한국금융신문"),
+    ("sed_stock", "https://www.sedaily.com/rss/finance", "서울경제"),
 ]
 
 JUNK = re.compile(r"(\[포토\]|\[사진\]|\[인사\]|\[부고\]|\[게시판\]|\[표\]|\[그래픽\]|\[오늘의|운세|알림\]|\[광고|이벤트\]|\[모닝브리핑\]|\[카드뉴스\]|\[영상\])")
@@ -225,17 +246,31 @@ def parse_rss(xml_bytes: bytes, source: str):
     return out
 
 
+def fetch_one(feed, raw):
+    key, url, source = feed
+    last = None
+    for attempt in range(2):  # 시간 초과 등은 한 번 더 시도
+        try:
+            if raw is not None:
+                if key not in raw["rss"]:
+                    return key, [], "실패: 테스트 묶음에 없음"
+                body = raw["rss"][key].encode("utf-8")
+            else:
+                body = http_get(url, timeout=25)
+            got = parse_rss(body, source)
+            return key, got, len(got)
+        except Exception as e:
+            last = e
+    return key, [], "실패: " + str(last)[:60]
+
+
 def collect(raw_path: str | None):
     items, status = [], {}
     raw = json.loads(Path(raw_path).read_text("utf-8")) if raw_path else None
-    for key, url, source in FEEDS:
-        try:
-            body = raw["rss"][key].encode("utf-8") if raw else http_get(url)
-            got = parse_rss(body, source)
+    with ThreadPoolExecutor(max_workers=8) as ex:
+        for key, got, st in ex.map(lambda f: fetch_one(f, raw), FEEDS):
             items += got
-            status[key] = len(got)
-        except Exception as e:
-            status[key] = "실패: " + str(e)[:60]
+            status[key] = st
     # URL 중복 제거
     seen, uniq = set(), []
     for it in sorted(items, key=lambda x: x["time"], reverse=True):
@@ -324,12 +359,16 @@ def now_kst():
     return dt.datetime.now(KST)
 
 
+CONFIG_VER = hashlib.sha1(json.dumps([FEEDS, WINDOW_HOURS, EVENT_CAP, MIN_SAMPLE]).encode()).hexdigest()[:10]
+
+
 def decide_slot(force: str | None, existing: list) -> str | None:
     n = now_kst()
     today = n.date().isoformat()
     if force in ("am", "pm"):
         return force
-    have = {(e["date"], e["slot"]) for e in existing}
+    # 설정이 바뀐 뒤 처음 실행이면, 지금 시간대의 판을 새 설정으로 한 번 다시 만듭니다
+    have = {(e["date"], e["slot"]) for e in existing if e.get("cfg") == CONFIG_VER}
     if 7 <= n.hour < 12 and (today, "am") not in have:
         return "am"
     if 16 <= n.hour < 24 and (today, "pm") not in have:
@@ -348,11 +387,7 @@ def main() -> int:
         print("[news] 이번 실행은 새 판을 만들 시간이 아님 (오전 07~12시 / 오후 16~24시에 하루 한 번씩)")
         return 0
     end = now_kst()
-    if slot == "am":
-        start = (end - dt.timedelta(days=1)).replace(hour=15, minute=30, second=0, microsecond=0)
-    else:
-        start = end.replace(hour=7, minute=0, second=0, microsecond=0)
-    start = max(start, end - dt.timedelta(hours=24))
+    start = end - dt.timedelta(hours=WINDOW_HOURS)
     arts, status = collect(raw)
     markets, n = build(arts, start, end)
     if n == 0:
@@ -360,14 +395,14 @@ def main() -> int:
         return 0
     ed = {"date": end.date().isoformat(), "slot": slot, "built_at": end.isoformat(timespec="seconds"),
           "from": start.isoformat(timespec="minutes"), "to": end.isoformat(timespec="minutes"),
-          "articles": n, "feeds": status, "markets": markets}
+          "articles": n, "feeds": status, "cfg": CONFIG_VER, "markets": markets}
     eds = [e for e in doc.get("editions", []) if not (e["date"] == ed["date"] and e["slot"] == slot)]
     doc["editions"] = sorted([ed] + eds, key=lambda e: (e["date"], e["slot"]), reverse=True)[:KEEP_EDITIONS]
     hist = [h for h in doc.get("history", []) if not (h["date"] == ed["date"] and h["slot"] == slot)]
     hist.append({"date": ed["date"], "slot": slot, "kr": {s["id"]: s["pos_pct"] for s in markets["kr"] if s["enough"]},
                  "us": {s["id"]: s["pos_pct"] for s in markets["us"] if s["enough"]}})
     doc["history"] = sorted(hist, key=lambda h: (h["date"], h["slot"]))[-KEEP_HISTORY:]
-    doc["method"] = "언론사 RSS 기사 제목을 금융 용어 사전으로 자동 판정 (긍정·부정·중립). 같은 사건은 최대 3건까지만 비율에 반영."
+    doc["method"] = "국내 경제 매체 RSS의 최근 24시간 기사 제목을 금융 용어 사전으로 자동 판정 (긍정·부정·중립). 같은 사건은 최대 3건까지만 비율에 반영."
     path.write_text(json.dumps(doc, ensure_ascii=False, indent=1), "utf-8")
     ok = sum(1 for v in status.values() if isinstance(v, int))
     print(f"[news] {slot} 판 생성: 기사 {n}건, 피드 {ok}/{len(status)} 정상, 국내 섹터 {len(markets['kr'])} · 미국 섹터 {len(markets['us'])}")

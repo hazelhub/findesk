@@ -101,16 +101,22 @@
         <details class="ed-rules" open>
           <summary>쓰는 법 (2~3분)</summary>
           <ul>
-            <li>장 마감(15:30) 후 <a href="https://data.krx.co.kr/contents/MDC/MAIN/main/index.cmd" target="_blank" rel="noopener">KRX 정보데이터시스템</a>이나 증권사 앱의 <b>업종 등락 표</b>를 드래그해 복사 → 아래 칸에 붙여넣기.</li>
-            <li>업종명과 등락률(%)을 자동으로 읽어 <b>상승 3개 · 하락 3개</b>를 골라요. 틀린 값은 바로 고치면 됩니다.</li>
+            <li><b>가장 쉬운 방법:</b> 장 마감(15:30) 후 <a href="https://data.krx.co.kr/contents/MDC/MAIN/main/index.cmd" target="_blank" rel="noopener">KRX 정보데이터시스템</a> › 지수 › 주가지수 › <b>전체지수 시세</b>에서 코스피·코스닥·KRX·테마를 각각 Excel로 내려받아 아래 <b>엑셀 올리기</b>에 한꺼번에 선택하세요.</li>
+            <li>파일마다 시장을 알아보고, 시장 전체·규모별·전략 지수(코스피 200, 대형주, ESG·배당 등)는 빼고 <b>업종·테마별 상승 3 · 하락 3</b>을 골라요. 시장 칸을 바꾸면 시장별로 확인·수정할 수 있어요.</li>
+            <li>엑셀이 없으면 증권사 앱의 업종 등락 표를 복사해 붙여넣어도 됩니다 (선택한 시장 칸에 들어가요).</li>
             <li>공개되는 건 업종명·등락률 몇 개와 <b>본인 한 줄 해석</b>뿐입니다. 표 전체를 올리지 않습니다.</li>
           </ul>
         </details>
         <div class="ed-grid ed-grid--week">
           <label class="ed-label">날짜<input id="secDate" type="date"></label>
-          <label class="ed-label">시장<select id="secMarket"><option>코스피</option><option>코스닥</option></select></label>
+          <label class="ed-label">시장<select id="secMarket"><option>코스피</option><option>코스닥</option><option>KRX 섹터</option><option>테마</option></select></label>
         </div>
-        <label class="ed-label">업종 등락 표 붙여넣기
+        <label class="ed-label">KRX 엑셀 올리기 (여러 파일 한 번에, .xlsx·.csv)
+          <input id="secFiles" type="file" accept=".xlsx,.xls,.csv" multiple>
+        </label>
+        <p class="meta" id="secFileMsg"></p>
+        <p class="meta">정리된 시장: <span id="secSummary"></span></p>
+        <label class="ed-label">또는 업종 등락 표 붙여넣기
           <textarea id="secPaste" rows="6" placeholder="예)&#10;전기·전자	12,345.67	+234.56	+1.94%&#10;금융	890.12	-8.90	-0.99%"></textarea>
         </label>
         <div class="ed-actions"><button class="btn" id="secParse" type="button">읽어오기</button><span class="meta" id="secParseMsg"></span></div>
@@ -127,7 +133,7 @@
       <section class="panel" aria-labelledby="h-secdays">
         <div class="panel__head"><h2 id="h-secdays">게시한 섹터 정리</h2></div>
         <ul class="ed-editions" id="secDays"></ul>
-        <p class="fineprint">같은 날짜·시장을 다시 게시하면 교체됩니다. 메인에는 가장 최근 정리가 보여요.</p>
+        <p class="fineprint">게시하기를 누르면 정리된 시장이 모두 한 번에 올라가요. 같은 날짜·시장을 다시 게시하면 교체됩니다. 메인에는 가장 최근 날짜 정리가 시장별로 보여요.</p>
       </section>
     </div>
   </main>
@@ -135,6 +141,6 @@
   <script src="data/bundle.js"></script>
   <script src="assets/js/news.js"></script>
   <script src="assets/js/editor.js"></script>
-  <script src="assets/js/editor-sectors.js"></script>
+  <script src="assets/js/editor-sectors.js?v=20261003"></script>
 </body>
 </html>
