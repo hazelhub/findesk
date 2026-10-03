@@ -71,7 +71,7 @@
   $("#secParse").addEventListener("click", function () {
     var rows = parse($("#secPaste").value);
     if (!rows.length) { $("#secParseMsg").textContent = "업종명과 등락률을 찾지 못했어요. 표를 다시 복사하거나 아래에 직접 입력하세요."; return; }
-    var g = pick(rows), m = cur(); m.up = g.up; m.down = g.down;
+    var g = pick(rows), m = cur(); m.up = g.up; m.down = g.down; m.all = rows.map(strip);
     $("#secParseMsg").textContent = rows.length + "개 업종을 읽었어요. " + draft.market + " 상·하위 " + PICK + "개씩 골랐어요 — 확인해 주세요.";
     save(); renderLists();
   });
@@ -102,13 +102,13 @@
   }
   function sheetRows(wb) {
     var ws = wb.Sheets[wb.SheetNames[0]], aoa = XLSX.utils.sheet_to_json(ws, { header: 1, raw: true, defval: "" });
-    var hi = -1, ni = 0, pi = -1;
+    var hi = -1, ni = 0, pi = -1, ci = -1;
     for (var i = 0; i < Math.min(aoa.length, 10); i++) {
       var r = aoa[i].map(nameOf), p = r.indexOf("등락률");
-      if (p >= 0) { hi = i; pi = p; ni = Math.max(0, r.indexOf("지수명")); break; }
+      if (p >= 0) { hi = i; pi = p; ni = Math.max(0, r.indexOf("지수명")); ci = r.indexOf("상장시가총액"); break; }
     }
     if (hi < 0) return null;
-    return aoa.slice(hi + 1).map(function (r) { return { name: nameOf(r[ni]), chg: toNum(r[pi]), close: toNum(r[pi - 2]) }; })
+    return aoa.slice(hi + 1).map(function (r) { return { name: nameOf(r[ni]), chg: toNum(r[pi]), cap: ci >= 0 ? toNum(r[ci]) : null }; })
       .filter(function (r) { return r.name && r.chg != null && isFinite(r.chg); });
   }
   function readFile(f) {
@@ -120,6 +120,12 @@
       }
       return XLSX.read(buf, { type: "array" });
     });
+  }
+  function strip(r) { return { name: r.name, chg: r.chg }; }
+  // 히트맵 크기용 비중(%) — 시가총액 원값은 싣지 않고 시장 안 비중만 소수 1자리로
+  function weigh(rows) {
+    var tot = rows.reduce(function (a, r) { return a + (r.cap > 0 ? r.cap : 0); }, 0);
+    return rows.map(function (r) { var o = { name: r.name, chg: r.chg }; if (tot > 0 && r.cap > 0) o.w = Math.max(0.1, Math.round(r.cap / tot * 1000) / 10); return o; });
   }
   function loadLib() {
     if (window.XLSX) return Promise.resolve();
@@ -138,10 +144,10 @@
           var names = x.rows.map(function (r) { return r.name; }), mk = detect(names), rule = RULES[mk];
           var idx = x.rows.filter(function (r) { return r.name === mk; })[0];
           var keep = x.rows.filter(function (r) { return rule(r.name) && Math.abs(r.chg) <= 30; })
-            .map(function (r) { return { name: short(r.name).slice(0, 20), chg: Math.round(r.chg * 100) / 100 }; });
+            .map(function (r) { return { name: short(r.name).slice(0, 20), chg: Math.round(r.chg * 100) / 100, cap: r.cap }; });
           var g = pick(keep);
-          draft.m[mk] = { up: g.up, down: g.down, index: idx ? { chg: Math.round(idx.chg * 100) / 100 } : null };
-          lines.push(mk + ": " + keep.length + "개 중 강세 " + g.up.length + " · 약세 " + g.down.length);
+          draft.m[mk] = { up: g.up.map(strip), down: g.down.map(strip), all: weigh(keep), index: idx ? { chg: Math.round(idx.chg * 100) / 100 } : null };
+          lines.push(mk + ": 업종·테마 " + keep.length + "개 (히트맵) · 강세 " + g.up.length + " · 약세 " + g.down.length);
           var d = x.f.name.match(/(20\d{2})(\d{2})(\d{2})/); if (d) fdate = d[1] + "-" + d[2] + "-" + d[3];
           draft.market = mk;
         });
@@ -195,6 +201,7 @@
       var day = { date: draft.date, market: k, up: clean(x.up), down: clean(x.down), published_at: now };
       if (!day.up.length && !day.down.length) return;
       if (x.index && isFinite(x.index.chg)) day.index = { chg: x.index.chg };
+      if (x.all && x.all.length) day.all = x.all.filter(function (r) { return r.name && isFinite(r.chg); });
       if (comment && !list.length) day.comment = comment;
       list.push(day);
     });

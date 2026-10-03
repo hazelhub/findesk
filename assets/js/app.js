@@ -496,31 +496,105 @@
     });
   })();
 
+  /* ── 한국 섹터 히트맵 (운영자가 올린 한국거래소 업종·테마 지수 등락) ── */
+  var KR = { group: [], mkt: null, date: null };
+  var KR_ORDER = ["코스피", "코스닥", "KRX 섹터", "테마"];
+  var KR_TV = { "코스피": "KOSPI", "코스닥": "KOSDAQ" };
+  function tvHeatmapUrl(ds) {
+    return "https://kr.tradingview.com/heatmap/stock/#" + encodeURIComponent(JSON.stringify({ dataSource: ds, blockColor: "change", blockSize: "market_cap_basic", grouping: "sector" }));
+  }
+  // squarified treemap: 값 큰 순서대로 받아 같은 순서의 사각형(px)을 돌려줌
+  function treemap(vals, W, H) {
+    var tot = vals.reduce(function (a, v) { return a + v; }, 0) || 1;
+    var area = vals.map(function (v) { return v / tot * W * H; });
+    var rects = [], x = 0, y = 0, w = W, h = H, row = [], i = 0;
+    function worst(r, side) {
+      if (!r.length) return Infinity;
+      var sm = 0, mx = 0, mn = Infinity; r.forEach(function (a) { sm += a; mx = Math.max(mx, a); mn = Math.min(mn, a); });
+      return Math.max(side * side * mx / (sm * sm), sm * sm / (side * side * mn));
+    }
+    function lay(r) {
+      var sm = r.reduce(function (a, v) { return a + v; }, 0);
+      if (w >= h) { var cw = sm / h, cy = y; r.forEach(function (a) { rects.push({ x: x, y: cy, w: cw, h: a / cw }); cy += a / cw; }); x += cw; w -= cw; }
+      else { var rh = sm / w, cx = x; r.forEach(function (a) { rects.push({ x: cx, y: y, w: a / rh, h: rh }); cx += a / rh; }); y += rh; h -= rh; }
+    }
+    while (i < area.length) {
+      var side = Math.min(w, h), nx = area[i];
+      if (!row.length || worst(row.concat([nx]), side) <= worst(row, side)) { row.push(nx); i++; }
+      else { lay(row); row = []; }
+    }
+    if (row.length) lay(row);
+    return rects;
+  }
+  function tileColor(c) {
+    if (c == null || Math.abs(c) < 0.05) return { bg: "var(--kr-flat)", dark: false };
+    var a = 0.16 + 0.74 * Math.min(Math.abs(c) / 3, 1);
+    return { bg: c > 0 ? "rgba(214, 48, 49," + a.toFixed(2) + ")" : "rgba(37, 99, 235," + a.toFixed(2) + ")", dark: a >= 0.5 };
+  }
+  function pct(v) { return (v > 0 ? "+" : "") + num(v, 2) + "%"; }
+  function drawKrMap() {
+    var box = $("#krMap"), d = KR.group.filter(function (g) { return g.market === KR.mkt; })[0];
+    if (!box || !d) return;
+    var items = (d.all && d.all.length ? d.all : (d.up || []).concat(d.down || [])).slice();
+    // 테마 지수는 구성 종목이 서로 겹쳐(삼성전자 등) 시총 비중이 왜곡되므로 같은 크기로
+    var hasW = d.market !== "테마" && items.some(function (r) { return r.w > 0; });
+    // 시총이 클수록 크게, 다만 작은 업종도 읽히도록 완화(0.6제곱)
+    items.forEach(function (r) { r._v = hasW ? Math.pow(Math.max(r.w || 0, 0.1), 0.6) : 1; });
+    items.sort(function (a, b) { return b._v - a._v || b.chg - a.chg; });
+    var W = box.clientWidth; if (!W) return;  // 탭이 숨겨져 있으면 보일 때 다시 그림
+    var H = W < 520 ? 380 : 400;
+    if (KR.drawnW === W && KR.drawnM === KR.mkt && KR.drawnD === KR.date && box.children.length) return;
+    KR.drawnW = W; KR.drawnM = KR.mkt; KR.drawnD = KR.date;
+    box.style.height = H + "px"; box.innerHTML = "";
+    var rects = treemap(items.map(function (r) { return r._v; }), W, H);
+    items.forEach(function (r, i) {
+      var q = rects[i], col = tileColor(r.chg), big = q.w * q.h;
+      var t = h("div", { class: "kmt" + (col.dark ? " kmt--dark" : ""), role: "listitem", title: r.name + " " + pct(r.chg),
+        onclick: function () { var pk = $("#krPick"); if (pk) pk.textContent = "선택: " + r.name + " " + pct(r.chg); },
+        "aria-label": r.name + " " + pct(r.chg),
+        style: "left:" + q.x.toFixed(1) + "px;top:" + q.y.toFixed(1) + "px;width:" + q.w.toFixed(1) + "px;height:" + q.h.toFixed(1) + "px;background:" + col.bg + ";font-size:" + (q.w > 150 && big > 20000 ? 15 : q.w > 90 && big > 8000 ? 13 : q.w > 62 ? 11.5 : 10.5) + "px" });
+      if (q.w >= 44 && q.h >= 32) t.appendChild(h("b", { text: r.name }));
+      if (q.w >= 44 && q.h >= 16) t.appendChild(h("span", { text: pct(r.chg) }));
+      box.appendChild(t);
+    });
+    function rk(list) { return (list || []).map(function (x) { return x.name + " " + pct(x.chg); }).join(" · "); }
+    var pk0 = $("#krPick"); if (pk0) pk0.textContent = "칸을 누르면 업종명이 보여요 (작은 칸은 이름 생략)";
+    var sum = $("#krSum"); sum.innerHTML = "";
+    if ((d.up || []).length) sum.appendChild(h("span", null, h("b", { class: "up", text: "강세 " }), rk(d.up)));
+    if ((d.down || []).length) sum.appendChild(h("span", null, h("b", { class: "down", text: "약세 " }), rk(d.down)));
+    var lk = $("#krLinks"); lk.innerHTML = "";
+    ["코스피", "코스닥"].forEach(function (m) {
+      lk.appendChild(h("a", { href: tvHeatmapUrl(KR_TV[m]), target: "_blank", rel: "noopener nofollow" }, m + " 종목 히트맵 ↗"));
+    });
+  }
   function renderKrSectors(S) {
     var days = ((S && S.days) || []).slice().sort(function (a, b) { return a.date < b.date ? 1 : -1; });
     if (!days.length) return;
-    var date = days[0].date, ORDER = ["코스피", "코스닥", "KRX 섹터", "테마"];
-    var group = days.filter(function (d) { return d.date === date; })
-      .sort(function (a, b) { return (ORDER.indexOf(a.market) + 9) % 9 - (ORDER.indexOf(b.market) + 9) % 9; });
-    function li(x) {
-      var v = x.chg, cls = v > 0 ? "up" : v < 0 ? "down" : "flat";
-      return h("li", null, h("b", { text: x.name }), h("span", { class: cls, text: (v > 0 ? "+" : "") + num(v, 2) + "%" }));
-    }
-    var box = $("#krSplit"); box.innerHTML = "";
-    var comments = [];
-    group.forEach(function (d) {
-      if (d.comment) comments.push(d.comment);
-      box.appendChild(h("div", { class: "krblock" },
-        h("h4", { class: "krblock__t" }, d.market || "코스피", d.index ? h("small", { class: d.index.chg > 0 ? "up" : d.index.chg < 0 ? "down" : "flat", text: " " + (d.index.chg > 0 ? "+" : "") + num(d.index.chg, 2) + "%" }) : null),
-        h("p", { class: "mini up", text: "강세" }), h("ol", { class: "rank" }, (d.up || []).map(li)),
-        h("p", { class: "mini down", text: "약세" }), h("ol", { class: "rank" }, (d.down || []).map(li))));
+    var date = days[0].date;
+    KR.date = date; KR.drawnW = 0;
+    KR.group = days.filter(function (d) { return d.date === date; })
+      .sort(function (a, b) { return (KR_ORDER.indexOf(a.market) + 9) % 9 - (KR_ORDER.indexOf(b.market) + 9) % 9; });
+    var saved = null; try { saved = localStorage.getItem("fd-kr-mkt"); } catch (e) {}
+    var names = KR.group.map(function (g) { return g.market; });
+    KR.mkt = names.indexOf(KR.mkt) >= 0 ? KR.mkt : names.indexOf(saved) >= 0 ? saved : names[0];
+    var chips = $("#krChips"); chips.innerHTML = "";
+    KR.group.forEach(function (d) {
+      chips.appendChild(h("button", { class: "chip", type: "button", role: "tab", "aria-selected": d.market === KR.mkt ? "true" : "false",
+        onclick: function () { KR.mkt = d.market; try { localStorage.setItem("fd-kr-mkt", KR.mkt); } catch (e) {}
+          chips.querySelectorAll(".chip").forEach(function (b) { b.setAttribute("aria-selected", b === this ? "true" : "false"); }, this); drawKrMap(); } },
+        d.market, d.index ? h("small", { class: d.index.chg > 0 ? "up" : d.index.chg < 0 ? "down" : "flat", text: " " + pct(d.index.chg) }) : null));
     });
-    var isToday = date === kstDateStr();
-    $("#krMeta").textContent = date.slice(5).replace("-", "/") + " 장 마감 · 한국거래소 업종·테마 지수 기준 · 운영자 정리" + (isToday ? "" : " (최근 정리)");
-    box.hidden = false;
+    var comments = KR.group.map(function (d) { return d.comment; }).filter(Boolean);
+    $("#krMeta").textContent = date.slice(5).replace("-", "/") + " 장 마감 · 한국거래소 업종·테마 지수 기준 · 운영자 정리" + (date === kstDateStr() ? "" : " (최근 정리)");
+    $("#krSplit").hidden = false;
     var c = $("#krComment"); c.hidden = !comments.length; c.textContent = comments.join(" / ");
-    $("#krNote").textContent = "장 마감 후 운영자가 한국거래소 업종·테마 지수 등락을 확인해 정리한 내용입니다. 투자 권유가 아닙니다.";
+    $("#krNote").textContent = "크기는 업종 시가총액이 클수록 크게(작은 업종도 읽히도록 완화, 테마는 같은 크기), 색은 등락률(±3% 이상 가장 진함)입니다. 장 마감 후 운영자가 한국거래소 지수 등락을 정리한 내용이며 투자 권유가 아닙니다.";
+    drawKrMap();
   }
+  var krResizeT;
+  function krRedraw() { clearTimeout(krResizeT); krResizeT = setTimeout(drawKrMap, 120); }
+  if (window.ResizeObserver && $("#krMap")) new ResizeObserver(krRedraw).observe($("#krMap"));
+  window.addEventListener("resize", krRedraw);
   /* ── 섹터 등락: 미국(TradingView 위젯) + 한국(공공데이터, 전 영업일) ── */
   (function buildSectors() {
     var hm = $("#usHeatmap"), mv = $("#usMovers");

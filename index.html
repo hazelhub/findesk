@@ -27,7 +27,7 @@
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%231d3557'/%3E%3Cpath d='M7 21l6-6 4 4 8-9' stroke='%23f4c95d' stroke-width='3' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E">
   <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
-  <link rel="stylesheet" href="assets/css/style.css?v=20261003">
+  <link rel="stylesheet" href="assets/css/style.css?v=20261004">
   <script>
     // 테마 깜빡임 방지: 저장된 테마를 가장 먼저 적용
     try { var t = localStorage.getItem("fd-theme"); if (t === "light" || t === "dark") document.documentElement.dataset.theme = t; } catch (e) {}
@@ -126,8 +126,14 @@
           <span class="meta">오늘 돈이 몰린 곳 · 빠진 곳</span>
         </div>
         <div class="kr-sectors" id="krSectors">
-          <h3 class="sub">한국 · 오늘의 섹터 <small class="meta" id="krMeta">운영자 정리 · 장 마감 후</small></h3>
-          <div class="krgrid" id="krSplit" hidden></div>
+          <h3 class="sub">한국 · 업종 히트맵 <small class="meta">색: 빨강=상승 · 파랑=하락 (국내 표기)</small> <small class="meta" id="krMeta">운영자 정리 · 장 마감 후</small></h3>
+          <div class="krmap-wrap" id="krSplit" hidden>
+            <div class="chips chips--sm" role="tablist" id="krChips" aria-label="시장 선택"></div>
+            <div class="krmap" id="krMap" role="list" aria-label="업종별 등락 히트맵 (색: 빨강=상승 · 파랑=하락)"></div>
+            <p class="krpick" id="krPick"></p>
+            <p class="krsum" id="krSum"></p>
+            <p class="krlinks"><span>종목별로 보기 (TradingView):</span> <span id="krLinks"></span></p>
+          </div>
           <p class="kr-comment" id="krComment" hidden></p>
           <p class="fineprint" id="krNote">장 마감(15:30) 후 운영자가 한국거래소 업종지수 등락을 확인해 정리합니다. 아직 오늘 정리가 없으면 <a href="https://data.krx.co.kr/contents/MDC/MAIN/main/index.cmd" target="_blank" rel="noopener">KRX 정보데이터시스템</a>에서 확인하세요.</p>
         </div>
@@ -331,8 +337,8 @@
     <p>시세 위젯: <a href="https://www.tradingview.com/" target="_blank" rel="noopener nofollow">TradingView</a> · 국내 지표·용어: <a href="https://ecos.bok.or.kr" target="_blank" rel="noopener">한국은행 ECOS</a> · 브리핑: 운영자 직접 작성, 원문 링크 제공 (기사 저작권은 각 언론사에 있습니다)</p>
   </footer>
 
-  <script src="assets/js/config.js?v=20261003"></script>
+  <script src="assets/js/config.js?v=20261004"></script>
   <script src="data/bundle.js"></script>
-  <script src="assets/js/app.js?v=20261003"></script>
+  <script src="assets/js/app.js?v=20261004"></script>
 </body>
 </html>
