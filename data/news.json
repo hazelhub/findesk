@@ -3,10 +3,10 @@
   {
    "date": "2026-10-03",
    "slot": "pm",
-   "built_at": "2026-10-03T21:42:12+09:00",
-   "from": "2026-10-02T21:42+09:00",
-   "to": "2026-10-03T21:42+09:00",
-   "articles": 552,
+   "built_at": "2026-10-03T21:45:07+09:00",
+   "from": "2026-10-02T21:45+09:00",
+   "to": "2026-10-03T21:45+09:00",
+   "articles": 556,
    "feeds": {
     "hk_fin": 50,
     "hk_eco": 50,
@@ -28,17 +28,16 @@
     "fn_eco": 2,
     "fn_ind": 1,
     "ae_stock": 100,
-    "ae_eco": "실패: <urlopen error timed out>",
+    "ae_eco": 100,
     "nis_eco": 100,
     "nis_ind": 100,
     "nis_bank": 100,
     "cb_all": 100,
     "et_all": 11,
     "inf_all": 50,
-    "fnt_all": "실패: HTTP Error 500: Internal Server Error",
     "sed_stock": 50
    },
-   "cfg": "0289eeb12c",
+   "cfg": "0245ddd7ef",
    "markets": {
     "kr": [
      {
@@ -54,8 +53,8 @@
       "neg_pct": 80,
       "enough": true,
       "keywords": [
-       "은행",
        "보안",
+       "은행",
        "CEO"
       ],
       "links": {
@@ -321,7 +320,7 @@
       "keywords": [
        "아파트",
        "분양",
-       "유출"
+       "현대캐피탈"
       ],
       "links": {
        "pos": [
@@ -478,10 +477,10 @@
       "name": "유통·소비",
       "pos": 0,
       "neg": 0,
-      "neu": 13,
-      "total": 13,
-      "articles": 13,
-      "events": 13,
+      "neu": 14,
+      "total": 14,
+      "articles": 14,
+      "events": 14,
       "pos_pct": null,
       "neg_pct": null,
       "enough": false,
@@ -543,6 +542,12 @@
          "w": []
         },
         {
+         "s": "아시아경제",
+         "u": "https://view.asiae.co.kr/article/2026093015345237713",
+         "t": "10/03 07:11",
+         "w": []
+        },
+        {
          "s": "한국경제",
          "u": "https://www.hankyung.com/article/202610021316i",
          "t": "10/03 07:00",
@@ -590,7 +595,7 @@
       "keywords": [
        "아시안게임",
        "금메달",
-       "아마추어"
+       "고교생"
       ],
       "links": {
        "pos": [
@@ -687,9 +692,9 @@
       "neg_pct": 17,
       "enough": true,
       "keywords": [
-       "국제유",
-       "배럴",
-       "걸쳐"
+       "1억",
+       "원유",
+       "안정"
       ],
       "links": {
        "pos": [
@@ -1176,8 +1181,8 @@
       "neg_pct": null,
       "enough": false,
       "keywords": [
-       "애플",
-       "AI"
+       "AI",
+       "애플"
       ],
       "links": {
        "pos": [],
