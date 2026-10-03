@@ -73,7 +73,6 @@ FEEDS = [
     ("cb_all", "https://biz.chosun.com/arc/outboundfeeds/rss/?outputType=xml", "조선비즈"),
     ("et_all", "https://rss.etnews.com/Section901.xml", "전자신문"),
     ("inf_all", "https://news.einfomax.co.kr/rss/allArticle.xml", "연합인포맥스"),
-    ("fnt_all", "https://www.fntimes.com/rss/allArticle.xml", "한국금융신문"),
     ("sed_stock", "https://www.sedaily.com/rss/finance", "서울경제"),
 ]
 
