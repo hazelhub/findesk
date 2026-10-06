@@ -39,6 +39,14 @@
     if (!isFinite(n)) return "–";
     return n.toLocaleString("ko-KR", { minimumFractionDigits: digits == null ? 0 : digits, maximumFractionDigits: digits == null ? 2 : digits });
   }
+  function shortCycle(c) { c = String(c || ""); return /^\d{8}$/.test(c) ? (+c.slice(4, 6)) + "/" + (+c.slice(6)) : fmtCycle(c); }
+  // 국내 정규장(평일 09:00~15:30, 일정 데이터의 [KR] 휴장일 제외) 중인지
+  function krOpenNow() {
+    var n = new Date(Date.now() + 9 * 3600e3), wd = n.getUTCDay(), m = n.getUTCHours() * 60 + n.getUTCMinutes();
+    if (wd === 0 || wd === 6 || m < 540 || m >= 930) return false;
+    var today = n.toISOString().slice(0, 10);
+    return !(((window.FD_DATA || {}).schedule || {}).market || []).some(function (ev) { return ev.date === today && /휴장/.test(ev.title || "") && (!ev.region || ev.region === "KR"); });
+  }
   function fmtCycle(c) {
     c = String(c || "");
     if (/^\d{8}$/.test(c)) return c.slice(0, 4) + "." + c.slice(4, 6) + "." + c.slice(6);
@@ -227,15 +235,17 @@
     var pct = chg != null ? (chg / prev) * 100 : null;
     var cls = chg == null ? "flat" : chg > 0 ? "up" : chg < 0 ? "down" : "flat";
     var arrow = chg == null ? "" : chg > 0 ? "▲ " : chg < 0 ? "▼ " : "";
+    var live = krOpenNow() && !!item.link;
     return h("article", { class: "qcard", "data-group": item.group },
-      h("div", { class: "qcard__label" }, h("span", { text: "한국은행 ECOS" }), h("span", { class: "qcard__group", text: groupName })),
+      h("div", { class: "qcard__label" }, h("span", { text: "한국은행 ECOS · 일별 종가" }), h("span", { class: "qcard__group", text: groupName })),
       h("div", { class: "ecos" },
-        h("div", { class: "ecos__name", text: item.name }),
-        h("div", { class: "ecos__value mono", text: num(value, 2) }),
+        h("div", { class: "ecos__name" }, item.name, h("small", { class: "ecos__tag", text: " " + shortCycle(cycle) + " 종가 · 실시간 아님" })),
+        live ? h("a", { class: "ecos__live", href: item.link, target: "_blank", rel: "noopener" }, "● 장 중 · 실시간 " + item.name + " 보기 →") : null,
+        h("div", { class: "ecos__value ecos__value--prev mono", text: num(value, 2) }),
         h("div", { class: "ecos__chg mono " + cls, text: chg == null ? "전일 대비 정보 없음" : arrow + num(Math.abs(chg), 2) + " (" + (pct > 0 ? "+" : "") + num(pct, 2) + "%)" }),
         sparkline(series.slice(-20), cls),
-        h("div", { class: "ecos__foot" },
-          h("span", { text: fmtCycle(cycle) + " 종가" }),
+        live ? null : h("div", { class: "ecos__foot" },
+          h("span", { text: fmtCycle(cycle) + " 종가 (한국은행 ECOS)" }),
           item.link ? h("a", { href: item.link, target: "_blank", rel: "noopener" }, "실시간 시세 →") : null)));
   }
 
@@ -628,17 +638,17 @@
     function chgOf(series) { if (!series || series.length < 2) return null; var a = series[series.length - 1][1], b = series[series.length - 2][1]; return (a / b - 1) * 100; }
     function pct(v) { return (v > 0 ? "+" : "") + num(v, 2) + "%"; }
     var ks = (market.series || {}).KOSPI, kq = (market.series || {}).KOSDAQ;
-    if (ks && ks.length) parts.push("코스피 " + num(ks[ks.length - 1][1], 2) + (chgOf(ks) != null ? "(" + pct(chgOf(ks)) + ")" : ""));
-    if (kq && kq.length) parts.push("코스닥 " + num(kq[kq.length - 1][1], 2) + (chgOf(kq) != null ? "(" + pct(chgOf(kq)) + ")" : ""));
-    var fx = rowsByName["원/달러 환율(종가)"]; if (fx) parts.push("원/달러 " + num(fx.value, 1) + "원");
-    var kt = rowsByName["국고채수익률(3년)"]; if (kt) parts.push("국고 3년 " + num(kt.value, 3) + "%");
+    function dt(c) { return shortCycle(String(c).replace(/-/g, "")); }
+    if (ks && ks.length) parts.push("코스피 " + num(ks[ks.length - 1][1], 2) + "(" + (chgOf(ks) != null ? pct(chgOf(ks)) + ", " : "") + dt(ks[ks.length - 1][0]) + " 종가)");
+    if (kq && kq.length) parts.push("코스닥 " + num(kq[kq.length - 1][1], 2) + "(" + (chgOf(kq) != null ? pct(chgOf(kq)) + ", " : "") + dt(kq[kq.length - 1][0]) + " 종가)");
+    var fx = rowsByName["원/달러 환율(종가)"]; if (fx) parts.push("원/달러 " + num(fx.value, 1) + "원(한은 " + dt(fx.cycle) + " 기준)");
+    var kt = rowsByName["국고채수익률(3년)"]; if (kt) parts.push("국고 3년 " + num(kt.value, 3) + "%(" + dt(kt.cycle) + ")");
     var U = D.ust || {}, ur = U.rows || [];
-    if (ur.length > 1) { var i10 = (U.tenors || []).indexOf("10Y") + 1; if (i10 > 0) { var c = ur[ur.length - 1][i10], p = ur[ur.length - 2][i10]; parts.push("美 10년 " + num(c, 2) + "%(" + (c - p >= 0 ? "+" : "") + num((c - p) * 100, 0) + "bp)"); } }
+    if (ur.length > 1) { var i10 = (U.tenors || []).indexOf("10Y") + 1; if (i10 > 0) { var c = ur[ur.length - 1][i10], p = ur[ur.length - 2][i10]; parts.push("美 10년 " + num(c, 2) + "%(" + (c - p >= 0 ? "+" : "") + num((c - p) * 100, 0) + "bp, 미국 " + dt(ur[ur.length - 1][0]) + ")"); } }
     var SD = ((D.sectors && D.sectors.days) || []).slice().sort(function (a, b) { return a.date < b.date ? 1 : -1; })[0];
     if (SD && SD.date === kstDateStr() && (SD.up || []).length) parts.push("강세 업종 " + SD.up[0].name + ((SD.down || []).length ? " · 약세 " + SD.down[0].name : ""));
     if (!parts.length) return null;
-    var base = ks && ks.length ? fmtCycle(ks[ks.length - 1][0]) + " 종가 기준" : "최근 발표 기준";
-    return h("div", { class: "edition__auto" }, h("b", { text: "숫자로 보는 시장 · " + base + " (자동)" }), parts.join(" · "));
+    return h("div", { class: "edition__auto" }, h("b", { text: "숫자로 보는 시장 · 지표별 최근 발표값 (자동, 실시간 아님)" }), parts.join(" · "));
   }
   var NEWS = { data: D.news || { editions: [] }, mkt: "kr", ed: 0, open: null };
   try { var sm = localStorage.getItem("fd-news-mkt"); if (sm === "kr" || sm === "us") NEWS.mkt = sm; } catch (e) {}
@@ -721,7 +731,13 @@
       var sec = box.dataset.sec, title = box.dataset.title;
       box.innerHTML = "";
       box.appendChild(h("div", { class: "secnews__head" }, title ? h("h3", { class: "sub", text: title }) : null));
-      if (sec === "policy" && (D.policy && D.policy.items || []).length) {
+      var polAge = D.policy && D.policy.fetched_at ? (Date.now() - Date.parse(D.policy.fetched_at)) / 864e5 : 99;
+      if (sec === "policy" && polAge > 3) {
+        // 자동 수집이 3일 넘게 안 되면 오래된 목록 대신 바로가기만
+        box.appendChild(h("h3", { class: "sub sub--gap", text: "금융위원회 보도자료" }));
+        box.appendChild(h("p", { class: "fineprint" }, "최신 보도자료는 금융위원회 누리집에서 확인하세요 → ",
+          h("a", { href: "https://www.fsc.go.kr/no010101", target: "_blank", rel: "noopener", text: "금융위원회 보도자료" })));
+      } else if (sec === "policy" && (D.policy && D.policy.items || []).length) {
         box.appendChild(h("h3", { class: "sub sub--gap", text: "금융위원회 보도자료" }));
         box.appendChild(h("ul", { class: "press" }, D.policy.items.slice(0, 8).map(function (p) {
           return h("li", null, h("a", { href: p.url, target: "_blank", rel: "noopener", text: p.title }), h("small", { text: " " + (p.date || "").slice(5).replace("-", "/") }));
@@ -868,7 +884,7 @@
     function li(k, v) { ul.appendChild(h("li", null, h("b", { text: k + " " }), v)); }
     li("브리핑", "운영자가 직접 선별·작성 (원문 링크 제공)");
     li("국내 지표", market.fetched_at ? fmtStamp(market.fetched_at) + " 수집" + (market.snapshot ? " (초기 스냅샷)" : "") : "–");
-    li("정책 보도자료", D.policy && D.policy.fetched_at ? fmtStamp(D.policy.fetched_at) + " 수집 (금융위원회)" : "수집 대기");
+    li("정책 보도자료", D.policy && D.policy.fetched_at && (Date.now() - Date.parse(D.policy.fetched_at)) / 864e5 <= 3 ? fmtStamp(D.policy.fetched_at) + " 수집 (금융위원회)" : "자동 수집 점검 중 — 금융위원회 누리집 바로가기 제공");
     li("경제용어", ((D.terms && D.terms.terms) || []).length + "개 순환");
     li("일정", "주관 기관 공지 기준 (" + ((SCHED.updated) || "") + ")");
   })();
@@ -929,7 +945,7 @@
       var c = ur[ur.length - 1][i10], pv = ur[ur.length - 2][i10], d = Math.round((c - pv) * 1000) / 10;
       tiles.appendChild(tile("미국 10년물", num(c, 2) + "%", (d > 0 ? "+" : "") + num(d, 1) + "bp · " + ur[ur.length - 1][0].slice(5).replace("-", "/") + " 마감", d > 0 ? "" : ""));
     }
-    var fx = rowsByName["원/달러 환율(종가)"]; if (fx) tiles.appendChild(tile("원/달러 (전일 종가)", num(fx.value, 1) + "원", fmtCycle(fx.cycle)));
+    var fx = rowsByName["원/달러 환율(종가)"]; if (fx) tiles.appendChild(tile("원/달러 (한은 종가)", num(fx.value, 1) + "원", "한국은행 기준일 " + fmtCycle(fx.cycle)));
     var ks = (market.series || {}).KOSPI; if (ks && ks.length) tiles.appendChild(tile("코스피 (전일 종가)", num(ks[ks.length - 1][1], 2), fmtCycle(ks[ks.length - 1][0])));
   })();
 
