@@ -2,6 +2,1246 @@
  "editions": [
   {
    "date": "2026-11-07",
+   "slot": "pm",
+   "built_at": "2026-11-07T17:51:20+09:00",
+   "from": "2026-11-06T17:51+09:00",
+   "to": "2026-11-07T17:51+09:00",
+   "articles": 430,
+   "feeds": {
+    "hk_fin": 50,
+    "hk_eco": 50,
+    "hk_int": 50,
+    "hk_re": 50,
+    "hk_it": 50,
+    "mk_stock": 50,
+    "mk_eco": 50,
+    "yna_eco": 120,
+    "yna_mkt": 120,
+    "yna_int": "실패: not well-formed (invalid token): line 1031, column 80",
+    "yna_ind": 120,
+    "ed_all": 50,
+    "mt_all": "실패: <urlopen error timed out>",
+    "hk_all": 50,
+    "mk_all": 50,
+    "fn_stock": 8,
+    "fn_fin": 4,
+    "fn_eco": 2,
+    "fn_ind": 4,
+    "ae_stock": 100,
+    "ae_eco": 100,
+    "nis_eco": 100,
+    "nis_ind": 100,
+    "nis_bank": 100,
+    "cb_all": 100,
+    "et_all": 29,
+    "inf_all": 50,
+    "sed_stock": 50
+   },
+   "cfg": "0245ddd7ef",
+   "markets": {
+    "kr": [
+     {
+      "id": "realty",
+      "name": "건설·부동산",
+      "pos": 11,
+      "neg": 1,
+      "neu": 20,
+      "total": 32,
+      "articles": 35,
+      "events": 27,
+      "pos_pct": 92,
+      "neg_pct": 8,
+      "enough": true,
+      "keywords": [
+       "3년",
+       "신고",
+       "5억"
+      ],
+      "links": {
+       "pos": [
+        {
+         "s": "매일경제",
+         "u": "https://www.mk.co.kr/news/realestate/12201427",
+         "t": "11/07 11:01",
+         "w": [
+          "신고가"
+         ]
+        },
+        {
+         "s": "매일경제",
+         "u": "https://www.mk.co.kr/news/realestate/12201426",
+         "t": "11/07 11:01",
+         "w": [
+          "신고가"
+         ]
+        },
+        {
+         "s": "매일경제",
+         "u": "https://www.mk.co.kr/news/realestate/12201430",
+         "t": "11/07 11:01",
+         "w": [
+          "신고가"
+         ]
+        },
+        {
+         "s": "매일경제",
+         "u": "https://www.mk.co.kr/news/realestate/12201429",
+         "t": "11/07 11:01",
+         "w": [
+          "신고가"
+         ]
+        },
+        {
+         "s": "매일경제",
+         "u": "https://www.mk.co.kr/news/realestate/12201420",
+         "t": "11/07 11:00",
+         "w": [
+          "신고가"
+         ]
+        },
+        {
+         "s": "매일경제",
+         "u": "https://www.mk.co.kr/news/realestate/12201421",
+         "t": "11/07 11:00",
+         "w": [
+          "신고가"
+         ]
+        },
+        {
+         "s": "매일경제",
+         "u": "https://www.mk.co.kr/news/realestate/12201424",
+         "t": "11/07 11:00",
+         "w": [
+          "신고가"
+         ]
+        },
+        {
+         "s": "매일경제",
+         "u": "https://www.mk.co.kr/news/realestate/12201425",
+         "t": "11/07 11:00",
+         "w": [
+          "신고가"
+         ]
+        },
+        {
+         "s": "매일경제",
+         "u": "https://www.mk.co.kr/news/realestate/12201428",
+         "t": "11/07 11:01",
+         "w": [
+          "신고가"
+         ]
+        },
+        {
+         "s": "매일경제",
+         "u": "https://www.mk.co.kr/news/realestate/12201419",
+         "t": "11/07 11:00",
+         "w": [
+          "신고가"
+         ]
+        },
+        {
+         "s": "매일경제",
+         "u": "https://www.mk.co.kr/news/realestate/12201422",
+         "t": "11/07 11:00",
+         "w": [
+          "신고가"
+         ]
+        },
+        {
+         "s": "매일경제",
+         "u": "https://www.mk.co.kr/news/realestate/12201423",
+         "t": "11/07 11:00",
+         "w": [
+          "신고가"
+         ]
+        },
+        {
+         "s": "뉴시스",
+         "u": "https://www.newsis.com/view/NISX20261106_0003858446",
+         "t": "11/07 08:00",
+         "w": [
+          "상승"
+         ]
+        },
+        {
+         "s": "뉴시스",
+         "u": "https://www.newsis.com/view/NISX20261107_0003858718",
+         "t": "11/07 05:48",
+         "w": [
+          "성장"
+         ]
+        }
+       ],
+       "neg": [
+        {
+         "s": "뉴시스",
+         "u": "https://www.newsis.com/view/NISX20261104_0003855008",
+         "t": "11/07 00:00",
+         "w": [
+          "위기"
+         ]
+        }
+       ],
+       "neu": [
+        {
+         "s": "매일경제",
+         "u": "https://www.mk.co.kr/news/society/12201469",
+         "t": "11/07 15:40",
+         "w": [
+          "최대",
+          "충격"
+         ]
+        },
+        {
+         "s": "뉴시스",
+         "u": "https://www.newsis.com/view/NISX20261107_0003858725",
+         "t": "11/07 06:33",
+         "w": []
+        },
+        {
+         "s": "한국경제",
+         "u": "https://www.hankyung.com/article/202611060163i",
+         "t": "11/07 15:00",
+         "w": []
+        },
+        {
+         "s": "뉴시스",
+         "u": "https://www.newsis.com/view/NISX20261106_0003858334",
+         "t": "11/07 15:00",
+         "w": []
+        },
+        {
+         "s": "매일경제",
+         "u": "https://www.mk.co.kr/news/realestate/12201453",
+         "t": "11/07 14:33",
+         "w": []
+        },
+        {
+         "s": "매일경제",
+         "u": "https://www.mk.co.kr/news/realestate/12201448",
+         "t": "11/07 14:23",
+         "w": []
+        },
+        {
+         "s": "뉴시스",
+         "u": "https://www.newsis.com/view/NISX20261106_0003858038",
+         "t": "11/07 12:40",
+         "w": []
+        },
+        {
+         "s": "매일경제",
+         "u": "https://www.mk.co.kr/news/realestate/12201431",
+         "t": "11/07 11:04",
+         "w": [
+          "껑충",
+          "뚝"
+         ]
+        },
+        {
+         "s": "아시아경제",
+         "u": "https://view.asiae.co.kr/article/2026110710554077610",
+         "t": "11/07 10:55",
+         "w": []
+        },
+        {
+         "s": "전자신문",
+         "u": "https://www.etnews.com/20261107000012",
+         "t": "11/07 10:31",
+         "w": []
+        },
+        {
+         "s": "서울경제",
+         "u": "https://www.sedaily.com/article/20111386",
+         "t": "11/07 10:30",
+         "w": []
+        },
+        {
+         "s": "뉴시스",
+         "u": "https://www.newsis.com/view/NISX20261106_0003858391",
+         "t": "11/07 10:30",
+         "w": []
+        },
+        {
+         "s": "뉴시스",
+         "u": "https://www.newsis.com/view/NISX20261106_0003857422",
+         "t": "11/07 08:40",
+         "w": []
+        },
+        {
+         "s": "연합뉴스",
+         "u": "https://www.yna.co.kr/view/AKR20261106175000003",
+         "t": "11/07 06:00",
+         "w": []
+        },
+        {
+         "s": "뉴시스",
+         "u": "https://www.newsis.com/view/NISX20261106_0003857604",
+         "t": "11/07 06:00",
+         "w": [
+          "상승",
+          "하락"
+         ]
+        },
+        {
+         "s": "뉴시스",
+         "u": "https://www.newsis.com/view/NISX20261106_0003858002",
+         "t": "11/07 03:00",
+         "w": []
+        },
+        {
+         "s": "뉴시스",
+         "u": "https://www.newsis.com/view/NISX20261106_0003857345",
+         "t": "11/07 00:00",
+         "w": []
+        },
+        {
+         "s": "한국경제",
+         "u": "https://www.hankyung.com/article/2026110617271",
+         "t": "11/06 19:38",
+         "w": []
+        },
+        {
+         "s": "한국경제",
+         "u": "https://www.hankyung.com/article/2026110615591",
+         "t": "11/06 17:59",
+         "w": []
+        },
+        {
+         "s": "파이낸셜뉴스",
+         "u": "https://www.fnnews.com/news/202611061744327271",
+         "t": "11/06 17:57",
+         "w": []
+        }
+       ]
+      }
+     },
+     {
+      "id": "semi",
+      "name": "반도체",
+      "pos": 5,
+      "neg": 3,
+      "neu": 12,
+      "total": 20,
+      "articles": 20,
+      "events": 17,
+      "pos_pct": 62,
+      "neg_pct": 38,
+      "enough": true,
+      "keywords": [
+       "삼성전자",
+       "자사주",
+       "규모"
+      ],
+      "links": {
+       "pos": [
+        {
+         "s": "아시아경제",
+         "u": "https://view.asiae.co.kr/article/2026110709421783324",
+         "t": "11/07 09:42",
+         "w": [
+          "최대"
+         ]
+        },
+        {
+         "s": "연합뉴스",
+         "u": "https://www.yna.co.kr/view/AKR20261106129700061",
+         "t": "11/07 09:09",
+         "w": [
+          "최대"
+         ]
+        },
+        {
+         "s": "전자신문",
+         "u": "https://www.etnews.com/20261106000102",
+         "t": "11/07 09:00",
+         "w": [
+          "성장"
+         ]
+        },
+        {
+         "s": "전자신문",
+         "u": "https://www.etnews.com/20261106000364",
+         "t": "11/07 08:29",
+         "w": [
+          "개선"
+         ]
+        },
+        {
+         "s": "뉴시스",
+         "u": "https://www.newsis.com/view/NISX20261106_0003858446",
+         "t": "11/07 08:00",
+         "w": [
+          "상승"
+         ]
+        }
+       ],
+       "neg": [
+        {
+         "s": "뉴시스",
+         "u": "https://www.newsis.com/view/NISX20261106_0003858455",
+         "t": "11/07 16:00",
+         "w": [
+          "쇼크",
+          "규제",
+          "경고"
+         ]
+        },
+        {
+         "s": "매일경제",
+         "u": "https://www.mk.co.kr/news/business/12200478",
+         "t": "11/07 11:01",
+         "w": [
+          "둔화"
+         ]
+        },
+        {
+         "s": "뉴시스",
+         "u": "https://www.newsis.com/view/NISX20261106_0003858628",
+         "t": "11/06 20:05",
+         "w": [
+          "급락",
+          "하락"
+         ]
+        }
+       ],
+       "neu": [
+        {
+         "s": "한국경제",
+         "u": "https://www.hankyung.com/article/2026110722597",
+         "t": "11/07 16:22",
+         "w": []
+        },
+        {
+         "s": "아시아경제",
+         "u": "https://view.asiae.co.kr/article/2026110714573867999",
+         "t": "11/07 15:18",
+         "w": []
+        },
+        {
+         "s": "전자신문",
+         "u": "https://www.etnews.com/20261106000363",
+         "t": "11/06 22:04",
+         "w": []
+        },
+        {
+         "s": "매일경제",
+         "u": "https://www.mk.co.kr/news/business/12200736",
+         "t": "11/06 17:51",
+         "w": []
+        },
+        {
+         "s": "뉴시스",
+         "u": "https://www.newsis.com/view/NISX20261107_0003858823",
+         "t": "11/07 12:49",
+         "w": [
+          "반등",
+          "폭락"
+         ]
+        },
+        {
+         "s": "매일경제",
+         "u": "https://www.mk.co.kr/news/economy/12201384",
+         "t": "11/07 09:01",
+         "w": []
+        },
+        {
+         "s": "뉴시스",
+         "u": "https://www.newsis.com/view/NISX20261106_0003858266",
+         "t": "11/07 05:30",
+         "w": []
+        },
+        {
+         "s": "매일경제",
+         "u": "https://www.mk.co.kr/news/world/12200962",
+         "t": "11/06 21:44",
+         "w": []
+        },
+        {
+         "s": "연합뉴스",
+         "u": "https://www.yna.co.kr/view/AKR20261106175700008",
+         "t": "11/06 18:52",
+         "w": []
+        },
+        {
+         "s": "매일경제",
+         "u": "https://www.mk.co.kr/news/economy/12200768",
+         "t": "11/06 18:31",
+         "w": []
+        },
+        {
+         "s": "한국경제",
+         "u": "https://www.hankyung.com/article/2026110615591",
+         "t": "11/06 17:59",
+         "w": []
+        },
+        {
+         "s": "한국경제",
+         "u": "https://www.hankyung.com/article/2026110615841",
+         "t": "11/06 17:55",
+         "w": []
+        }
+       ]
+      }
+     },
+     {
+      "id": "fin",
+      "name": "금융",
+      "pos": 0,
+      "neg": 3,
+      "neu": 8,
+      "total": 11,
+      "articles": 11,
+      "events": 11,
+      "pos_pct": 0,
+      "neg_pct": 100,
+      "enough": false,
+      "keywords": [
+       "은행"
+      ],
+      "links": {
+       "pos": [],
+       "neg": [
+        {
+         "s": "연합뉴스",
+         "u": "https://www.yna.co.kr/view/AKR20261107039000083",
+         "t": "11/07 15:54",
+         "w": [
+          "급락"
+         ]
+        },
+        {
+         "s": "매일경제",
+         "u": "https://www.mk.co.kr/news/economy/12201462",
+         "t": "11/07 15:04",
+         "w": [
+          "비상"
+         ]
+        },
+        {
+         "s": "매일경제",
+         "u": "https://www.mk.co.kr/news/stock/12201388",
+         "t": "11/07 09:22",
+         "w": [
+          "해킹"
+         ]
+        }
+       ],
+       "neu": [
+        {
+         "s": "매일경제",
+         "u": "https://www.mk.co.kr/news/economy/12201490",
+         "t": "11/07 17:49",
+         "w": []
+        },
+        {
+         "s": "아시아경제",
+         "u": "https://view.asiae.co.kr/article/2026110711261496170",
+         "t": "11/07 11:34",
+         "w": []
+        },
+        {
+         "s": "뉴시스",
+         "u": "https://www.newsis.com/view/NISX20261106_0003858277",
+         "t": "11/07 10:00",
+         "w": []
+        },
+        {
+         "s": "매일경제",
+         "u": "https://www.mk.co.kr/news/economy/12201384",
+         "t": "11/07 09:01",
+         "w": []
+        },
+        {
+         "s": "아시아경제",
+         "u": "https://view.asiae.co.kr/article/2026110616430860561",
+         "t": "11/07 08:58",
+         "w": []
+        },
+        {
+         "s": "매일경제",
+         "u": "https://www.mk.co.kr/news/economy/12201283",
+         "t": "11/07 05:59",
+         "w": []
+        },
+        {
+         "s": "연합뉴스",
+         "u": "https://www.yna.co.kr/view/AKR20261106190300008",
+         "t": "11/06 22:46",
+         "w": [
+          "완화",
+          "하락"
+         ]
+        },
+        {
+         "s": "파이낸셜뉴스",
+         "u": "https://www.fnnews.com/news/202611061720448616",
+         "t": "11/06 17:57",
+         "w": []
+        }
+       ]
+      }
+     },
+     {
+      "id": "energy",
+      "name": "에너지·화학",
+      "pos": 1,
+      "neg": 1,
+      "neu": 8,
+      "total": 10,
+      "articles": 10,
+      "events": 8,
+      "pos_pct": 50,
+      "neg_pct": 50,
+      "enough": false,
+      "keywords": [
+       "원전",
+       "데이터센터",
+       "커져"
+      ],
+      "links": {
+       "pos": [
+        {
+         "s": "전자신문",
+         "u": "https://www.etnews.com/20261106000102",
+         "t": "11/07 09:00",
+         "w": [
+          "성장"
+         ]
+        }
+       ],
+       "neg": [
+        {
+         "s": "아시아경제",
+         "u": "https://view.asiae.co.kr/article/2026110514195299567",
+         "t": "11/06 19:11",
+         "w": [
+          "하향"
+         ]
+        }
+       ],
+       "neu": [
+        {
+         "s": "전자신문",
+         "u": "https://www.etnews.com/20261107000009",
+         "t": "11/07 09:41",
+         "w": []
+        },
+        {
+         "s": "매일경제",
+         "u": "https://www.mk.co.kr/news/economy/12201386",
+         "t": "11/07 09:13",
+         "w": []
+        },
+        {
+         "s": "파이낸셜뉴스",
+         "u": "https://www.fnnews.com/news/202611070833380468",
+         "t": "11/07 08:40",
+         "w": []
+        },
+        {
+         "s": "연합뉴스",
+         "u": "https://www.yna.co.kr/view/AKR20261106181900003",
+         "t": "11/07 06:15",
+         "w": []
+        },
+        {
+         "s": "아시아경제",
+         "u": "https://view.asiae.co.kr/article/2026110516403252399",
+         "t": "11/07 07:14",
+         "w": []
+        },
+        {
+         "s": "뉴시스",
+         "u": "https://www.newsis.com/view/NISX20261107_0003858722",
+         "t": "11/07 06:23",
+         "w": [
+          "유가 하락",
+          "유가 상승"
+         ]
+        },
+        {
+         "s": "아시아경제",
+         "u": "https://view.asiae.co.kr/article/2026110515311346554",
+         "t": "11/06 19:11",
+         "w": []
+        },
+        {
+         "s": "뉴시스",
+         "u": "https://www.newsis.com/view/NISX20261106_0003858497",
+         "t": "11/06 18:06",
+         "w": []
+        }
+       ]
+      }
+     },
+     {
+      "id": "consumer",
+      "name": "유통·소비",
+      "pos": 3,
+      "neg": 1,
+      "neu": 6,
+      "total": 10,
+      "articles": 10,
+      "events": 10,
+      "pos_pct": 75,
+      "neg_pct": 25,
+      "enough": false,
+      "keywords": [
+       "강화",
+       "농식품부",
+       "화장품"
+      ],
+      "links": {
+       "pos": [
+        {
+         "s": "연합뉴스",
+         "u": "https://www.yna.co.kr/view/AKR20261106142200030",
+         "t": "11/07 13:00",
+         "w": [
+          "확대"
+         ]
+        },
+        {
+         "s": "연합뉴스",
+         "u": "https://www.yna.co.kr/view/AKR20261106030800051",
+         "t": "11/07 08:30",
+         "w": [
+          "증가"
+         ]
+        },
+        {
+         "s": "아시아경제",
+         "u": "https://view.asiae.co.kr/article/2026110515360582534",
+         "t": "11/06 19:15",
+         "w": [
+          "회복"
+         ]
+        }
+       ],
+       "neg": [
+        {
+         "s": "연합뉴스",
+         "u": "https://www.yna.co.kr/view/AKR20261106171100030",
+         "t": "11/06 18:07",
+         "w": [
+          "규제"
+         ]
+        }
+       ],
+       "neu": [
+        {
+         "s": "한국경제",
+         "u": "https://www.hankyung.com/article/202611060905i",
+         "t": "11/07 17:00",
+         "w": []
+        },
+        {
+         "s": "조선비즈",
+         "u": "https://biz.chosun.com/entertainment/enter_general/2026/11/07/MIZDCN3DGI2WKMBQGM2WCMJTGU/",
+         "t": "11/07 16:58",
+         "w": []
+        },
+        {
+         "s": "매일경제",
+         "u": "https://www.mk.co.kr/news/culture/12201472",
+         "t": "11/07 15:54",
+         "w": []
+        },
+        {
+         "s": "연합뉴스",
+         "u": "https://www.yna.co.kr/view/AKR20261106092900030",
+         "t": "11/07 07:00",
+         "w": []
+        },
+        {
+         "s": "뉴시스",
+         "u": "https://www.newsis.com/view/NISX20261106_0003857915",
+         "t": "11/07 06:00",
+         "w": []
+        },
+        {
+         "s": "연합뉴스",
+         "u": "https://www.yna.co.kr/view/AKR20261107003600542",
+         "t": "11/07 03:00",
+         "w": []
+        }
+       ]
+      }
+     },
+     {
+      "id": "bio",
+      "name": "바이오·제약",
+      "pos": 1,
+      "neg": 1,
+      "neu": 3,
+      "total": 5,
+      "articles": 5,
+      "events": 5,
+      "pos_pct": 50,
+      "neg_pct": 50,
+      "enough": false,
+      "keywords": [
+       "경쟁"
+      ],
+      "links": {
+       "pos": [
+        {
+         "s": "파이낸셜뉴스",
+         "u": "https://www.fnnews.com/news/202611051759368453",
+         "t": "11/06 17:51",
+         "w": [
+          "최고"
+         ]
+        }
+       ],
+       "neg": [
+        {
+         "s": "연합뉴스",
+         "u": "https://www.yna.co.kr/view/AKR20261106161400017",
+         "t": "11/07 10:00",
+         "w": [
+          "감소"
+         ]
+        }
+       ],
+       "neu": [
+        {
+         "s": "뉴시스",
+         "u": "https://www.newsis.com/view/NISX20261105_0003856092",
+         "t": "11/07 12:01",
+         "w": []
+        },
+        {
+         "s": "뉴시스",
+         "u": "https://www.newsis.com/view/NISX20261106_0003858432",
+         "t": "11/07 11:01",
+         "w": []
+        },
+        {
+         "s": "뉴시스",
+         "u": "https://www.newsis.com/view/NISX20261106_0003858533",
+         "t": "11/06 17:58",
+         "w": []
+        }
+       ]
+      }
+     },
+     {
+      "id": "platform",
+      "name": "인터넷·게임",
+      "pos": 0,
+      "neg": 1,
+      "neu": 4,
+      "total": 5,
+      "articles": 5,
+      "events": 4,
+      "pos_pct": 0,
+      "neg_pct": 100,
+      "enough": false,
+      "keywords": [
+       "아파트너",
+       "아파트",
+       "유출"
+      ],
+      "links": {
+       "pos": [],
+       "neg": [
+        {
+         "s": "연합뉴스",
+         "u": "https://www.yna.co.kr/view/AKR20261106189500017",
+         "t": "11/07 07:15",
+         "w": [
+          "뚝"
+         ]
+        }
+       ],
+       "neu": [
+        {
+         "s": "연합뉴스",
+         "u": "https://www.yna.co.kr/view/AKR20261106187200017",
+         "t": "11/07 11:00",
+         "w": []
+        },
+        {
+         "s": "전자신문",
+         "u": "https://www.etnews.com/20261107000012",
+         "t": "11/07 10:31",
+         "w": []
+        },
+        {
+         "s": "뉴시스",
+         "u": "https://www.newsis.com/view/NISX20261107_0003858725",
+         "t": "11/07 06:33",
+         "w": []
+        },
+        {
+         "s": "뉴시스",
+         "u": "https://www.newsis.com/view/NISX20261106_0003858395",
+         "t": "11/07 07:00",
+         "w": []
+        }
+       ]
+      }
+     },
+     {
+      "id": "auto",
+      "name": "자동차",
+      "pos": 0,
+      "neg": 0,
+      "neu": 3,
+      "total": 3,
+      "articles": 3,
+      "events": 3,
+      "pos_pct": null,
+      "neg_pct": null,
+      "enough": false,
+      "keywords": [],
+      "links": {
+       "pos": [],
+       "neg": [],
+       "neu": [
+        {
+         "s": "연합뉴스",
+         "u": "https://www.yna.co.kr/view/AKR20261106179800003",
+         "t": "11/07 07:11",
+         "w": []
+        },
+        {
+         "s": "아시아경제",
+         "u": "https://view.asiae.co.kr/article/2026110516151055280",
+         "t": "11/07 06:47",
+         "w": []
+        },
+        {
+         "s": "한국경제",
+         "u": "https://www.hankyung.com/article/2026110617211",
+         "t": "11/06 19:48",
+         "w": []
+        }
+       ]
+      }
+     },
+     {
+      "id": "ship",
+      "name": "조선·방산",
+      "pos": 0,
+      "neg": 0,
+      "neu": 2,
+      "total": 2,
+      "articles": 2,
+      "events": 2,
+      "pos_pct": null,
+      "neg_pct": null,
+      "enough": false,
+      "keywords": [],
+      "links": {
+       "pos": [],
+       "neg": [],
+       "neu": [
+        {
+         "s": "뉴시스",
+         "u": "https://www.newsis.com/view/NISX20261106_0003858232",
+         "t": "11/07 08:30",
+         "w": []
+        },
+        {
+         "s": "연합뉴스",
+         "u": "https://www.yna.co.kr/view/AKR20261106180300052",
+         "t": "11/06 19:12",
+         "w": []
+        }
+       ]
+      }
+     },
+     {
+      "id": "battery",
+      "name": "2차전지",
+      "pos": 0,
+      "neg": 0,
+      "neu": 1,
+      "total": 1,
+      "articles": 1,
+      "events": 1,
+      "pos_pct": null,
+      "neg_pct": null,
+      "enough": false,
+      "keywords": [],
+      "links": {
+       "pos": [],
+       "neg": [],
+       "neu": [
+        {
+         "s": "매일경제",
+         "u": "https://www.mk.co.kr/news/economy/12201384",
+         "t": "11/07 09:01",
+         "w": []
+        }
+       ]
+      }
+     }
+    ],
+    "us": [
+     {
+      "id": "market",
+      "name": "미국 증시 전반",
+      "pos": 4,
+      "neg": 3,
+      "neu": 2,
+      "total": 9,
+      "articles": 9,
+      "events": 7,
+      "pos_pct": 57,
+      "neg_pct": 43,
+      "enough": true,
+      "keywords": [
+       "나스닥",
+       "AI",
+       "기술주"
+      ],
+      "links": {
+       "pos": [
+        {
+         "s": "한국경제",
+         "u": "https://www.hankyung.com/article/2026110719317",
+         "t": "11/07 07:25",
+         "w": [
+          "반등",
+          "상승"
+         ]
+        },
+        {
+         "s": "뉴시스",
+         "u": "https://www.newsis.com/view/NISX20261106_0003858701",
+         "t": "11/06 23:42",
+         "w": [
+          "반등",
+          "상승"
+         ]
+        },
+        {
+         "s": "한국경제",
+         "u": "https://www.hankyung.com/article/202611071857i",
+         "t": "11/07 04:53",
+         "w": [
+          "반등",
+          "랠리"
+         ]
+        },
+        {
+         "s": "연합뉴스",
+         "u": "https://www.yna.co.kr/view/AKR20261106193000009",
+         "t": "11/06 23:50",
+         "w": [
+          "반등"
+         ]
+        }
+       ],
+       "neg": [
+        {
+         "s": "매일경제",
+         "u": "https://www.mk.co.kr/news/stock/12201467",
+         "t": "11/07 15:36",
+         "w": [
+          "급락",
+          "철수"
+         ]
+        },
+        {
+         "s": "뉴시스",
+         "u": "https://www.newsis.com/view/NISX20261106_0003858700",
+         "t": "11/06 23:32",
+         "w": [
+          "폭락",
+          "하락"
+         ]
+        },
+        {
+         "s": "뉴시스",
+         "u": "https://www.newsis.com/view/NISX20261106_0003858191",
+         "t": "11/07 06:00",
+         "w": [
+          "쇼크",
+          "우려",
+          "규제"
+         ]
+        }
+       ],
+       "neu": [
+        {
+         "s": "뉴시스",
+         "u": "https://www.newsis.com/view/NISX20261107_0003858720",
+         "t": "11/07 06:13",
+         "w": [
+          "반등",
+          "폭락"
+         ]
+        },
+        {
+         "s": "아시아경제",
+         "u": "https://view.asiae.co.kr/article/2026110516141936873",
+         "t": "11/06 19:49",
+         "w": [
+          "호재",
+          "악재"
+         ]
+        }
+       ]
+      }
+     },
+     {
+      "id": "ev",
+      "name": "전기차",
+      "pos": 0,
+      "neg": 1,
+      "neu": 5,
+      "total": 6,
+      "articles": 6,
+      "events": 3,
+      "pos_pct": 0,
+      "neg_pct": 100,
+      "enough": false,
+      "keywords": [
+       "테슬라",
+       "사이버트럭",
+       "올리더니"
+      ],
+      "links": {
+       "pos": [],
+       "neg": [
+        {
+         "s": "파이낸셜뉴스",
+         "u": "https://www.fnnews.com/news/202611062109284628",
+         "t": "11/06 21:13",
+         "w": [
+          "급감"
+         ]
+        }
+       ],
+       "neu": [
+        {
+         "s": "한국경제",
+         "u": "https://www.hankyung.com/article/2026110720487",
+         "t": "11/07 09:43",
+         "w": []
+        },
+        {
+         "s": "전자신문",
+         "u": "https://www.etnews.com/20261107000006",
+         "t": "11/07 08:16",
+         "w": []
+        },
+        {
+         "s": "뉴시스",
+         "u": "https://www.newsis.com/view/NISX20261106_0003858690",
+         "t": "11/06 23:21",
+         "w": []
+        },
+        {
+         "s": "전자신문",
+         "u": "https://www.etnews.com/20261106000362",
+         "t": "11/06 21:51",
+         "w": []
+        },
+        {
+         "s": "한국경제",
+         "u": "https://www.hankyung.com/article/202611061772i",
+         "t": "11/06 20:51",
+         "w": []
+        }
+       ]
+      }
+     },
+     {
+      "id": "bigtech",
+      "name": "빅테크",
+      "pos": 0,
+      "neg": 0,
+      "neu": 2,
+      "total": 2,
+      "articles": 2,
+      "events": 2,
+      "pos_pct": null,
+      "neg_pct": null,
+      "enough": false,
+      "keywords": [],
+      "links": {
+       "pos": [],
+       "neg": [],
+       "neu": [
+        {
+         "s": "뉴시스",
+         "u": "https://www.newsis.com/view/NISX20261107_0003858712",
+         "t": "11/07 03:22",
+         "w": []
+        },
+        {
+         "s": "뉴시스",
+         "u": "https://www.newsis.com/view/NISX20261107_0003858708",
+         "t": "11/07 01:27",
+         "w": []
+        }
+       ]
+      }
+     },
+     {
+      "id": "semi",
+      "name": "반도체",
+      "pos": 0,
+      "neg": 0,
+      "neu": 1,
+      "total": 1,
+      "articles": 1,
+      "events": 1,
+      "pos_pct": null,
+      "neg_pct": null,
+      "enough": false,
+      "keywords": [],
+      "links": {
+       "pos": [],
+       "neg": [],
+       "neu": [
+        {
+         "s": "한국경제",
+         "u": "https://www.hankyung.com/article/202611071864i",
+         "t": "11/07 03:03",
+         "w": []
+        }
+       ]
+      }
+     },
+     {
+      "id": "energy",
+      "name": "에너지",
+      "pos": 0,
+      "neg": 1,
+      "neu": 0,
+      "total": 1,
+      "articles": 1,
+      "events": 1,
+      "pos_pct": 0,
+      "neg_pct": 100,
+      "enough": false,
+      "keywords": [],
+      "links": {
+       "pos": [],
+       "neg": [
+        {
+         "s": "아시아경제",
+         "u": "https://view.asiae.co.kr/article/2026110514195299567",
+         "t": "11/06 19:11",
+         "w": [
+          "하향"
+         ]
+        }
+       ],
+       "neu": []
+      }
+     }
+    ]
+   }
+  },
+  {
+   "date": "2026-11-07",
    "slot": "am",
    "built_at": "2026-11-07T10:49:31+09:00",
    "from": "2026-11-06T10:49+09:00",
@@ -14993,3230 +16233,6 @@
      }
     ]
    }
-  },
-  {
-   "date": "2026-11-03",
-   "slot": "pm",
-   "built_at": "2026-11-03T18:37:42+09:00",
-   "from": "2026-11-02T18:37+09:00",
-   "to": "2026-11-03T18:37+09:00",
-   "articles": 1414,
-   "feeds": {
-    "hk_fin": 50,
-    "hk_eco": 50,
-    "hk_int": 50,
-    "hk_re": 50,
-    "hk_it": 50,
-    "mk_stock": 50,
-    "mk_eco": 50,
-    "yna_eco": 120,
-    "yna_mkt": 120,
-    "yna_int": 120,
-    "yna_ind": 120,
-    "ed_all": 50,
-    "mt_all": 100,
-    "hk_all": 50,
-    "mk_all": 50,
-    "fn_stock": 49,
-    "fn_fin": 23,
-    "fn_eco": 41,
-    "fn_ind": 70,
-    "ae_stock": 100,
-    "ae_eco": 100,
-    "nis_eco": 100,
-    "nis_ind": 100,
-    "nis_bank": 100,
-    "cb_all": 100,
-    "et_all": 30,
-    "inf_all": 50,
-    "sed_stock": 50
-   },
-   "cfg": "0245ddd7ef",
-   "markets": {
-    "kr": [
-     {
-      "id": "fin",
-      "name": "금융",
-      "pos": 9,
-      "neg": 6,
-      "neu": 52,
-      "total": 67,
-      "articles": 69,
-      "events": 52,
-      "pos_pct": 60,
-      "neg_pct": 40,
-      "enough": true,
-      "keywords": [
-       "지원",
-       "강화",
-       "우리은행"
-      ],
-      "links": {
-       "pos": [
-        {
-         "s": "파이낸셜뉴스",
-         "u": "https://www.fnnews.com/news/202611030647532414",
-         "t": "11/03 06:54",
-         "w": [
-          "개선"
-         ]
-        },
-        {
-         "s": "파이낸셜뉴스",
-         "u": "https://www.fnnews.com/news/202611031811291690",
-         "t": "11/03 18:11",
-         "w": [
-          "확대"
-         ]
-        },
-        {
-         "s": "한국경제",
-         "u": "https://www.hankyung.com/article/202611033316i",
-         "t": "11/03 16:59",
-         "w": [
-          "상승",
-          "수주"
-         ]
-        },
-        {
-         "s": "한국경제",
-         "u": "https://www.hankyung.com/article/202611032974i",
-         "t": "11/03 16:35",
-         "w": [
-          "확대"
-         ]
-        },
-        {
-         "s": "한국경제",
-         "u": "https://www.hankyung.com/article/2026110320951",
-         "t": "11/03 15:58",
-         "w": [
-          "최대"
-         ]
-        },
-        {
-         "s": "파이낸셜뉴스",
-         "u": "https://www.fnnews.com/news/202611021918579863",
-         "t": "11/03 14:30",
-         "w": [
-          "확대"
-         ]
-        },
-        {
-         "s": "매일경제",
-         "u": "https://www.mk.co.kr/news/stock/12194342",
-         "t": "11/03 09:00",
-         "w": [
-          "신고가"
-         ]
-        },
-        {
-         "s": "아시아경제",
-         "u": "https://view.asiae.co.kr/article/2026110218214252748",
-         "t": "11/03 07:00",
-         "w": [
-          "상승",
-          "기대감"
-         ]
-        },
-        {
-         "s": "뉴시스",
-         "u": "https://www.newsis.com/view/NISX20261102_0003851153",
-         "t": "11/03 06:01",
-         "w": [
-          "확대"
-         ]
-        }
-       ],
-       "neg": [
-        {
-         "s": "매일경제",
-         "u": "https://www.mk.co.kr/news/economy/12195147",
-         "t": "11/03 17:46",
-         "w": [
-          "경고"
-         ]
-        },
-        {
-         "s": "서울경제",
-         "u": "https://www.sedaily.com/article/20109683",
-         "t": "11/03 15:51",
-         "w": [
-          "경고"
-         ]
-        },
-        {
-         "s": "매일경제",
-         "u": "https://www.mk.co.kr/news/economy/12195109",
-         "t": "11/03 17:42",
-         "w": [
-          "적자"
-         ]
-        },
-        {
-         "s": "한국경제",
-         "u": "https://www.hankyung.com/article/2026110334947",
-         "t": "11/03 17:16",
-         "w": [
-          "급락"
-         ]
-        },
-        {
-         "s": "파이낸셜뉴스",
-         "u": "https://www.fnnews.com/news/202611031508238864",
-         "t": "11/03 15:36",
-         "w": [
-          "해킹"
-         ]
-        },
-        {
-         "s": "뉴시스",
-         "u": "https://www.newsis.com/view/NISX20261103_0003852842",
-         "t": "11/03 14:27",
-         "w": [
-          "해킹",
-          "과징금"
-         ]
-        }
-       ],
-       "neu": [
-        {
-         "s": "파이낸셜뉴스",
-         "u": "https://www.fnnews.com/news/202611031831140437",
-         "t": "11/03 18:31",
-         "w": []
-        },
-        {
-         "s": "한국경제",
-         "u": "https://www.hankyung.com/article/2026110337511",
-         "t": "11/03 18:25",
-         "w": []
-        },
-        {
-         "s": "파이낸셜뉴스",
-         "u": "https://www.fnnews.com/news/202611031313493844",
-         "t": "11/03 14:04",
-         "w": []
-        },
-        {
-         "s": "뉴시스",
-         "u": "https://www.newsis.com/view/NISX20261103_0003852534",
-         "t": "11/03 11:09",
-         "w": []
-        },
-        {
-         "s": "파이낸셜뉴스",
-         "u": "https://www.fnnews.com/news/202611031826286794",
-         "t": "11/03 18:26",
-         "w": []
-        },
-        {
-         "s": "파이낸셜뉴스",
-         "u": "https://www.fnnews.com/news/202611022219501032",
-         "t": "11/02 22:23",
-         "w": []
-        },
-        {
-         "s": "아시아경제",
-         "u": "https://view.asiae.co.kr/article/2026110221451569991",
-         "t": "11/02 21:45",
-         "w": []
-        },
-        {
-         "s": "파이낸셜뉴스",
-         "u": "https://www.fnnews.com/news/202611031826257647",
-         "t": "11/03 18:26",
-         "w": []
-        },
-        {
-         "s": "파이낸셜뉴스",
-         "u": "https://www.fnnews.com/news/202611031826163795",
-         "t": "11/03 18:26",
-         "w": []
-        },
-        {
-         "s": "파이낸셜뉴스",
-         "u": "https://www.fnnews.com/news/202611031811166797",
-         "t": "11/03 18:11",
-         "w": []
-        },
-        {
-         "s": "매일경제",
-         "u": "https://www.mk.co.kr/news/economy/12195151",
-         "t": "11/03 17:46",
-         "w": []
-        },
-        {
-         "s": "뉴시스",
-         "u": "https://www.newsis.com/view/NISX20261103_0003853405",
-         "t": "11/03 17:46",
-         "w": []
-        },
-        {
-         "s": "매일경제",
-         "u": "https://www.mk.co.kr/news/economy/12195108",
-         "t": "11/03 17:42",
-         "w": []
-        },
-        {
-         "s": "한국경제",
-         "u": "https://www.hankyung.com/article/2026110336201",
-         "t": "11/03 17:35",
-         "w": []
-        },
-        {
-         "s": "한국경제",
-         "u": "https://www.hankyung.com/article/2026110336211",
-         "t": "11/03 17:33",
-         "w": []
-        },
-        {
-         "s": "한국경제",
-         "u": "https://www.hankyung.com/article/2026110336241",
-         "t": "11/03 17:32",
-         "w": []
-        },
-        {
-         "s": "매일경제",
-         "u": "https://www.mk.co.kr/news/economy/12194468",
-         "t": "11/03 10:57",
-         "w": []
-        },
-        {
-         "s": "아시아경제",
-         "u": "https://view.asiae.co.kr/article/2026110309360225778",
-         "t": "11/03 09:36",
-         "w": []
-        },
-        {
-         "s": "매일경제",
-         "u": "https://www.mk.co.kr/news/stock/12194925",
-         "t": "11/03 16:15",
-         "w": []
-        },
-        {
-         "s": "뉴시스",
-         "u": "https://www.newsis.com/view/NISX20261103_0003852822",
-         "t": "11/03 14:27",
-         "w": []
-        },
-        {
-         "s": "아시아경제",
-         "u": "https://view.asiae.co.kr/article/2026110313575066387",
-         "t": "11/03 13:57",
-         "w": []
-        },
-        {
-         "s": "한국경제",
-         "u": "https://www.hankyung.com/article/2026110320561",
-         "t": "11/03 16:14",
-         "w": []
-        },
-        {
-         "s": "한국경제",
-         "u": "https://www.hankyung.com/article/2026110320621",
-         "t": "11/03 16:14",
-         "w": []
-        },
-        {
-         "s": "한국경제",
-         "u": "https://www.hankyung.com/article/2026110320601",
-         "t": "11/03 16:14",
-         "w": []
-        },
-        {
-         "s": "한국경제",
-         "u": "https://www.hankyung.com/article/2026110320641",
-         "t": "11/03 16:14",
-         "w": []
-        },
-        {
-         "s": "뉴시스",
-         "u": "https://www.newsis.com/view/NISX20261103_0003853124",
-         "t": "11/03 16:08",
-         "w": []
-        },
-        {
-         "s": "아시아경제",
-         "u": "https://view.asiae.co.kr/article/2026110310280674377",
-         "t": "11/03 10:28",
-         "w": []
-        },
-        {
-         "s": "한국경제",
-         "u": "https://www.hankyung.com/article/2026110322776",
-         "t": "11/03 10:22",
-         "w": []
-        },
-        {
-         "s": "한국경제",
-         "u": "https://www.hankyung.com/article/2026110320851",
-         "t": "11/03 16:08",
-         "w": []
-        },
-        {
-         "s": "한국경제",
-         "u": "https://www.hankyung.com/article/202611033262i",
-         "t": "11/03 16:03",
-         "w": []
-        }
-       ]
-      }
-     },
-     {
-      "id": "realty",
-      "name": "건설·부동산",
-      "pos": 9,
-      "neg": 6,
-      "neu": 42,
-      "total": 57,
-      "articles": 59,
-      "events": 48,
-      "pos_pct": 60,
-      "neg_pct": 40,
-      "enough": true,
-      "keywords": [
-       "집값",
-       "아파트",
-       "대통령"
-      ],
-      "links": {
-       "pos": [
-        {
-         "s": "한국경제",
-         "u": "https://www.hankyung.com/article/2026110335881",
-         "t": "11/03 17:24",
-         "w": [
-          "수주"
-         ]
-        },
-        {
-         "s": "한국경제",
-         "u": "https://www.hankyung.com/article/2026110318816",
-         "t": "11/03 10:16",
-         "w": [
-          "수주",
-          "돌파",
-          "역대 최대"
-         ]
-        },
-        {
-         "s": "한국경제",
-         "u": "https://www.hankyung.com/article/202611032134i",
-         "t": "11/03 10:04",
-         "w": [
-          "수주",
-          "돌파"
-         ]
-        },
-        {
-         "s": "뉴시스",
-         "u": "https://www.newsis.com/view/NISX20261103_0003852107",
-         "t": "11/03 09:04",
-         "w": [
-          "수주",
-          "돌파"
-         ]
-        },
-        {
-         "s": "연합뉴스",
-         "u": "https://www.yna.co.kr/view/AKR20261103081100003",
-         "t": "11/03 13:18",
-         "w": [
-          "완화",
-          "확대"
-         ]
-        },
-        {
-         "s": "한국경제",
-         "u": "https://www.hankyung.com/article/202611032579i",
-         "t": "11/03 11:39",
-         "w": [
-          "상승"
-         ]
-        },
-        {
-         "s": "한국경제",
-         "u": "https://www.hankyung.com/article/2026110317026",
-         "t": "11/03 09:01",
-         "w": [
-          "상승",
-          "껑충"
-         ]
-        },
-        {
-         "s": "연합뉴스",
-         "u": "https://www.yna.co.kr/view/AKR20261103092400054",
-         "t": "11/03 11:37",
-         "w": [
-          "수주"
-         ]
-        },
-        {
-         "s": "연합뉴스",
-         "u": "https://www.yna.co.kr/view/AKR20261103060400061",
-         "t": "11/03 10:05",
-         "w": [
-          "최대"
-         ]
-        },
-        {
-         "s": "한국경제",
-         "u": "https://www.hankyung.com/article/2026110317716",
-         "t": "11/03 08:39",
-         "w": [
-          "수혜"
-         ]
-        }
-       ],
-       "neg": [
-        {
-         "s": "뉴시스",
-         "u": "https://www.newsis.com/view/NISX20261103_0003853357",
-         "t": "11/03 18:10",
-         "w": [
-          "결렬"
-         ]
-        },
-        {
-         "s": "한국경제",
-         "u": "https://www.hankyung.com/article/2026110337011",
-         "t": "11/03 17:56",
-         "w": [
-          "하락"
-         ]
-        },
-        {
-         "s": "연합뉴스",
-         "u": "https://www.yna.co.kr/view/AKR20261103073400001",
-         "t": "11/03 10:51",
-         "w": [
-          "하락"
-         ]
-        },
-        {
-         "s": "한국경제",
-         "u": "https://www.hankyung.com/article/2026110336281",
-         "t": "11/03 17:29",
-         "w": [
-          "위기"
-         ]
-        },
-        {
-         "s": "연합뉴스",
-         "u": "https://www.yna.co.kr/view/AKR20261103156500004",
-         "t": "11/03 16:58",
-         "w": [
-          "폭락"
-         ]
-        },
-        {
-         "s": "한국경제",
-         "u": "https://www.hankyung.com/article/202611033361i",
-         "t": "11/03 16:48",
-         "w": [
-          "폭락"
-         ]
-        }
-       ],
-       "neu": [
-        {
-         "s": "매일경제",
-         "u": "https://www.mk.co.kr/news/society/12195176",
-         "t": "11/03 18:18",
-         "w": []
-        },
-        {
-         "s": "한국경제",
-         "u": "https://www.hankyung.com/article/2026110337391",
-         "t": "11/03 18:00",
-         "w": []
-        },
-        {
-         "s": "한국경제",
-         "u": "https://www.hankyung.com/article/2026110337101",
-         "t": "11/03 17:57",
-         "w": []
-        },
-        {
-         "s": "머니투데이",
-         "u": "https://www.mt.co.kr/industry/2026/11/03/2026110311582219936",
-         "t": "11/03 17:57",
-         "w": []
-        },
-        {
-         "s": "한국경제",
-         "u": "https://www.hankyung.com/article/202611032747H",
-         "t": "11/03 16:00",
-         "w": []
-        },
-        {
-         "s": "조선비즈",
-         "u": "https://biz.chosun.com/policy/politics/president_office/2026/11/03/ZV7N7CZFIZHFDDZQ73QPCE645A/",
-         "t": "11/03 10:46",
-         "w": []
-        },
-        {
-         "s": "뉴시스",
-         "u": "https://www.newsis.com/view/NISX20261103_0003853399",
-         "t": "11/03 17:43",
-         "w": []
-        },
-        {
-         "s": "머니투데이",
-         "u": "https://www.mt.co.kr/estate/2026/11/03/2026110315153571974",
-         "t": "11/03 17:41",
-         "w": [
-          "상승",
-          "하락"
-         ]
-        },
-        {
-         "s": "연합뉴스",
-         "u": "https://www.yna.co.kr/view/AKR20261103162400001",
-         "t": "11/03 17:41",
-         "w": []
-        },
-        {
-         "s": "머니투데이",
-         "u": "https://www.mt.co.kr/politics/2026/11/03/2026110316431926124",
-         "t": "11/03 17:00",
-         "w": []
-        },
-        {
-         "s": "조선비즈",
-         "u": "https://biz.chosun.com/topics/topics_social/2026/11/03/QUC7DKVK3VGUFAYNWNYJRWSZWE/",
-         "t": "11/03 17:33",
-         "w": []
-        },
-        {
-         "s": "한국경제",
-         "u": "https://www.hankyung.com/article/2026110336381",
-         "t": "11/03 17:32",
-         "w": []
-        },
-        {
-         "s": "뉴시스",
-         "u": "https://www.newsis.com/view/NISX20261103_0003853211",
-         "t": "11/03 17:27",
-         "w": []
-        },
-        {
-         "s": "한국경제",
-         "u": "https://www.hankyung.com/article/2026110335901",
-         "t": "11/03 17:25",
-         "w": []
-        },
-        {
-         "s": "한국경제",
-         "u": "https://www.hankyung.com/article/2026110335871",
-         "t": "11/03 17:25",
-         "w": []
-        },
-        {
-         "s": "한국경제",
-         "u": "https://www.hankyung.com/article/2026110335911",
-         "t": "11/03 17:24",
-         "w": []
-        },
-        {
-         "s": "뉴시스",
-         "u": "https://www.newsis.com/view/NISX20261103_0003852275",
-         "t": "11/03 09:51",
-         "w": []
-        },
-        {
-         "s": "연합뉴스",
-         "u": "https://www.yna.co.kr/view/AKR20261103145600061",
-         "t": "11/03 16:36",
-         "w": []
-        },
-        {
-         "s": "뉴시스",
-         "u": "https://www.newsis.com/view/NISX20261103_0003853220",
-         "t": "11/03 16:34",
-         "w": []
-        },
-        {
-         "s": "뉴시스",
-         "u": "https://www.newsis.com/view/NISX20261103_0003853176",
-         "t": "11/03 16:22",
-         "w": []
-        },
-        {
-         "s": "파이낸셜뉴스",
-         "u": "https://www.fnnews.com/news/202611031445114406",
-         "t": "11/03 16:01",
-         "w": []
-        },
-        {
-         "s": "한국경제",
-         "u": "https://www.hankyung.com/article/202611033200i",
-         "t": "11/03 16:00",
-         "w": []
-        },
-        {
-         "s": "연합뉴스",
-         "u": "https://www.yna.co.kr/view/AKR20261103133700057",
-         "t": "11/03 15:44",
-         "w": []
-        },
-        {
-         "s": "서울경제",
-         "u": "https://www.sedaily.com/article/20109678",
-         "t": "11/03 15:40",
-         "w": []
-        },
-        {
-         "s": "연합뉴스",
-         "u": "https://www.yna.co.kr/view/AKR20261103123100052",
-         "t": "11/03 14:59",
-         "w": []
-        },
-        {
-         "s": "뉴시스",
-         "u": "https://www.newsis.com/view/NISX20261103_0003852602",
-         "t": "11/03 14:24",
-         "w": []
-        },
-        {
-         "s": "아시아경제",
-         "u": "https://view.asiae.co.kr/article/2026110314152915839",
-         "t": "11/03 14:23",
-         "w": []
-        },
-        {
-         "s": "연합뉴스",
-         "u": "https://www.yna.co.kr/view/AKR20261103114200004",
-         "t": "11/03 14:11",
-         "w": []
-        },
-        {
-         "s": "뉴시스",
-         "u": "https://www.newsis.com/view/NISX20261103_0003852692",
-         "t": "11/03 14:08",
-         "w": []
-        },
-        {
-         "s": "한국경제",
-         "u": "https://www.hankyung.com/article/2026110296326",
-         "t": "11/03 13:30",
-         "w": []
-        }
-       ]
-      }
-     },
-     {
-      "id": "bio",
-      "name": "바이오·제약",
-      "pos": 15,
-      "neg": 1,
-      "neu": 27,
-      "total": 43,
-      "articles": 48,
-      "events": 35,
-      "pos_pct": 94,
-      "neg_pct": 6,
-      "enough": true,
-      "keywords": [
-       "상업화",
-       "계약",
-       "협력"
-      ],
-      "links": {
-       "pos": [
-        {
-         "s": "아시아경제",
-         "u": "https://view.asiae.co.kr/article/2026110318093644877",
-         "t": "11/03 18:09",
-         "w": [
-          "최대"
-         ]
-        },
-        {
-         "s": "조선비즈",
-         "u": "https://biz.chosun.com/science-chosun/bio/2026/11/03/P7N5U72KG5DQBEI77ZNXC54K3Q/",
-         "t": "11/03 17:48",
-         "w": [
-          "최대"
-         ]
-        },
-        {
-         "s": "연합뉴스",
-         "u": "https://www.yna.co.kr/view/AKR20261103162500017",
-         "t": "11/03 17:28",
-         "w": [
-          "최대"
-         ]
-        },
-        {
-         "s": "전자신문",
-         "u": "https://www.etnews.com/20261103000412",
-         "t": "11/03 17:24",
-         "w": [
-          "최대",
-          "상승"
-         ]
-        },
-        {
-         "s": "한국경제",
-         "u": "https://www.hankyung.com/article/202611033548i",
-         "t": "11/03 17:13",
-         "w": [
-          "최대"
-         ]
-        },
-        {
-         "s": "머니투데이",
-         "u": "https://www.mt.co.kr/thebio/2026/11/03/2026110317324121402",
-         "t": "11/03 17:44",
-         "w": [
-          "성장"
-         ]
-        },
-        {
-         "s": "매일경제",
-         "u": "https://www.mk.co.kr/news/stock/12195133",
-         "t": "11/03 17:43",
-         "w": [
-          "최대 실적"
-         ]
-        },
-        {
-         "s": "연합뉴스",
-         "u": "https://www.yna.co.kr/view/AKR20261103089351527",
-         "t": "11/03 16:28",
-         "w": [
-          "돌파"
-         ]
-        },
-        {
-         "s": "매일경제",
-         "u": "https://www.mk.co.kr/news/stock/12194817",
-         "t": "11/03 15:11",
-         "w": [
-          "역대 최대"
-         ]
-        },
-        {
-         "s": "아시아경제",
-         "u": "https://view.asiae.co.kr/article/2026110314541902696",
-         "t": "11/03 14:54",
-         "w": [
-          "돌파"
-         ]
-        },
-        {
-         "s": "뉴시스",
-         "u": "https://www.newsis.com/view/NISX20261103_0003852739",
-         "t": "11/03 13:32",
-         "w": [
-          "역대 최대"
-         ]
-        },
-        {
-         "s": "연합뉴스",
-         "u": "https://www.yna.co.kr/view/AKR20261103089300527",
-         "t": "11/03 11:30",
-         "w": [
-          "상승"
-         ]
-        },
-        {
-         "s": "한국경제",
-         "u": "https://www.hankyung.com/article/202611032995i",
-         "t": "11/03 14:55",
-         "w": [
-          "상승"
-         ]
-        },
-        {
-         "s": "한국경제",
-         "u": "https://www.hankyung.com/article/202611031675i",
-         "t": "11/03 13:24",
-         "w": [
-          "뛰었",
-          "상향"
-         ]
-        },
-        {
-         "s": "한국경제",
-         "u": "https://www.hankyung.com/article/202611032495i",
-         "t": "11/03 11:24",
-         "w": [
-          "확대"
-         ]
-        },
-        {
-         "s": "뉴시스",
-         "u": "https://www.newsis.com/view/NISX20261103_0003852546",
-         "t": "11/03 11:14",
-         "w": [
-          "확대"
-         ]
-        },
-        {
-         "s": "한국경제",
-         "u": "https://www.hankyung.com/article/202611020535i",
-         "t": "11/03 10:00",
-         "w": [
-          "성장",
-          "수주"
-         ]
-        },
-        {
-         "s": "뉴시스",
-         "u": "https://www.newsis.com/view/NISX20261103_0003852142",
-         "t": "11/03 09:13",
-         "w": [
-          "상승"
-         ]
-        },
-        {
-         "s": "연합뉴스",
-         "u": "https://www.yna.co.kr/view/AKR20261103031200008",
-         "t": "11/03 08:51",
-         "w": [
-          "상승"
-         ]
-        },
-        {
-         "s": "아시아경제",
-         "u": "https://view.asiae.co.kr/article/2026110216535027680",
-         "t": "11/03 07:22",
-         "w": [
-          "상승"
-         ]
-        }
-       ],
-       "neg": [
-        {
-         "s": "머니투데이",
-         "u": "https://www.mt.co.kr/thebio/2026/11/03/2026110317065661912",
-         "t": "11/03 17:13",
-         "w": [
-          "규제"
-         ]
-        }
-       ],
-       "neu": [
-        {
-         "s": "매일경제",
-         "u": "https://www.mk.co.kr/news/it/12195164",
-         "t": "11/03 17:56",
-         "w": []
-        },
-        {
-         "s": "한국경제",
-         "u": "https://www.hankyung.com/article/2026110337331",
-         "t": "11/03 18:05",
-         "w": []
-        },
-        {
-         "s": "매일경제",
-         "u": "https://www.mk.co.kr/news/it/12195170",
-         "t": "11/03 18:00",
-         "w": []
-        },
-        {
-         "s": "머니투데이",
-         "u": "https://www.mt.co.kr/industry/2026/11/03/2026110314142550520",
-         "t": "11/03 17:44",
-         "w": []
-        },
-        {
-         "s": "머니투데이",
-         "u": "https://www.mt.co.kr/thebio/2026/11/03/2026110316493931546",
-         "t": "11/03 16:55",
-         "w": []
-        },
-        {
-         "s": "연합뉴스",
-         "u": "https://www.yna.co.kr/view/AKR20261103154600017",
-         "t": "11/03 16:42",
-         "w": []
-        },
-        {
-         "s": "한국경제",
-         "u": "https://www.hankyung.com/article/202611033413i",
-         "t": "11/03 16:35",
-         "w": []
-        },
-        {
-         "s": "전자신문",
-         "u": "https://www.etnews.com/20261103000171",
-         "t": "11/03 16:00",
-         "w": []
-        },
-        {
-         "s": "연합뉴스",
-         "u": "https://www.yna.co.kr/view/AKR20261103124300053",
-         "t": "11/03 14:52",
-         "w": []
-        },
-        {
-         "s": "연합뉴스",
-         "u": "https://www.yna.co.kr/view/AKR20261103040500004",
-         "t": "11/03 11:15",
-         "w": []
-        },
-        {
-         "s": "한국경제",
-         "u": "https://www.hankyung.com/article/202611032027i",
-         "t": "11/03 09:32",
-         "w": []
-        },
-        {
-         "s": "한국경제",
-         "u": "https://www.hankyung.com/article/202611031981i",
-         "t": "11/03 09:26",
-         "w": []
-        },
-        {
-         "s": "뉴시스",
-         "u": "https://www.newsis.com/view/NISX20261103_0003852098",
-         "t": "11/03 09:18",
-         "w": []
-        },
-        {
-         "s": "파이낸셜뉴스",
-         "u": "https://www.fnnews.com/news/202611030902560867",
-         "t": "11/03 09:05",
-         "w": []
-        },
-        {
-         "s": "아시아경제",
-         "u": "https://view.asiae.co.kr/article/2026110308204118012",
-         "t": "11/03 08:20",
-         "w": []
-        },
-        {
-         "s": "한국경제",
-         "u": "https://www.hankyung.com/article/202610306182i",
-         "t": "11/03 09:04",
-         "w": []
-        },
-        {
-         "s": "뉴시스",
-         "u": "https://www.newsis.com/view/NISX20261103_0003852105",
-         "t": "11/03 09:03",
-         "w": []
-        },
-        {
-         "s": "아시아경제",
-         "u": "https://view.asiae.co.kr/article/2026110309034901096",
-         "t": "11/03 09:03",
-         "w": []
-        },
-        {
-         "s": "한국경제",
-         "u": "https://www.hankyung.com/article/202610306173i",
-         "t": "11/03 09:02",
-         "w": []
-        },
-        {
-         "s": "한국경제",
-         "u": "https://www.hankyung.com/article/202610306088i",
-         "t": "11/03 09:01",
-         "w": []
-        },
-        {
-         "s": "뉴시스",
-         "u": "https://www.newsis.com/view/NISX20261103_0003852084",
-         "t": "11/03 08:56",
-         "w": []
-        },
-        {
-         "s": "한국경제",
-         "u": "https://www.hankyung.com/article/202611031699i",
-         "t": "11/03 08:24",
-         "w": []
-        },
-        {
-         "s": "아시아경제",
-         "u": "https://view.asiae.co.kr/article/2026110308242927241",
-         "t": "11/03 08:24",
-         "w": []
-        },
-        {
-         "s": "파이낸셜뉴스",
-         "u": "https://www.fnnews.com/news/202611030847144963",
-         "t": "11/03 08:51",
-         "w": []
-        },
-        {
-         "s": "한국경제",
-         "u": "https://www.hankyung.com/article/202611031787i",
-         "t": "11/03 08:43",
-         "w": []
-        },
-        {
-         "s": "매일경제",
-         "u": "https://www.mk.co.kr/news/stock/12194322",
-         "t": "11/03 08:40",
-         "w": []
-        },
-        {
-         "s": "파이낸셜뉴스",
-         "u": "https://www.fnnews.com/news/202611022013386303",
-         "t": "11/02 20:16",
-         "w": []
-        }
-       ]
-      }
-     },
-     {
-      "id": "semi",
-      "name": "반도체",
-      "pos": 10,
-      "neg": 6,
-      "neu": 24,
-      "total": 40,
-      "articles": 41,
-      "events": 28,
-      "pos_pct": 62,
-      "neg_pct": 38,
-      "enough": true,
-      "keywords": [
-       "삼성전자",
-       "SK하이닉스",
-       "바닥"
-      ],
-      "links": {
-       "pos": [
-        {
-         "s": "파이낸셜뉴스",
-         "u": "https://www.fnnews.com/news/202611031829337488",
-         "t": "11/03 18:29",
-         "w": [
-          "훈풍",
-          "훈풍"
-         ]
-        },
-        {
-         "s": "파이낸셜뉴스",
-         "u": "https://www.fnnews.com/news/202611031814522845",
-         "t": "11/03 18:14",
-         "w": [
-          "훈풍"
-         ]
-        },
-        {
-         "s": "매일경제",
-         "u": "https://www.mk.co.kr/news/business/12195152",
-         "t": "11/03 17:46",
-         "w": [
-          "수주"
-         ]
-        },
-        {
-         "s": "한국경제",
-         "u": "https://www.hankyung.com/article/202611033199i",
-         "t": "11/03 15:41",
-         "w": [
-          "역대 최대"
-         ]
-        },
-        {
-         "s": "한국경제",
-         "u": "https://www.hankyung.com/article/202611032579i",
-         "t": "11/03 11:39",
-         "w": [
-          "상승"
-         ]
-        },
-        {
-         "s": "뉴시스",
-         "u": "https://www.newsis.com/view/NISX20261103_0003852585",
-         "t": "11/03 11:25",
-         "w": [
-          "반등"
-         ]
-        },
-        {
-         "s": "뉴시스",
-         "u": "https://www.newsis.com/view/NISX20261103_0003852169",
-         "t": "11/03 09:23",
-         "w": [
-          "확대"
-         ]
-        },
-        {
-         "s": "연합뉴스",
-         "u": "https://www.yna.co.kr/view/AKR20261103031400008",
-         "t": "11/03 08:45",
-         "w": [
-          "상승"
-         ]
-        },
-        {
-         "s": "매일경제",
-         "u": "https://www.mk.co.kr/news/stock/12194331",
-         "t": "11/03 08:50",
-         "w": [
-          "확대"
-         ]
-        },
-        {
-         "s": "아시아경제",
-         "u": "https://view.asiae.co.kr/article/2026110308413095001",
-         "t": "11/03 08:41",
-         "w": [
-          "확대"
-         ]
-        }
-       ],
-       "neg": [
-        {
-         "s": "연합뉴스",
-         "u": "https://www.yna.co.kr/view/AKR20261103043751008",
-         "t": "11/03 15:51",
-         "w": [
-          "약세",
-          "급락"
-         ]
-        },
-        {
-         "s": "연합뉴스",
-         "u": "https://www.yna.co.kr/view/AKR20261103043700008",
-         "t": "11/03 09:16",
-         "w": [
-          "약세",
-          "급락"
-         ]
-        },
-        {
-         "s": "뉴시스",
-         "u": "https://www.newsis.com/view/NISX20261103_0003853059",
-         "t": "11/03 15:34",
-         "w": [
-          "하락"
-         ]
-        },
-        {
-         "s": "뉴시스",
-         "u": "https://www.newsis.com/view/NISX20261103_0003852104",
-         "t": "11/03 09:02",
-         "w": [
-          "하락"
-         ]
-        },
-        {
-         "s": "한국경제",
-         "u": "https://www.hankyung.com/article/2026110326036",
-         "t": "11/03 11:52",
-         "w": [
-          "경고"
-         ]
-        },
-        {
-         "s": "뉴시스",
-         "u": "https://www.newsis.com/view/NISX20261103_0003852163",
-         "t": "11/03 09:19",
-         "w": [
-          "뚝"
-         ]
-        }
-       ],
-       "neu": [
-        {
-         "s": "파이낸셜뉴스",
-         "u": "https://www.fnnews.com/news/202611031052217411",
-         "t": "11/03 16:25",
-         "w": []
-        },
-        {
-         "s": "한국경제",
-         "u": "https://www.hankyung.com/article/2026110337581",
-         "t": "11/03 18:18",
-         "w": []
-        },
-        {
-         "s": "연합뉴스",
-         "u": "https://www.yna.co.kr/view/AKR20261103126651003",
-         "t": "11/03 16:14",
-         "w": []
-        },
-        {
-         "s": "연합뉴스",
-         "u": "https://www.yna.co.kr/view/AKR20261103126600003",
-         "t": "11/03 15:12",
-         "w": []
-        },
-        {
-         "s": "매일경제",
-         "u": "https://www.mk.co.kr/news/business/12195160",
-         "t": "11/03 17:49",
-         "w": []
-        },
-        {
-         "s": "머니투데이",
-         "u": "https://www.mt.co.kr/industry/2026/11/03/2026110315201193799",
-         "t": "11/03 17:40",
-         "w": []
-        },
-        {
-         "s": "매일경제",
-         "u": "https://www.mk.co.kr/news/stock/12195066",
-         "t": "11/03 17:34",
-         "w": []
-        },
-        {
-         "s": "전자신문",
-         "u": "https://www.etnews.com/20261103000413",
-         "t": "11/03 17:24",
-         "w": []
-        },
-        {
-         "s": "연합뉴스",
-         "u": "https://www.yna.co.kr/view/AKR20261103144500061",
-         "t": "11/03 16:17",
-         "w": []
-        },
-        {
-         "s": "뉴시스",
-         "u": "https://www.newsis.com/view/NISX20261103_0003852383",
-         "t": "11/03 14:29",
-         "w": []
-        },
-        {
-         "s": "아시아경제",
-         "u": "https://view.asiae.co.kr/article/2026110315465494573",
-         "t": "11/03 15:47",
-         "w": []
-        },
-        {
-         "s": "파이낸셜뉴스",
-         "u": "https://www.fnnews.com/news/202611030838053580",
-         "t": "11/03 09:01",
-         "w": []
-        },
-        {
-         "s": "연합뉴스",
-         "u": "https://www.yna.co.kr/view/AKR20261103123500009",
-         "t": "11/03 15:16",
-         "w": []
-        },
-        {
-         "s": "매일경제",
-         "u": "https://www.mk.co.kr/news/stock/12194764",
-         "t": "11/03 14:50",
-         "w": []
-        },
-        {
-         "s": "뉴시스",
-         "u": "https://www.newsis.com/view/NISX20261103_0003852673",
-         "t": "11/03 14:31",
-         "w": []
-        },
-        {
-         "s": "한국경제",
-         "u": "https://www.hankyung.com/article/202611032325i",
-         "t": "11/03 10:44",
-         "w": []
-        },
-        {
-         "s": "파이낸셜뉴스",
-         "u": "https://www.fnnews.com/news/202611031030303405",
-         "t": "11/03 11:01",
-         "w": [
-          "성장",
-          "목표가 하향"
-         ]
-        },
-        {
-         "s": "뉴시스",
-         "u": "https://www.newsis.com/view/NISX20261103_0003852431",
-         "t": "11/03 10:48",
-         "w": []
-        },
-        {
-         "s": "연합뉴스",
-         "u": "https://www.yna.co.kr/view/AKR20261103033000008",
-         "t": "11/03 08:53",
-         "w": []
-        },
-        {
-         "s": "아시아경제",
-         "u": "https://view.asiae.co.kr/article/2026110308393644349",
-         "t": "11/03 08:39",
-         "w": []
-        },
-        {
-         "s": "연합뉴스",
-         "u": "https://www.yna.co.kr/view/AKR20261103060200008",
-         "t": "11/03 09:57",
-         "w": []
-        },
-        {
-         "s": "한국경제",
-         "u": "https://www.hankyung.com/article/202611031953i",
-         "t": "11/03 09:32",
-         "w": [
-          "유가 급락",
-          "유가 반등"
-         ]
-        },
-        {
-         "s": "파이낸셜뉴스",
-         "u": "https://www.fnnews.com/news/202611030819346010",
-         "t": "11/03 08:42",
-         "w": []
-        },
-        {
-         "s": "아시아경제",
-         "u": "https://view.asiae.co.kr/article/2026110308273030483",
-         "t": "11/03 08:28",
-         "w": []
-        },
-        {
-         "s": "아시아경제",
-         "u": "https://view.asiae.co.kr/article/2026110216122283749",
-         "t": "11/03 07:15",
-         "w": []
-        }
-       ]
-      }
-     },
-     {
-      "id": "energy",
-      "name": "에너지·화학",
-      "pos": 11,
-      "neg": 5,
-      "neu": 20,
-      "total": 36,
-      "articles": 39,
-      "events": 25,
-      "pos_pct": 69,
-      "neg_pct": 31,
-      "enough": true,
-      "keywords": [
-       "원전",
-       "높인다",
-       "방산"
-      ],
-      "links": {
-       "pos": [
-        {
-         "s": "연합인포맥스",
-         "u": "https://news.einfomax.co.kr/news/articleView.html?idxno=4442822",
-         "t": "11/03 18:32",
-         "w": [
-          "수주"
-         ]
-        },
-        {
-         "s": "머니투데이",
-         "u": "https://www.mt.co.kr/politics/2026/11/03/2026110316464232998",
-         "t": "11/03 18:10",
-         "w": [
-          "수주"
-         ]
-        },
-        {
-         "s": "한국경제",
-         "u": "https://www.hankyung.com/article/2026110337241",
-         "t": "11/03 17:58",
-         "w": [
-          "유가 뚝"
-         ]
-        },
-        {
-         "s": "뉴시스",
-         "u": "https://www.newsis.com/view/NISX20261103_0003852254",
-         "t": "11/03 10:53",
-         "w": [
-          "유가 급락"
-         ]
-        },
-        {
-         "s": "한국경제",
-         "u": "https://www.hankyung.com/article/2026110315007",
-         "t": "11/03 06:15",
-         "w": [
-          "합의",
-          "유가 급락"
-         ]
-        },
-        {
-         "s": "연합뉴스",
-         "u": "https://www.yna.co.kr/view/AKR20261103023300009",
-         "t": "11/03 08:20",
-         "w": [
-          "유가 급락",
-          "국채금리 하락"
-         ]
-        },
-        {
-         "s": "한국경제",
-         "u": "https://www.hankyung.com/article/202611032475i",
-         "t": "11/03 11:27",
-         "w": [
-          "유가 급락",
-          "개선"
-         ]
-        },
-        {
-         "s": "한국경제",
-         "u": "https://www.hankyung.com/article/202611032495i",
-         "t": "11/03 11:24",
-         "w": [
-          "확대"
-         ]
-        },
-        {
-         "s": "뉴시스",
-         "u": "https://www.newsis.com/view/NISX20261103_0003852546",
-         "t": "11/03 11:14",
-         "w": [
-          "확대"
-         ]
-        },
-        {
-         "s": "뉴시스",
-         "u": "https://www.newsis.com/view/NISX20261103_0003851949",
-         "t": "11/03 11:13",
-         "w": [
-          "최대 실적",
-          "성장"
-         ]
-        },
-        {
-         "s": "매일경제",
-         "u": "https://www.mk.co.kr/news/stock/12194342",
-         "t": "11/03 09:00",
-         "w": [
-          "신고가"
-         ]
-        }
-       ],
-       "neg": [
-        {
-         "s": "한국경제",
-         "u": "https://www.hankyung.com/article/2026110336791",
-         "t": "11/03 17:45",
-         "w": [
-          "공포"
-         ]
-        },
-        {
-         "s": "한국경제",
-         "u": "https://www.hankyung.com/article/202611033480i",
-         "t": "11/03 16:57",
-         "w": [
-          "급락",
-          "공포"
-         ]
-        },
-        {
-         "s": "한국경제",
-         "u": "https://www.hankyung.com/article/2026110336751",
-         "t": "11/03 17:44",
-         "w": [
-          "최저",
-          "악재",
-          "지연"
-         ]
-        },
-        {
-         "s": "파이낸셜뉴스",
-         "u": "https://www.fnnews.com/news/202611031556168312",
-         "t": "11/03 16:00",
-         "w": [
-          "불안",
-          "급락"
-         ]
-        },
-        {
-         "s": "한국경제",
-         "u": "https://www.hankyung.com/article/202611033095i",
-         "t": "11/03 16:28",
-         "w": [
-          "악재",
-          "최저"
-         ]
-        }
-       ],
-       "neu": [
-        {
-         "s": "연합뉴스",
-         "u": "https://www.yna.co.kr/view/AKR20261103143800001",
-         "t": "11/03 18:19",
-         "w": []
-        },
-        {
-         "s": "한국경제",
-         "u": "https://www.hankyung.com/article/2026110338247",
-         "t": "11/03 18:07",
-         "w": []
-        },
-        {
-         "s": "머니투데이",
-         "u": "https://www.mt.co.kr/politics/2026/11/03/2026110315530096746",
-         "t": "11/03 18:06",
-         "w": []
-        },
-        {
-         "s": "머니투데이",
-         "u": "https://www.mt.co.kr/politics/2026/11/03/2026110317191090466",
-         "t": "11/03 17:58",
-         "w": []
-        },
-        {
-         "s": "매일경제",
-         "u": "https://www.mk.co.kr/news/business/12195137",
-         "t": "11/03 17:44",
-         "w": []
-        },
-        {
-         "s": "한국경제",
-         "u": "https://www.hankyung.com/article/2026110336691",
-         "t": "11/03 17:34",
-         "w": []
-        },
-        {
-         "s": "매일경제",
-         "u": "https://www.mk.co.kr/news/stock/12195023",
-         "t": "11/03 17:20",
-         "w": [
-          "호재",
-          "하락"
-         ]
-        },
-        {
-         "s": "한국경제",
-         "u": "https://www.hankyung.com/article/202611033138i",
-         "t": "11/03 17:00",
-         "w": []
-        },
-        {
-         "s": "연합뉴스",
-         "u": "https://www.yna.co.kr/view/AKR20261103152800371",
-         "t": "11/03 16:39",
-         "w": []
-        },
-        {
-         "s": "연합뉴스",
-         "u": "https://www.yna.co.kr/view/AKR20261103148900009",
-         "t": "11/03 16:26",
-         "w": []
-        },
-        {
-         "s": "뉴시스",
-         "u": "https://www.newsis.com/view/NISX20261103_0003852079",
-         "t": "11/03 16:17",
-         "w": []
-        },
-        {
-         "s": "아시아경제",
-         "u": "https://view.asiae.co.kr/article/2026110310322993917",
-         "t": "11/03 10:32",
-         "w": []
-        },
-        {
-         "s": "연합뉴스",
-         "u": "https://www.yna.co.kr/view/AKR20261103048951008",
-         "t": "11/03 15:44",
-         "w": [
-          "유가 급락",
-          "하락"
-         ]
-        },
-        {
-         "s": "뉴시스",
-         "u": "https://www.newsis.com/view/NISX20261103_0003852287",
-         "t": "11/03 09:57",
-         "w": [
-          "유가 급락",
-          "하락"
-         ]
-        },
-        {
-         "s": "연합뉴스",
-         "u": "https://www.yna.co.kr/view/AKR20261103048900008",
-         "t": "11/03 09:28",
-         "w": [
-          "유가 급락",
-          "하락"
-         ]
-        },
-        {
-         "s": "뉴시스",
-         "u": "https://www.newsis.com/view/NISX20261103_0003852049",
-         "t": "11/03 14:53",
-         "w": []
-        },
-        {
-         "s": "연합뉴스",
-         "u": "https://www.yna.co.kr/view/AKR20261103118000017",
-         "t": "11/03 14:29",
-         "w": []
-        },
-        {
-         "s": "파이낸셜뉴스",
-         "u": "https://www.fnnews.com/news/202611031352163950",
-         "t": "11/03 13:54",
-         "w": [
-          "흑자",
-          "적자"
-         ]
-        },
-        {
-         "s": "연합뉴스",
-         "u": "https://www.yna.co.kr/view/AKR20261103076300530",
-         "t": "11/03 12:00",
-         "w": []
-        },
-        {
-         "s": "한국경제",
-         "u": "https://www.hankyung.com/article/202611032609i",
-         "t": "11/03 11:51",
-         "w": []
-        },
-        {
-         "s": "뉴시스",
-         "u": "https://www.newsis.com/view/NISX20261103_0003852178",
-         "t": "11/03 09:41",
-         "w": []
-        },
-        {
-         "s": "연합뉴스",
-         "u": "https://www.yna.co.kr/view/AKR20261103081600083",
-         "t": "11/03 11:14",
-         "w": []
-        },
-        {
-         "s": "한국경제",
-         "u": "https://www.hankyung.com/article/202611031953i",
-         "t": "11/03 09:32",
-         "w": [
-          "유가 급락",
-          "유가 반등"
-         ]
-        }
-       ]
-      }
-     },
-     {
-      "id": "consumer",
-      "name": "유통·소비",
-      "pos": 5,
-      "neg": 3,
-      "neu": 17,
-      "total": 25,
-      "articles": 26,
-      "events": 22,
-      "pos_pct": 62,
-      "neg_pct": 38,
-      "enough": true,
-      "keywords": [
-       "가공식품",
-       "물가",
-       "10월"
-      ],
-      "links": {
-       "pos": [
-        {
-         "s": "파이낸셜뉴스",
-         "u": "https://www.fnnews.com/news/202611031829268418",
-         "t": "11/03 18:29",
-         "w": [
-          "상승"
-         ]
-        },
-        {
-         "s": "파이낸셜뉴스",
-         "u": "https://www.fnnews.com/news/202611031406557212",
-         "t": "11/03 14:26",
-         "w": [
-          "확대"
-         ]
-        },
-        {
-         "s": "뉴시스",
-         "u": "https://www.newsis.com/view/NISX20261103_0003852862",
-         "t": "11/03 14:23",
-         "w": [
-          "확대"
-         ]
-        },
-        {
-         "s": "뉴시스",
-         "u": "https://www.newsis.com/view/NISX20261103_0003851984",
-         "t": "11/03 11:00",
-         "w": [
-          "성장"
-         ]
-        },
-        {
-         "s": "아시아경제",
-         "u": "https://view.asiae.co.kr/article/2026110308503936203",
-         "t": "11/03 08:50",
-         "w": [
-          "확대"
-         ]
-        }
-       ],
-       "neg": [
-        {
-         "s": "뉴시스",
-         "u": "https://www.newsis.com/view/NISX20261103_0003851941",
-         "t": "11/03 08:25",
-         "w": [
-          "물가 상승",
-          "물가 상승"
-         ]
-        },
-        {
-         "s": "아시아경제",
-         "u": "https://view.asiae.co.kr/article/2026110308094848718",
-         "t": "11/03 08:09",
-         "w": [
-          "물가 상승",
-          "물가 상승"
-         ]
-        },
-        {
-         "s": "파이낸셜뉴스",
-         "u": "https://www.fnnews.com/news/202611030758118183",
-         "t": "11/03 08:00",
-         "w": [
-          "물가 상승",
-          "물가 상승"
-         ]
-        },
-        {
-         "s": "아시아경제",
-         "u": "https://view.asiae.co.kr/article/2026110309270840481",
-         "t": "11/03 09:27",
-         "w": [
-          "둔화"
-         ]
-        }
-       ],
-       "neu": [
-        {
-         "s": "한국경제",
-         "u": "https://www.hankyung.com/article/202611033827i",
-         "t": "11/03 18:16",
-         "w": []
-        },
-        {
-         "s": "조선비즈",
-         "u": "https://biz.chosun.com/distribution/fashion-beauty/2026/11/03/HUSC43RBNRF4TIBOEZ5TBZXDCM/",
-         "t": "11/03 17:55",
-         "w": []
-        },
-        {
-         "s": "연합뉴스",
-         "u": "https://www.yna.co.kr/view/AKR20261103080551030",
-         "t": "11/03 17:33",
-         "w": []
-        },
-        {
-         "s": "머니투데이",
-         "u": "https://www.mt.co.kr/industry/2026/11/03/2026110312103891271",
-         "t": "11/03 17:23",
-         "w": []
-        },
-        {
-         "s": "한국경제",
-         "u": "https://www.hankyung.com/article/2026110335541",
-         "t": "11/03 17:13",
-         "w": []
-        },
-        {
-         "s": "뉴시스",
-         "u": "https://www.newsis.com/view/NISX20261103_0003853197",
-         "t": "11/03 16:54",
-         "w": []
-        },
-        {
-         "s": "한국경제",
-         "u": "https://www.hankyung.com/article/2026110320661",
-         "t": "11/03 16:13",
-         "w": []
-        },
-        {
-         "s": "전자신문",
-         "u": "https://www.etnews.com/20261103000280",
-         "t": "11/03 16:00",
-         "w": []
-        },
-        {
-         "s": "전자신문",
-         "u": "https://www.etnews.com/20261103000171",
-         "t": "11/03 16:00",
-         "w": []
-        },
-        {
-         "s": "파이낸셜뉴스",
-         "u": "https://www.fnnews.com/news/202611031532291735",
-         "t": "11/03 15:34",
-         "w": []
-        },
-        {
-         "s": "뉴시스",
-         "u": "https://www.newsis.com/view/NISX20261103_0003852651",
-         "t": "11/03 13:58",
-         "w": []
-        },
-        {
-         "s": "뉴시스",
-         "u": "https://www.newsis.com/view/NISX20261103_0003852617",
-         "t": "11/03 11:53",
-         "w": []
-        },
-        {
-         "s": "뉴시스",
-         "u": "https://www.newsis.com/view/NISX20261103_0003852339",
-         "t": "11/03 10:34",
-         "w": []
-        },
-        {
-         "s": "뉴시스",
-         "u": "https://www.newsis.com/view/NISX20261103_0003851888",
-         "t": "11/03 09:06",
-         "w": []
-        },
-        {
-         "s": "뉴시스",
-         "u": "https://www.newsis.com/view/NISX20261103_0003852040",
-         "t": "11/03 08:50",
-         "w": []
-        },
-        {
-         "s": "뉴시스",
-         "u": "https://www.newsis.com/view/NISX20261103_0003851890",
-         "t": "11/03 08:00",
-         "w": [
-          "상승",
-          "급락"
-         ]
-        },
-        {
-         "s": "서울경제",
-         "u": "https://www.sedaily.com/article/20109350",
-         "t": "11/03 05:50",
-         "w": []
-        }
-       ]
-      }
-     },
-     {
-      "id": "ship",
-      "name": "조선·방산",
-      "pos": 9,
-      "neg": 0,
-      "neu": 13,
-      "total": 22,
-      "articles": 24,
-      "events": 15,
-      "pos_pct": 100,
-      "neg_pct": 0,
-      "enough": true,
-      "keywords": [
-       "KAI",
-       "추진",
-       "매출"
-      ],
-      "links": {
-       "pos": [
-        {
-         "s": "연합인포맥스",
-         "u": "https://news.einfomax.co.kr/news/articleView.html?idxno=4442822",
-         "t": "11/03 18:32",
-         "w": [
-          "수주"
-         ]
-        },
-        {
-         "s": "매일경제",
-         "u": "https://www.mk.co.kr/news/stock/12195133",
-         "t": "11/03 17:43",
-         "w": [
-          "최대 실적"
-         ]
-        },
-        {
-         "s": "뉴시스",
-         "u": "https://www.newsis.com/view/NISX20261103_0003853281",
-         "t": "11/03 16:55",
-         "w": [
-          "상승",
-          "증가"
-         ]
-        },
-        {
-         "s": "파이낸셜뉴스",
-         "u": "https://www.fnnews.com/news/202611031630339845",
-         "t": "11/03 16:39",
-         "w": [
-          "돌파",
-          "수주"
-         ]
-        },
-        {
-         "s": "연합뉴스",
-         "u": "https://www.yna.co.kr/view/AKR20261103148500003",
-         "t": "11/03 16:22",
-         "w": [
-          "호조",
-          "증가",
-          "증가"
-         ]
-        },
-        {
-         "s": "파이낸셜뉴스",
-         "u": "https://www.fnnews.com/news/202611031556102239",
-         "t": "11/03 15:58",
-         "w": [
-          "돌파"
-         ]
-        },
-        {
-         "s": "뉴시스",
-         "u": "https://www.newsis.com/view/NISX20261103_0003852868",
-         "t": "11/03 14:34",
-         "w": [
-          "확대"
-         ]
-        },
-        {
-         "s": "연합뉴스",
-         "u": "https://www.yna.co.kr/view/AKR20261103139100527",
-         "t": "11/03 15:45",
-         "w": [
-          "상승"
-         ]
-        },
-        {
-         "s": "매일경제",
-         "u": "https://www.mk.co.kr/news/stock/12194368",
-         "t": "11/03 09:18",
-         "w": [
-          "성장",
-          "상승",
-          "상승"
-         ]
-        },
-        {
-         "s": "아시아경제",
-         "u": "https://view.asiae.co.kr/article/2026110216342867986",
-         "t": "11/03 07:05",
-         "w": [
-          "급등",
-          "반등"
-         ]
-        }
-       ],
-       "neg": [],
-       "neu": [
-        {
-         "s": "연합뉴스",
-         "u": "https://www.yna.co.kr/view/AKR20261103143800001",
-         "t": "11/03 18:19",
-         "w": []
-        },
-        {
-         "s": "머니투데이",
-         "u": "https://www.mt.co.kr/politics/2026/11/03/2026110315535387017",
-         "t": "11/03 18:07",
-         "w": []
-        },
-        {
-         "s": "머니투데이",
-         "u": "https://www.mt.co.kr/politics/2026/11/03/2026110317191090466",
-         "t": "11/03 17:58",
-         "w": []
-        },
-        {
-         "s": "파이낸셜뉴스",
-         "u": "https://www.fnnews.com/news/202611031812562279",
-         "t": "11/03 18:13",
-         "w": []
-        },
-        {
-         "s": "연합뉴스",
-         "u": "https://www.yna.co.kr/view/AKR20261103155700052",
-         "t": "11/03 16:50",
-         "w": []
-        },
-        {
-         "s": "연합뉴스",
-         "u": "https://www.yna.co.kr/view/AKR20261103149100003",
-         "t": "11/03 16:23",
-         "w": []
-        },
-        {
-         "s": "연합뉴스",
-         "u": "https://www.yna.co.kr/view/AKR20261103133100062",
-         "t": "11/03 15:23",
-         "w": []
-        },
-        {
-         "s": "한국경제",
-         "u": "https://www.hankyung.com/article/202611033051i",
-         "t": "11/03 15:14",
-         "w": []
-        },
-        {
-         "s": "연합뉴스",
-         "u": "https://www.yna.co.kr/view/AKR20261103041100008",
-         "t": "11/03 09:17",
-         "w": []
-        },
-        {
-         "s": "아시아경제",
-         "u": "https://view.asiae.co.kr/article/2026110309152918003",
-         "t": "11/03 09:15",
-         "w": []
-        },
-        {
-         "s": "파이낸셜뉴스",
-         "u": "https://www.fnnews.com/news/202611031447199737",
-         "t": "11/03 14:56",
-         "w": []
-        },
-        {
-         "s": "파이낸셜뉴스",
-         "u": "https://www.fnnews.com/news/202611031158069720",
-         "t": "11/03 12:07",
-         "w": []
-        },
-        {
-         "s": "파이낸셜뉴스",
-         "u": "https://www.fnnews.com/news/202611030825509848",
-         "t": "11/03 10:00",
-         "w": []
-        },
-        {
-         "s": "파이낸셜뉴스",
-         "u": "https://www.fnnews.com/news/202611030937174661",
-         "t": "11/03 09:57",
-         "w": []
-        }
-       ]
-      }
-     },
-     {
-      "id": "battery",
-      "name": "2차전지",
-      "pos": 11,
-      "neg": 2,
-      "neu": 8,
-      "total": 21,
-      "articles": 23,
-      "events": 14,
-      "pos_pct": 85,
-      "neg_pct": 15,
-      "enough": true,
-      "keywords": [
-       "LG엔솔",
-       "포스코퓨처엠",
-       "ESS"
-      ],
-      "links": {
-       "pos": [
-        {
-         "s": "연합뉴스",
-         "u": "https://www.yna.co.kr/view/AKR20261103046651527",
-         "t": "11/03 11:44",
-         "w": [
-          "상승"
-         ]
-        },
-        {
-         "s": "뉴시스",
-         "u": "https://www.newsis.com/view/NISX20261103_0003852607",
-         "t": "11/03 11:40",
-         "w": [
-          "개선"
-         ]
-        },
-        {
-         "s": "뉴시스",
-         "u": "https://www.newsis.com/view/NISX20261103_0003852406",
-         "t": "11/03 10:44",
-         "w": [
-          "상승"
-         ]
-        },
-        {
-         "s": "연합뉴스",
-         "u": "https://www.yna.co.kr/view/AKR20261103026800008",
-         "t": "11/03 08:17",
-         "w": [
-          "상승"
-         ]
-        },
-        {
-         "s": "매일경제",
-         "u": "https://www.mk.co.kr/news/stock/12194297",
-         "t": "11/03 07:40",
-         "w": [
-          "상승"
-         ]
-        },
-        {
-         "s": "연합뉴스",
-         "u": "https://www.yna.co.kr/view/AKR20261103046601527",
-         "t": "11/03 10:56",
-         "w": [
-          "상승"
-         ]
-        },
-        {
-         "s": "파이낸셜뉴스",
-         "u": "https://www.fnnews.com/news/202611031017492700",
-         "t": "11/03 10:20",
-         "w": [
-          "개선"
-         ]
-        },
-        {
-         "s": "파이낸셜뉴스",
-         "u": "https://www.fnnews.com/news/202611031053093675",
-         "t": "11/03 10:55",
-         "w": [
-          "성장",
-          "기대감",
-          "돌파"
-         ]
-        },
-        {
-         "s": "아시아경제",
-         "u": "https://view.asiae.co.kr/article/2026110308505449333",
-         "t": "11/03 08:50",
-         "w": [
-          "돌파"
-         ]
-        },
-        {
-         "s": "뉴시스",
-         "u": "https://www.newsis.com/view/NISX20261103_0003852347",
-         "t": "11/03 10:14",
-         "w": [
-          "성장",
-          "상향",
-          "최대"
-         ]
-        },
-        {
-         "s": "연합뉴스",
-         "u": "https://www.yna.co.kr/view/AKR20261103046600527",
-         "t": "11/03 09:25",
-         "w": [
-          "상승"
-         ]
-        }
-       ],
-       "neg": [
-        {
-         "s": "한국경제",
-         "u": "https://www.hankyung.com/article/202611033085i",
-         "t": "11/03 16:07",
-         "w": [
-          "약세"
-         ]
-        },
-        {
-         "s": "파이낸셜뉴스",
-         "u": "https://www.fnnews.com/news/202611030925087159",
-         "t": "11/03 09:30",
-         "w": [
-          "하락",
-          "지연"
-         ]
-        }
-       ],
-       "neu": [
-        {
-         "s": "파이낸셜뉴스",
-         "u": "https://www.fnnews.com/news/202611031812526018",
-         "t": "11/03 18:12",
-         "w": []
-        },
-        {
-         "s": "한국경제",
-         "u": "https://www.hankyung.com/article/2026110337341",
-         "t": "11/03 18:04",
-         "w": []
-        },
-        {
-         "s": "뉴시스",
-         "u": "https://www.newsis.com/view/NISX20261103_0003853192",
-         "t": "11/03 16:32",
-         "w": []
-        },
-        {
-         "s": "연합뉴스",
-         "u": "https://www.yna.co.kr/view/AKR20261103137900003",
-         "t": "11/03 15:46",
-         "w": []
-        },
-        {
-         "s": "파이낸셜뉴스",
-         "u": "https://www.fnnews.com/news/202611030950506311",
-         "t": "11/03 15:00",
-         "w": []
-        },
-        {
-         "s": "파이낸셜뉴스",
-         "u": "https://www.fnnews.com/news/202611031812539760",
-         "t": "11/03 15:00",
-         "w": []
-        },
-        {
-         "s": "한국경제",
-         "u": "https://www.hankyung.com/article/2026110337321",
-         "t": "11/03 18:02",
-         "w": []
-        },
-        {
-         "s": "파이낸셜뉴스",
-         "u": "https://www.fnnews.com/news/202611031030303405",
-         "t": "11/03 11:01",
-         "w": [
-          "성장",
-          "목표가 하향"
-         ]
-        },
-        {
-         "s": "한국경제",
-         "u": "https://www.hankyung.com/article/202611032325i",
-         "t": "11/03 10:44",
-         "w": []
-        },
-        {
-         "s": "연합뉴스",
-         "u": "https://www.yna.co.kr/view/AKR20261103060200008",
-         "t": "11/03 09:57",
-         "w": []
-        }
-       ]
-      }
-     },
-     {
-      "id": "auto",
-      "name": "자동차",
-      "pos": 2,
-      "neg": 2,
-      "neu": 14,
-      "total": 18,
-      "articles": 20,
-      "events": 11,
-      "pos_pct": 50,
-      "neg_pct": 50,
-      "enough": false,
-      "keywords": [
-       "현대차",
-       "현대차그룹",
-       "추진"
-      ],
-      "links": {
-       "pos": [
-        {
-         "s": "머니투데이",
-         "u": "https://www.mt.co.kr/industry/2026/11/03/2026110315340356908",
-         "t": "11/03 17:20",
-         "w": [
-          "회복"
-         ]
-        },
-        {
-         "s": "뉴시스",
-         "u": "https://www.newsis.com/view/NISX20261103_0003852285",
-         "t": "11/03 10:00",
-         "w": [
-          "상승",
-          "성장"
-         ]
-        }
-       ],
-       "neg": [
-        {
-         "s": "매일경제",
-         "u": "https://www.mk.co.kr/news/business/12195136",
-         "t": "11/03 17:44",
-         "w": [
-          "우려",
-          "해킹"
-         ]
-        },
-        {
-         "s": "아시아경제",
-         "u": "https://view.asiae.co.kr/article/2026110217131799317",
-         "t": "11/03 07:00",
-         "w": [
-          "하향"
-         ]
-        }
-       ],
-       "neu": [
-        {
-         "s": "뉴시스",
-         "u": "https://www.newsis.com/view/NISX20261103_0003853449",
-         "t": "11/03 18:22",
-         "w": []
-        },
-        {
-         "s": "파이낸셜뉴스",
-         "u": "https://www.fnnews.com/news/202611031753582015",
-         "t": "11/03 17:56",
-         "w": []
-        },
-        {
-         "s": "한국경제",
-         "u": "https://www.hankyung.com/article/2026110337341",
-         "t": "11/03 18:04",
-         "w": []
-        },
-        {
-         "s": "뉴시스",
-         "u": "https://www.newsis.com/view/NISX20261103_0003853192",
-         "t": "11/03 16:32",
-         "w": []
-        },
-        {
-         "s": "연합뉴스",
-         "u": "https://www.yna.co.kr/view/AKR20261103137900003",
-         "t": "11/03 15:46",
-         "w": []
-        },
-        {
-         "s": "파이낸셜뉴스",
-         "u": "https://www.fnnews.com/news/202611030950506311",
-         "t": "11/03 15:00",
-         "w": []
-        },
-        {
-         "s": "파이낸셜뉴스",
-         "u": "https://www.fnnews.com/news/202611031812539760",
-         "t": "11/03 15:00",
-         "w": []
-        },
-        {
-         "s": "파이낸셜뉴스",
-         "u": "https://www.fnnews.com/news/202611031756080797",
-         "t": "11/03 18:04",
-         "w": []
-        },
-        {
-         "s": "연합뉴스",
-         "u": "https://www.yna.co.kr/view/AKR20261103166100057",
-         "t": "11/03 17:31",
-         "w": []
-        },
-        {
-         "s": "한국경제",
-         "u": "https://www.hankyung.com/article/2026110337271",
-         "t": "11/03 18:01",
-         "w": []
-        },
-        {
-         "s": "매일경제",
-         "u": "https://www.mk.co.kr/news/business/12195138",
-         "t": "11/03 17:44",
-         "w": []
-        },
-        {
-         "s": "파이낸셜뉴스",
-         "u": "https://www.fnnews.com/news/202611030843042352",
-         "t": "11/03 08:51",
-         "w": []
-        },
-        {
-         "s": "머니투데이",
-         "u": "https://www.mt.co.kr/industry/2026/11/03/2026110316250069449",
-         "t": "11/03 17:50",
-         "w": []
-        },
-        {
-         "s": "연합뉴스",
-         "u": "https://www.yna.co.kr/view/AKR20261103152800371",
-         "t": "11/03 16:39",
-         "w": []
-        },
-        {
-         "s": "전자신문",
-         "u": "https://www.etnews.com/20261030000253",
-         "t": "11/03 14:33",
-         "w": []
-        },
-        {
-         "s": "파이낸셜뉴스",
-         "u": "https://www.fnnews.com/news/202611030839291598",
-         "t": "11/03 08:42",
-         "w": []
-        }
-       ]
-      }
-     },
-     {
-      "id": "platform",
-      "name": "인터넷·게임",
-      "pos": 3,
-      "neg": 0,
-      "neu": 14,
-      "total": 17,
-      "articles": 24,
-      "events": 13,
-      "pos_pct": 100,
-      "neg_pct": 0,
-      "enough": false,
-      "keywords": [
-       "플랫폼",
-       "결제",
-       "영업이익"
-      ],
-      "links": {
-       "pos": [
-        {
-         "s": "머니투데이",
-         "u": "https://www.mt.co.kr/stock/2026/11/03/2026110314145484817",
-         "t": "11/03 18:00",
-         "w": [
-          "상승"
-         ]
-        },
-        {
-         "s": "뉴시스",
-         "u": "https://www.newsis.com/view/NISX20261103_0003853276",
-         "t": "11/03 16:50",
-         "w": [
-          "상승"
-         ]
-        },
-        {
-         "s": "서울경제",
-         "u": "https://www.sedaily.com/article/20109638",
-         "t": "11/03 14:59",
-         "w": [
-          "증가",
-          "성장"
-         ]
-        },
-        {
-         "s": "아시아경제",
-         "u": "https://view.asiae.co.kr/article/2026110314525152664",
-         "t": "11/03 14:52",
-         "w": [
-          "증가"
-         ]
-        },
-        {
-         "s": "연합뉴스",
-         "u": "https://www.yna.co.kr/view/AKR20261103114851527",
-         "t": "11/03 14:37",
-         "w": [
-          "증가"
-         ]
-        },
-        {
-         "s": "파이낸셜뉴스",
-         "u": "https://www.fnnews.com/news/202611031429026645",
-         "t": "11/03 14:30",
-         "w": [
-          "상승"
-         ]
-        },
-        {
-         "s": "연합뉴스",
-         "u": "https://www.yna.co.kr/view/AKR20261103114800527",
-         "t": "11/03 14:16",
-         "w": [
-          "상승"
-         ]
-        },
-        {
-         "s": "파이낸셜뉴스",
-         "u": "https://www.fnnews.com/news/202611031011441914",
-         "t": "11/03 14:16",
-         "w": [
-          "성장",
-          "상승"
-         ]
-        }
-       ],
-       "neg": [],
-       "neu": [
-        {
-         "s": "한국경제",
-         "u": "https://www.hankyung.com/article/2026110337291",
-         "t": "11/03 18:03",
-         "w": []
-        },
-        {
-         "s": "뉴시스",
-         "u": "https://www.newsis.com/view/NISX20261103_0003853224",
-         "t": "11/03 16:34",
-         "w": []
-        },
-        {
-         "s": "서울경제",
-         "u": "https://www.sedaily.com/article/20109672",
-         "t": "11/03 15:32",
-         "w": []
-        },
-        {
-         "s": "연합뉴스",
-         "u": "https://www.yna.co.kr/view/AKR20261103071751017",
-         "t": "11/03 15:13",
-         "w": []
-        },
-        {
-         "s": "파이낸셜뉴스",
-         "u": "https://www.fnnews.com/news/202611031412570108",
-         "t": "11/03 16:00",
-         "w": []
-        },
-        {
-         "s": "뉴시스",
-         "u": "https://www.newsis.com/view/NISX20261103_0003852946",
-         "t": "11/03 14:50",
-         "w": []
-        },
-        {
-         "s": "머니투데이",
-         "u": "https://www.mt.co.kr/living/2026/11/03/2026110317073153628",
-         "t": "11/03 18:00",
-         "w": []
-        },
-        {
-         "s": "연합뉴스",
-         "u": "https://www.yna.co.kr/view/AKR20261103157300017",
-         "t": "11/03 17:09",
-         "w": []
-        },
-        {
-         "s": "머니투데이",
-         "u": "https://www.mt.co.kr/future/2026/11/03/2026110309464998400",
-         "t": "11/03 17:00",
-         "w": []
-        },
-        {
-         "s": "뉴시스",
-         "u": "https://www.newsis.com/view/NISX20261103_0003853244",
-         "t": "11/03 16:39",
-         "w": []
-        },
-        {
-         "s": "연합뉴스",
-         "u": "https://www.yna.co.kr/view/AKR20261103135200017",
-         "t": "11/03 16:06",
-         "w": []
-        },
-        {
-         "s": "연합뉴스",
-         "u": "https://www.yna.co.kr/view/AKR20261103126100017",
-         "t": "11/03 15:16",
-         "w": []
-        },
-        {
-         "s": "전자신문",
-         "u": "https://www.etnews.com/20261103000095",
-         "t": "11/03 14:00",
-         "w": []
-        },
-        {
-         "s": "파이낸셜뉴스",
-         "u": "https://www.fnnews.com/news/202611030956084920",
-         "t": "11/03 12:00",
-         "w": []
-        },
-        {
-         "s": "한국경제",
-         "u": "https://www.hankyung.com/article/202611032227i",
-         "t": "11/03 10:08",
-         "w": []
-        },
-        {
-         "s": "한국경제",
-         "u": "https://www.hankyung.com/article/202611031709i",
-         "t": "11/03 08:38",
-         "w": []
-        }
-       ]
-      }
-     }
-    ],
-    "us": [
-     {
-      "id": "bigtech",
-      "name": "빅테크",
-      "pos": 5,
-      "neg": 2,
-      "neu": 16,
-      "total": 23,
-      "articles": 23,
-      "events": 20,
-      "pos_pct": 71,
-      "neg_pct": 29,
-      "enough": true,
-      "keywords": [
-       "애플",
-       "AI",
-       "팔란티어"
-      ],
-      "links": {
-       "pos": [
-        {
-         "s": "연합뉴스",
-         "u": "https://www.yna.co.kr/view/AKR20261103061800009",
-         "t": "11/03 10:19",
-         "w": [
-          "성장"
-         ]
-        },
-        {
-         "s": "연합뉴스",
-         "u": "https://www.yna.co.kr/view/AKR20261103012252091",
-         "t": "11/03 10:12",
-         "w": [
-          "최고"
-         ]
-        },
-        {
-         "s": "연합뉴스",
-         "u": "https://www.yna.co.kr/view/AKR20261103012251091",
-         "t": "11/03 07:34",
-         "w": [
-          "최고"
-         ]
-        },
-        {
-         "s": "연합뉴스",
-         "u": "https://www.yna.co.kr/view/AKR20261103047300009",
-         "t": "11/03 09:31",
-         "w": [
-          "확대"
-         ]
-        },
-        {
-         "s": "연합뉴스",
-         "u": "https://www.yna.co.kr/view/AKR20261103013300091",
-         "t": "11/03 06:50",
-         "w": [
-          "돌파",
-          "성장"
-         ]
-        }
-       ],
-       "neg": [
-        {
-         "s": "한국경제",
-         "u": "https://www.hankyung.com/article/2026110336541",
-         "t": "11/03 17:53",
-         "w": [
-          "하락"
-         ]
-        },
-        {
-         "s": "뉴시스",
-         "u": "https://www.newsis.com/view/NISX20261103_0003851989",
-         "t": "11/03 09:25",
-         "w": [
-          "쇼크"
-         ]
-        }
-       ],
-       "neu": [
-        {
-         "s": "한국경제",
-         "u": "https://www.hankyung.com/article/2026110336511",
-         "t": "11/03 17:55",
-         "w": []
-        },
-        {
-         "s": "한국경제",
-         "u": "https://www.hankyung.com/article/2026110336961",
-         "t": "11/03 17:39",
-         "w": []
-        },
-        {
-         "s": "머니투데이",
-         "u": "https://www.mt.co.kr/world/2026/11/03/2026110316550031748",
-         "t": "11/03 17:18",
-         "w": []
-        },
-        {
-         "s": "한국경제",
-         "u": "https://www.hankyung.com/article/202611033208i",
-         "t": "11/03 15:57",
-         "w": []
-        },
-        {
-         "s": "한국경제",
-         "u": "https://www.hankyung.com/article/202611033014i",
-         "t": "11/03 15:28",
-         "w": []
-        },
-        {
-         "s": "연합뉴스",
-         "u": "https://www.yna.co.kr/view/AKR20261103113900017",
-         "t": "11/03 14:18",
-         "w": [
-          "확대",
-          "급감"
-         ]
-        },
-        {
-         "s": "한국경제",
-         "u": "https://www.hankyung.com/article/202611032604i",
-         "t": "11/03 13:33",
-         "w": []
-        },
-        {
-         "s": "뉴시스",
-         "u": "https://www.newsis.com/view/NISX20261103_0003852074",
-         "t": "11/03 10:10",
-         "w": []
-        },
-        {
-         "s": "연합뉴스",
-         "u": "https://www.yna.co.kr/view/AKR20261103091000009",
-         "t": "11/03 11:49",
-         "w": []
-        },
-        {
-         "s": "연합뉴스",
-         "u": "https://www.yna.co.kr/view/AKR20261103090100073",
-         "t": "11/03 11:39",
-         "w": []
-        },
-        {
-         "s": "연합뉴스",
-         "u": "https://www.yna.co.kr/view/AKR20261103034700091",
-         "t": "11/03 09:30",
-         "w": []
-        },
-        {
-         "s": "연합뉴스",
-         "u": "https://www.yna.co.kr/view/AKR20261103027000009",
-         "t": "11/03 08:28",
-         "w": []
-        },
-        {
-         "s": "한국경제",
-         "u": "https://www.hankyung.com/article/202611031658i",
-         "t": "11/03 08:07",
-         "w": [
-          "호실적",
-          "급락"
-         ]
-        },
-        {
-         "s": "연합뉴스",
-         "u": "https://www.yna.co.kr/view/AKR20261103024700075",
-         "t": "11/03 08:06",
-         "w": [
-          "합의",
-          "소송"
-         ]
-        },
-        {
-         "s": "한국경제",
-         "u": "https://www.hankyung.com/article/202611031566i",
-         "t": "11/03 07:19",
-         "w": [
-          "증가",
-          "하락"
-         ]
-        },
-        {
-         "s": "연합뉴스",
-         "u": "https://www.yna.co.kr/view/AKR20261103012200091",
-         "t": "11/03 06:36",
-         "w": []
-        }
-       ]
-      }
-     },
-     {
-      "id": "market",
-      "name": "미국 증시 전반",
-      "pos": 2,
-      "neg": 4,
-      "neu": 9,
-      "total": 15,
-      "articles": 15,
-      "events": 9,
-      "pos_pct": 33,
-      "neg_pct": 67,
-      "enough": true,
-      "keywords": [
-       "중간선거",
-       "월가",
-       "AI"
-      ],
-      "links": {
-       "pos": [
-        {
-         "s": "머니투데이",
-         "u": "https://www.mt.co.kr/world/2026/11/03/2026110313037096774",
-         "t": "11/03 17:13",
-         "w": [
-          "불확실성 해소"
-         ]
-        },
-        {
-         "s": "연합뉴스",
-         "u": "https://www.yna.co.kr/view/AKR20261103029700008",
-         "t": "11/03 08:35",
-         "w": [
-          "상승"
-         ]
-        }
-       ],
-       "neg": [
-        {
-         "s": "연합뉴스",
-         "u": "https://www.yna.co.kr/view/AKR20261103033800072",
-         "t": "11/03 09:19",
-         "w": [
-          "규제"
-         ]
-        },
-        {
-         "s": "뉴시스",
-         "u": "https://www.newsis.com/view/NISX20261103_0003851837",
-         "t": "11/03 06:05",
-         "w": [
-          "하락"
-         ]
-        },
-        {
-         "s": "파이낸셜뉴스",
-         "u": "https://www.fnnews.com/news/202611030848159149",
-         "t": "11/03 09:01",
-         "w": [
-          "해킹"
-         ]
-        },
-        {
-         "s": "뉴시스",
-         "u": "https://www.newsis.com/view/NISX20261103_0003851838",
-         "t": "11/03 06:52",
-         "w": [
-          "약세",
-          "하락"
-         ]
-        }
-       ],
-       "neu": [
-        {
-         "s": "파이낸셜뉴스",
-         "u": "https://www.fnnews.com/news/202611031814500288",
-         "t": "11/03 18:14",
-         "w": []
-        },
-        {
-         "s": "파이낸셜뉴스",
-         "u": "https://www.fnnews.com/news/202611031401383026",
-         "t": "11/03 16:10",
-         "w": []
-        },
-        {
-         "s": "매일경제",
-         "u": "https://www.mk.co.kr/news/it/12195154",
-         "t": "11/03 17:46",
-         "w": []
-        },
-        {
-         "s": "머니투데이",
-         "u": "https://www.mt.co.kr/world/2026/11/03/2026110310120728755",
-         "t": "11/03 17:35",
-         "w": []
-        },
-        {
-         "s": "뉴시스",
-         "u": "https://www.newsis.com/view/NISX20261103_0003852641",
-         "t": "11/03 14:47",
-         "w": []
-        },
-        {
-         "s": "파이낸셜뉴스",
-         "u": "https://www.fnnews.com/news/202611031157485673",
-         "t": "11/03 16:15",
-         "w": []
-        },
-        {
-         "s": "한국경제",
-         "u": "https://www.hankyung.com/article/202611033014i",
-         "t": "11/03 15:28",
-         "w": []
-        },
-        {
-         "s": "뉴시스",
-         "u": "https://www.newsis.com/view/NISX20261103_0003852545",
-         "t": "11/03 13:59",
-         "w": []
-        },
-        {
-         "s": "연합뉴스",
-         "u": "https://www.yna.co.kr/view/AKR20261103010451072",
-         "t": "11/03 07:38",
-         "w": [
-          "유가 급락",
-          "하락"
-         ]
-        }
-       ]
-      }
-     },
-     {
-      "id": "semi",
-      "name": "반도체",
-      "pos": 1,
-      "neg": 3,
-      "neu": 9,
-      "total": 13,
-      "articles": 13,
-      "events": 12,
-      "pos_pct": 25,
-      "neg_pct": 75,
-      "enough": false,
-      "keywords": [
-       "엔비디아",
-       "AMD",
-       "데이터센터"
-      ],
-      "links": {
-       "pos": [
-        {
-         "s": "매일경제",
-         "u": "https://www.mk.co.kr/news/business/12195152",
-         "t": "11/03 17:46",
-         "w": [
-          "수주"
-         ]
-        }
-       ],
-       "neg": [
-        {
-         "s": "뉴시스",
-         "u": "https://www.newsis.com/view/NISX20261103_0003852812",
-         "t": "11/03 15:29",
-         "w": [
-          "폭락",
-          "침체"
-         ]
-        },
-        {
-         "s": "한국경제",
-         "u": "https://www.hankyung.com/article/202611032765i",
-         "t": "11/03 14:58",
-         "w": [
-          "급락"
-         ]
-        },
-        {
-         "s": "매일경제",
-         "u": "https://www.mk.co.kr/news/stock/12193965",
-         "t": "11/02 21:41",
-         "w": [
-          "폭락"
-         ]
-        }
-       ],
-       "neu": [
-        {
-         "s": "매일경제",
-         "u": "https://www.mk.co.kr/news/business/12195160",
-         "t": "11/03 17:49",
-         "w": []
-        },
-        {
-         "s": "연합뉴스",
-         "u": "https://www.yna.co.kr/view/AKR20261103168400057",
-         "t": "11/03 17:45",
-         "w": []
-        },
-        {
-         "s": "머니투데이",
-         "u": "https://www.mt.co.kr/industry/2026/11/03/2026110315201193799",
-         "t": "11/03 17:40",
-         "w": []
-        },
-        {
-         "s": "연합뉴스",
-         "u": "https://www.yna.co.kr/view/AKR20261103162200009",
-         "t": "11/03 17:29",
-         "w": []
-        },
-        {
-         "s": "머니투데이",
-         "u": "https://www.mt.co.kr/world/2026/11/03/2026110315345512162",
-         "t": "11/03 17:27",
-         "w": []
-        },
-        {
-         "s": "파이낸셜뉴스",
-         "u": "https://www.fnnews.com/news/202611031611291454",
-         "t": "11/03 16:16",
-         "w": []
-        },
-        {
-         "s": "뉴시스",
-         "u": "https://www.newsis.com/view/NISX20261103_0003852883",
-         "t": "11/03 15:01",
-         "w": []
-        },
-        {
-         "s": "뉴시스",
-         "u": "https://www.newsis.com/view/NISX20261103_0003852673",
-         "t": "11/03 14:31",
-         "w": []
-        },
-        {
-         "s": "연합뉴스",
-         "u": "https://www.yna.co.kr/view/AKR20261103118400017",
-         "t": "11/03 14:31",
-         "w": []
-        }
-       ]
-      }
-     },
-     {
-      "id": "energy",
-      "name": "에너지",
-      "pos": 3,
-      "neg": 0,
-      "neu": 4,
-      "total": 7,
-      "articles": 7,
-      "events": 5,
-      "pos_pct": 100,
-      "neg_pct": 0,
-      "enough": false,
-      "keywords": [
-       "유가",
-       "AI",
-       "협상"
-      ],
-      "links": {
-       "pos": [
-        {
-         "s": "한국경제",
-         "u": "https://www.hankyung.com/article/2026110337241",
-         "t": "11/03 17:58",
-         "w": [
-          "유가 뚝"
-         ]
-        },
-        {
-         "s": "뉴시스",
-         "u": "https://www.newsis.com/view/NISX20261103_0003852254",
-         "t": "11/03 10:53",
-         "w": [
-          "유가 급락"
-         ]
-        },
-        {
-         "s": "연합뉴스",
-         "u": "https://www.yna.co.kr/view/AKR20261103023300009",
-         "t": "11/03 08:20",
-         "w": [
-          "유가 급락",
-          "국채금리 하락"
-         ]
-        }
-       ],
-       "neg": [],
-       "neu": [
-        {
-         "s": "매일경제",
-         "u": "https://www.mk.co.kr/news/stock/12195023",
-         "t": "11/03 17:20",
-         "w": [
-          "호재",
-          "하락"
-         ]
-        },
-        {
-         "s": "한국경제",
-         "u": "https://www.hankyung.com/article/202611033138i",
-         "t": "11/03 17:00",
-         "w": []
-        },
-        {
-         "s": "뉴시스",
-         "u": "https://www.newsis.com/view/NISX20261103_0003852545",
-         "t": "11/03 13:59",
-         "w": []
-        },
-        {
-         "s": "연합뉴스",
-         "u": "https://www.yna.co.kr/view/AKR20261103010451072",
-         "t": "11/03 07:38",
-         "w": [
-          "유가 급락",
-          "하락"
-         ]
-        }
-       ]
-      }
-     },
-     {
-      "id": "ev",
-      "name": "전기차",
-      "pos": 0,
-      "neg": 1,
-      "neu": 4,
-      "total": 5,
-      "articles": 5,
-      "events": 4,
-      "pos_pct": 0,
-      "neg_pct": 100,
-      "enough": false,
-      "keywords": [
-       "테슬라",
-       "주도",
-       "소맥"
-      ],
-      "links": {
-       "pos": [],
-       "neg": [
-        {
-         "s": "한국경제",
-         "u": "https://www.hankyung.com/article/202611033376i",
-         "t": "11/03 16:56",
-         "w": [
-          "비상"
-         ]
-        }
-       ],
-       "neu": [
-        {
-         "s": "한국경제",
-         "u": "https://www.hankyung.com/article/2026110336371",
-         "t": "11/03 17:41",
-         "w": []
-        },
-        {
-         "s": "뉴시스",
-         "u": "https://www.newsis.com/view/NISX20261103_0003853225",
-         "t": "11/03 16:39",
-         "w": []
-        },
-        {
-         "s": "연합뉴스",
-         "u": "https://www.yna.co.kr/view/AKR20261103083900030",
-         "t": "11/03 11:17",
-         "w": []
-        },
-        {
-         "s": "뉴시스",
-         "u": "https://www.newsis.com/view/NISX20261103_0003852414",
-         "t": "11/03 10:36",
-         "w": []
-        }
-       ]
-      }
-     }
-    ]
-   }
   }
  ],
  "history": [
@@ -19493,6 +17509,17 @@
    },
    "us": {
     "market": 43
+   }
+  },
+  {
+   "date": "2026-11-07",
+   "slot": "pm",
+   "kr": {
+    "realty": 92,
+    "semi": 62
+   },
+   "us": {
+    "market": 57
    }
   }
  ],
